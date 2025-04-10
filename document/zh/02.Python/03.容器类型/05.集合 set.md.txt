@@ -1,0 +1,203 @@
+1:"$Sreact.fragment"
+2:I[7555,[],""]
+3:I[1295,[],""]
+5:I[9665,[],"MetadataBoundary"]
+7:I[9665,[],"OutletBoundary"]
+a:I[4911,[],"AsyncMetadataOutlet"]
+c:I[9665,[],"ViewportBoundary"]
+e:I[6614,[],""]
+:HL["/primers/_next/static/css/2b127b79118b60e8.css","style"]
+0:{"P":null,"b":"zugPV5U-kNOPmVVSg1gFy","p":"/primers","c":["","document","zh","02.Python","03.%E5%AE%B9%E5%99%A8%E7%B1%BB%E5%9E%8B","05.%E9%9B%86%E5%90%88%20set.md"],"i":false,"f":[[["",{"children":["document",{"children":[["lang","zh","d"],{"children":[["category","02.Python","d"],{"children":[["chapter","03.%E5%AE%B9%E5%99%A8%E7%B1%BB%E5%9E%8B","d"],{"children":[["doc","05.%E9%9B%86%E5%90%88%20set.md","d"],{"children":["__PAGE__",{}]}]}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/primers/_next/static/css/2b127b79118b60e8.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":["$","body",null,{"children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]]}],{"children":["document",["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["lang","zh","d"],["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["category","02.Python","d"],["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["chapter","03.%E5%AE%B9%E5%99%A8%E7%B1%BB%E5%9E%8B","d"],["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["doc","05.%E9%9B%86%E5%90%88%20set.md","d"],["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L4",["$","$L5",null,{"children":"$L6"}],null,["$","$L7",null,{"children":["$L8","$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","aX2rSX2fCu0Bgs7Umyu-x",{"children":[["$","$Lc",null,{"children":"$Ld"}],null]}],null]}],false]],"m":"$undefined","G":["$e","$undefined"],"s":false,"S":true}
+f:"$Sreact.suspense"
+10:I[4911,[],"AsyncMetadata"]
+6:["$","$f",null,{"fallback":null,"children":["$","$L10",null,{"promise":"$@11"}]}]
+9:null
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+8:null
+11:{"metadata":[["$","title","0",{"children":"Primers - 编程伙伴"}],["$","meta","1",{"name":"description","content":"欢迎来到 Primers ———— 你的编程学习伙伴。Primers 致力于为各类编程学习者提供全面、系统的编程教程和实践资源。无论你是编程新手，还是有一定基础的开发者，Primers 都提供了适合的学习路径和丰富的实战项目，帮助你从零开始，逐步掌握编程技能，成为一名优秀的开发者。"}],["$","link","2",{"rel":"icon","href":"/primers/favicon.ico","type":"image/x-icon","sizes":"16x16"}]],"error":null,"digest":"$undefined"}
+b:{"metadata":"$11:metadata","error":null,"digest":"$undefined"}
+12:I[5890,["466","static/chunks/466-a16b1133b29f1fb7.js","295","static/chunks/295-61cf23778fd95768.js","197","static/chunks/app/document/%5Blang%5D/%5Bcategory%5D/%5Bchapter%5D/%5Bdoc%5D/page-5f015db9707dbded.js"],"default"]
+13:I[785,["466","static/chunks/466-a16b1133b29f1fb7.js","295","static/chunks/295-61cf23778fd95768.js","197","static/chunks/app/document/%5Blang%5D/%5Bcategory%5D/%5Bchapter%5D/%5Bdoc%5D/page-5f015db9707dbded.js"],"default"]
+14:T15bf,# 集合（set）
+
+是一个基本的数学模型，指若干不同对象形成的总体。类似于只有键（key）的字典，简单来说，集合内的元素不会重复。
+
+字典的字面量使用花括号（`{}`）包裹一组值表示，例如：  
+
+```python
+fruits:set[str] = {'Apple', 'Orange', 'Strawberry', 'Banana', 'Pineapple'}
+```
+
+```graphviz
+digraph HashTable {
+  node [shape=record, fontname="Helvetica"];
+
+  fruits [label="fruits", shape=ellipse];
+
+  // 桶的结构
+  bucket1 [label="Apple"];
+  bucket2 [label="Orange"];
+  bucket3 [label="Strawberry"];
+  bucket4 [label="Banana"];
+  bucket5 [label="Pineapple"];
+
+  // 指向桶
+  fruits -> bucket1 [label="Apple"];
+  fruits -> bucket2 [label="Orange"];
+  fruits -> bucket3 [label="Strawberry"];
+  fruits -> bucket4 [label="Banana"];
+  fruits -> bucket5 [label="Pineapple"];
+}
+```
+
+类型标注 `set[str]`，表示类型是 **元素类型为 `str` 的集合**。  
+
+!class: view-message-warning
+参考 [PEP 585](https://peps.python.org/pep-0585/)，此类型标注需要 Python 版本 $\geq$ 3.9，之前的版本需要引用 `typing` 模块。
+
+## 空集
+
+创建空集需要使用 `set()`，而不能使用 `{}`，因为后者表示空字典。
+
+## 通过 list 或 tuple 创建集合
+
+可以通过列表或元组来创建集合，源列表或元组中重复的值会被过滤，从而实现去重：  
+
+```python shift
+numbers_list:list[int] = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7, 9, 3, 2, 3, 8, 4, 6]
+numbers_set:set[int] = set(numbers_list)
+print(numbers_list)
+print(numbers_set)
+
+numbers_list = list(numbers_set)
+print(numbers_list)
+```
+
+
+## 判断元素是否存在
+
+和字典类似，使用 `in` 来判断元素是否在集合中：  
+
+```python shift
+fruits:set[str] = {'Apple', 'Orange', 'Strawberry', 'Banana', 'Pineapple'}
+print('Strawberry' in fruits)
+print('Strawberry' not in fruits)
+```
+
+## 添加元素
+
+使用 `add` 方法添加元素：  
+
+```python shift
+fruits:set[str] = {'Apple', 'Orange', 'Strawberry', 'Banana', 'Pineapple'}
+fruits.add('Grape')
+print(fruits)
+```
+
+## 删除元素
+
+可以使用 `remove` 或 `discard` 方法删除元素：
+
+* `remove` - 删除指定元素，元素不存在时产生错误
+* `discard` - 删除指定元素，元素不存在时不产生错误
+
+```python shift
+fruits:set[str] = {'Apple', 'Orange', 'Strawberry', 'Banana', 'Pineapple'}
+fruits.remove('Apple')          # 删除 'Apple'
+fruits.discard('Banana')        # 删除 'Banana'
+print(fruits)
+```
+
+## 清空集合
+
+可以使用 `clear` 方法清空集合：
+
+```python shift
+fruits:set[str] = {'Apple', 'Orange', 'Strawberry', 'Banana', 'Pineapple'}
+fruits.clear()
+print(fruits)
+```
+
+## 合并集合
+
+可以使用 `update` 方法合并集合：  
+
+```python shift
+fruits:set[str] = {'Apple', 'Orange', 'Strawberry'}
+fruits.update({'Banana', 'Pineapple'})
+print(fruits)
+```
+
+## 交集
+
+通过 `intersection` 方法或 `&` 运算符，可以求集合的交集（包含两个集合中相同的元素）:  
+
+* 这两种方式都不改变原集合，而是返回一个新的集合。
+* 使用 `intersection_update` 方法，则修改原集合为交集。
+
+```python shift
+fruits:set[str] = {'Apple', 'Orange', 'Strawberry', 'Tomato', 'Cucumber'}
+vegetables:set[str] = {'Cabbage', 'Tomato', 'Cucumber', 'Spinach'}
+
+print(fruits.intersection(vegetables))
+print(fruits & vegetables)
+```
+
+## 并集
+
+通过 `union` 方法或 `|` 运算符，可以求集合的并集（包含两个集合的元素组）:  
+
+* 这两种方式都不改变原集合，而是返回一个新的集合。
+* 使用 `update` 方法，则修改原集合为并集。
+
+```python shift
+fruits:set[str] = {'Apple', 'Orange', 'Strawberry', 'Tomato', 'Cucumber'}
+vegetables:set[str] = {'Cabbage', 'Tomato', 'Cucumber', 'Spinach'}
+
+print(fruits.union(vegetables))
+print(fruits | vegetables)
+```
+
+## 差集
+
+通过 `difference` 方法或 `|` 运算符，可以求集合的差集（包含只在第一个集合中存在的元素）:  
+
+* 这两种方式都不改变原集合，而是返回一个新的集合。
+* 使用 `difference_update` 方法，则修改原集合为差集。
+
+```python shift
+fruits:set[str] = {'Apple', 'Orange', 'Strawberry', 'Tomato', 'Cucumber'}
+vegetables:set[str] = {'Cabbage', 'Tomato', 'Cucumber', 'Spinach'}
+
+print(fruits.difference(vegetables))
+print(fruits - vegetables)
+```
+
+## 对称差集
+
+通过 `symmetric_difference` 方法=可以求集合的对称差集（包含两个集合中不同的元素）:  
+
+* 这两种方式都不改变原集合，而是返回一个新的集合。
+* 使用 `symmetric_difference_update` 方法，则修改原集合为对称差集。
+
+```python shift
+fruits:set[str] = {'Apple', 'Orange', 'Strawberry', 'Tomato', 'Cucumber'}
+vegetables:set[str] = {'Cabbage', 'Tomato', 'Cucumber', 'Spinach'}
+
+print(fruits.symmetric_difference(vegetables))
+```
+
+## 子集和超集
+
+如果集合 A 的所有元素都被 集合 B 包含，则 A 是 B 的子集，B 是 A 的超集。  
+在此基础上，如果 A 和 B 不相等，则称 A 是 B 的真子集，B 是 A 的真超集。  
+
+Python 通过比较运算符 `<`、`<=`、`>`、`>=` 判断集合关系：   
+
+| 关系      |  说明              |
+| :-        | :-                |
+| `A <= B`  | A 是 B 的子集      |
+| `A < B`   | A 是 B 的真子集    |
+| `A >= B`  | A 是 B 的超集      |
+| `A > B`   | A 是 B 的真超集    |
+4:["$","$L12",null,{"titleItems":[{"label":"Python","url":"/document/zh/02.Python/00.index.md"},{"label":"通识基础","url":"/document/zh/99.通识基础/00.index.md"}],"currentTitle":0,"sideItems":[{"label":"预备","items":[{"label":"Python 的简介与安装","url":"/document/zh/02.Python/01.预备/00.Python 的简介与安装.md"},{"label":"第一行代码","url":"/document/zh/02.Python/01.预备/01.第一行代码.md"}]},{"label":"基础语法","items":[{"label":"变量与基本类型","url":"/document/zh/02.Python/02.基础语法/00.变量与基本类型.md"},{"label":"基本运算","url":"/document/zh/02.Python/02.基础语法/01.基本运算.md"},{"label":"标准输入与类型转换","url":"/document/zh/02.Python/02.基础语法/02.标准输入与类型转换.md"},{"label":"条件控制","url":"/document/zh/02.Python/02.基础语法/03.条件控制.md"},{"label":"循环控制","url":"/document/zh/02.Python/02.基础语法/04.循环控制.md"},{"label":"模式匹配","url":"/document/zh/02.Python/02.基础语法/05.模式匹配.md"},{"label":"课后练习","url":"/document/zh/02.Python/02.基础语法/99.课后练习.md"}]},{"label":"容器类型","items":[{"label":"说明","url":"/document/zh/02.Python/03.容器类型/00.说明.md"},{"label":"元组 tuple","url":"/document/zh/02.Python/03.容器类型/01.元组 tuple.md"},{"label":"列表 list","url":"/document/zh/02.Python/03.容器类型/02.列表 list.md"},{"label":"切片操作","url":"/document/zh/02.Python/03.容器类型/03.切片操作.md"},{"label":"字典 dict","url":"/document/zh/02.Python/03.容器类型/04.字典 dict.md"},{"label":"集合 set","url":"/document/zh/02.Python/03.容器类型/05.集合 set.md"},{"label":"容器迭代","url":"/document/zh/02.Python/03.容器类型/06.容器迭代.md"},{"label":"解包操作","url":"/document/zh/02.Python/03.容器类型/07.解包操作.md"},{"label":"模式匹配","url":"/document/zh/02.Python/03.容器类型/08.模式匹配.md"}]}],"currentSide":2,"children":["$","$L13",null,{"maxWidth":"lg","children":"$14"}]}]

@@ -1,0 +1,223 @@
+1:"$Sreact.fragment"
+2:I[7555,[],""]
+3:I[1295,[],""]
+5:I[9665,[],"MetadataBoundary"]
+7:I[9665,[],"OutletBoundary"]
+a:I[4911,[],"AsyncMetadataOutlet"]
+c:I[9665,[],"ViewportBoundary"]
+e:I[6614,[],""]
+:HL["/primers/_next/static/css/2b127b79118b60e8.css","style"]
+0:{"P":null,"b":"zugPV5U-kNOPmVVSg1gFy","p":"/primers","c":["","document","zh","02.Python","03.%E5%AE%B9%E5%99%A8%E7%B1%BB%E5%9E%8B","02.%E5%88%97%E8%A1%A8%20list.md"],"i":false,"f":[[["",{"children":["document",{"children":[["lang","zh","d"],{"children":[["category","02.Python","d"],{"children":[["chapter","03.%E5%AE%B9%E5%99%A8%E7%B1%BB%E5%9E%8B","d"],{"children":[["doc","02.%E5%88%97%E8%A1%A8%20list.md","d"],{"children":["__PAGE__",{}]}]}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/primers/_next/static/css/2b127b79118b60e8.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":["$","body",null,{"children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]]}],{"children":["document",["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["lang","zh","d"],["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["category","02.Python","d"],["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["chapter","03.%E5%AE%B9%E5%99%A8%E7%B1%BB%E5%9E%8B","d"],["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["doc","02.%E5%88%97%E8%A1%A8%20list.md","d"],["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L4",["$","$L5",null,{"children":"$L6"}],null,["$","$L7",null,{"children":["$L8","$L9",["$","$La",null,{"promise":"$@b"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","f4OGtDzTgmmLTbqSbObVo",{"children":[["$","$Lc",null,{"children":"$Ld"}],null]}],null]}],false]],"m":"$undefined","G":["$e","$undefined"],"s":false,"S":true}
+f:"$Sreact.suspense"
+10:I[4911,[],"AsyncMetadata"]
+6:["$","$f",null,{"fallback":null,"children":["$","$L10",null,{"promise":"$@11"}]}]
+9:null
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+8:null
+11:{"metadata":[["$","title","0",{"children":"Primers - 编程伙伴"}],["$","meta","1",{"name":"description","content":"欢迎来到 Primers ———— 你的编程学习伙伴。Primers 致力于为各类编程学习者提供全面、系统的编程教程和实践资源。无论你是编程新手，还是有一定基础的开发者，Primers 都提供了适合的学习路径和丰富的实战项目，帮助你从零开始，逐步掌握编程技能，成为一名优秀的开发者。"}],["$","link","2",{"rel":"icon","href":"/primers/favicon.ico","type":"image/x-icon","sizes":"16x16"}]],"error":null,"digest":"$undefined"}
+b:{"metadata":"$11:metadata","error":null,"digest":"$undefined"}
+12:I[5890,["466","static/chunks/466-a16b1133b29f1fb7.js","295","static/chunks/295-61cf23778fd95768.js","197","static/chunks/app/document/%5Blang%5D/%5Bcategory%5D/%5Bchapter%5D/%5Bdoc%5D/page-5f015db9707dbded.js"],"default"]
+13:I[785,["466","static/chunks/466-a16b1133b29f1fb7.js","295","static/chunks/295-61cf23778fd95768.js","197","static/chunks/app/document/%5Blang%5D/%5Bcategory%5D/%5Bchapter%5D/%5Bdoc%5D/page-5f015db9707dbded.js"],"default"]
+14:T1920,# 列表（list）
+
+**列表（list）** 是一组有序数据的 **可变** 集合。
+
+列表的字面量使用方括号（`[]`）包裹一组值表示，例如：  
+
+```python
+students:list[str] = ["Tom", "Jerry", "Spike"]
+```
+
+```graphviz
+digraph {
+    node [shape=plaintext, fontcolor=red, fontsize=18];
+    "列表:" -> "索引:" [color=white];
+
+    node [shape=record, fontcolor=black, fontsize=14, width=4.75, fixedsize=true];
+    values [label="<f0> Tom | <f1> Jerry | <f2> Spike", color=blue, fillcolor=lightblue, style=filled];
+    indices [label="0 | 1 | 2 ", color=white];
+
+    { rank=same; "列表:"; values }
+    { rank=same; "索引:"; indices }
+
+    edge [color=blue];
+}
+```
+
+类型标注 `list[str]`，表示类型为 **元素类型为 `str` 的列表**
+
+!class: view-message-warning
+参考 [PEP 585](https://peps.python.org/pep-0585/)，此类型标注需要 Python 版本 $\geq$ 3.9，之前的版本需要引用 `typing` 模块。
+
+列表的元素类型可以不同，例如：  
+
+```python
+ages:list[int|str] = [15, "16", 17]
+```
+
+类型标注 `list[int|str]`，表示类型为 **元素类型为 `int` 或 `str` 的列表**
+
+> 如果没有合理的理由，请不要使用元素类型不定的列表
+
+## 索引
+
+列表和元组一样，通过列表后跟方括号（`[]`）索引访问元素，**索引从 0 开始**，并且列表的元素是可以修改的：
+
+```python shift
+students:list[str] = ["Tom", "Jerry", "Spike"]
+print(students)
+print(students[0])
+print(students[1])
+print(students[2])
+
+students[1] = "Tuffy"
+print(students)
+```
+
+## 添加元素
+
+Python 提供了多种方式向列表插入元素，主要包括 `append`、`insert` 和 `extend`：  
+
+* `append` - 在末尾追加元素
+* `insert` - 在指定位置插入元素
+* `extend` - 将另一个列表合并到末尾
+
+示例：  
+
+```python shift
+numbers:list[int] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+numbers.append(10)          # 末尾追加 10
+numbers.insert(2, 233)      # 在索引为 2 的位置插入 233
+numbers.insert(233, 666)    # 索引 233 超出了当前长度，因此在末尾追加 666
+print(numbers)
+```
+
+## 删除元素
+
+Python 提供了多种方式向列表插入元素，主要包括 `pop` 和 `remove`： 
+
+* `pop` - 删除指定索引的元素，不指定索引则删除末尾的元素
+* `remove` - 删除第一个等于指定值的元素
+
+示例：
+
+```python shift
+numbers:list[int] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+numbers.pop()               # 删除末尾元素
+numbers.pop(2)              # 删除索引为 2 的元素
+numbers.remove(7)           # 删除值为 7 的第一个元素
+print(numbers)
+```
+
+## 清空列表
+
+通过 `clear` 方法可以清空列表：
+
+```python shift
+numbers:list[int] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+numbers.clear()             # 清空列表
+print(numbers)
+```
+
+## 引用类型
+
+Python 的 **所有类型都是引用类型**，如果将一个变量赋值给另一个变量，它们将引用同一份实体。参考 [Python 官方文档 - 可变序列](https://docs.python.org/3/reference/datamodel.html#mutable-sequences)
+
+因此，对于列表而言，通过任意一个变量修改列表都会影响到另一个变量：  
+
+```graphviz
+digraph G {
+    node [shape=record, fontname="Courier", fontsize=14];
+    rankdir=LR;
+
+    data [label="值 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]"];
+    numbers [label="变量 numbers"];
+    shadow [label="变量 shadow"];
+
+    numbers -> data [label="引用"];
+    shadow -> data [label="引用"];
+}
+```
+
+```python shift
+numbers:list[int] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  # 创建了列表 [0, ..., 9]，并赋值给变量 numbers
+shadow:list[int] = numbers                          # 变量 numbers 赋值给 shadow，也即引用源头的 [0, ..., 9]
+
+numbers[1] = 233                                    # 通过 numbers 修改列表元素
+shadow[2] = 666                                     # 通过 shadow 修改列表元素
+
+print(numbers)                                      # 可以看到 numbers 和 shadow 都被修改了
+print(shadow)
+```
+
+之前学习的基本类型和元组都属于不可变类型，对他们的修改实际上是创建了一个新的对象。参考 [Python 官方文档 - 不可变序列](https://docs.python.org/3/reference/datamodel.html#immutable-sequences)
+
+因此，引用同一个实体的对象之间不会感知到互相影响：  
+
+```graphviz
+digraph G {
+    rankdir=LR;
+
+    subgraph cluster_1 {
+        label = "After";
+        svalue [label="值 11"];
+        nvalue [label="值 10"];
+        shadow2 [label="变量 shadow"];
+        number2 [label="变量 number"];
+    
+        shadow2 -> svalue [label="引用"];
+        number2 -> nvalue [label="引用"];
+    }
+    
+    subgraph cluster_0 {
+        label = "Before";
+        value [label="值 10"];
+        number [label="变量 number"];
+        shadow [label="变量 shadow"];
+    
+        number -> value [label="引用"];
+        shadow -> value [label="引用"];
+    }
+}
+```
+
+```python shift
+number:int = 10         # 创建了值为 10 的整数，并赋值给变量 number 
+shadow:int = number     # 变量 number 赋值给 shadow，也即引用源头的 10
+
+number = 11             # 修改 number 并非将 10 修改为11，而是创建了新的值为 11 的整数并赋值给 number
+
+print(number)           # number 引用的值为 11
+print(shadow)           # shadow 仍引用原先的值
+```
+
+如果想要两个列表互不影响，就需要创建新的列表：  
+
+```python shift
+numbers:list[int] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]  # 创建了列表 [0, ..., 9]，并赋值给变量 numbers
+shadow:list[int] = list(numbers)                    # 基于 numbers 的值创建新的列表，并赋值给 shadow
+
+numbers[1] = 233                                    # 通过 numbers 修改列表元素
+shadow[2] = 666                                     # 通过 shadow 修改列表元素
+
+print(numbers)
+print(shadow)
+```
+
+## len 函数
+
+通过内建函数 `len` 可以获得元组和列表的长度。
+
+示例：
+
+```python shift
+numbers_tuple:tuple[int, ...] = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+numbers_list:list[int] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+print(len(numbers_tuple))
+print(len(numbers_list))
+print(len(numbers_list[2:7]))
+```4:["$","$L12",null,{"titleItems":[{"label":"Python","url":"/document/zh/02.Python/00.index.md"},{"label":"通识基础","url":"/document/zh/99.通识基础/00.index.md"}],"currentTitle":0,"sideItems":[{"label":"预备","items":[{"label":"Python 的简介与安装","url":"/document/zh/02.Python/01.预备/00.Python 的简介与安装.md"},{"label":"第一行代码","url":"/document/zh/02.Python/01.预备/01.第一行代码.md"}]},{"label":"基础语法","items":[{"label":"变量与基本类型","url":"/document/zh/02.Python/02.基础语法/00.变量与基本类型.md"},{"label":"基本运算","url":"/document/zh/02.Python/02.基础语法/01.基本运算.md"},{"label":"标准输入与类型转换","url":"/document/zh/02.Python/02.基础语法/02.标准输入与类型转换.md"},{"label":"条件控制","url":"/document/zh/02.Python/02.基础语法/03.条件控制.md"},{"label":"循环控制","url":"/document/zh/02.Python/02.基础语法/04.循环控制.md"},{"label":"模式匹配","url":"/document/zh/02.Python/02.基础语法/05.模式匹配.md"},{"label":"课后练习","url":"/document/zh/02.Python/02.基础语法/99.课后练习.md"}]},{"label":"容器类型","items":[{"label":"说明","url":"/document/zh/02.Python/03.容器类型/00.说明.md"},{"label":"元组 tuple","url":"/document/zh/02.Python/03.容器类型/01.元组 tuple.md"},{"label":"列表 list","url":"/document/zh/02.Python/03.容器类型/02.列表 list.md"},{"label":"切片操作","url":"/document/zh/02.Python/03.容器类型/03.切片操作.md"},{"label":"字典 dict","url":"/document/zh/02.Python/03.容器类型/04.字典 dict.md"},{"label":"集合 set","url":"/document/zh/02.Python/03.容器类型/05.集合 set.md"},{"label":"容器迭代","url":"/document/zh/02.Python/03.容器类型/06.容器迭代.md"},{"label":"解包操作","url":"/document/zh/02.Python/03.容器类型/07.解包操作.md"},{"label":"模式匹配","url":"/document/zh/02.Python/03.容器类型/08.模式匹配.md"}]}],"currentSide":2,"children":["$","$L13",null,{"maxWidth":"lg","children":"$14"}]}]
