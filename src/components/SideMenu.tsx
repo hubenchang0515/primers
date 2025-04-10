@@ -12,7 +12,7 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import FolderIcon from '@mui/icons-material/Folder';
 import ArticleIcon from '@mui/icons-material/Article';
-import { Link } from "@/utils/link";
+import Link from "next/link";
 
 export interface SideMenuItem {
     label: string;
@@ -115,7 +115,7 @@ export default function SideMenu(props:SideMenuProps) {
                                                 {
                                                     group.items?.map((item, index) => (
                                                         <ListItem disablePadding key={index}>
-                                                            <ListItemButton sx={{ pl: 4 }} component='a' href={Link(item.url)} >
+                                                            <ListItemButton sx={{ pl: 4 }} component={Link} href={item.url} >
                                                                 <ListItemIcon>
                                                                     {item.icon  ?? <ArticleIcon/>}
                                                                 </ListItemIcon>

@@ -3,7 +3,7 @@
 import { AppBar, Box, Button, IconButton, Tab, Tabs, Toolbar, Typography } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import { Link } from "@/utils/link";
+import Link from "next/link";
 
 export interface TitleBarItem {
     label: string;
@@ -24,7 +24,7 @@ export interface TitleBarProps {
 export default function TitleBar(props:TitleBarProps) {
     return (
         <Box>
-            <AppBar component="nav" color="primary" elevation={12} position="static">
+            <AppBar component="nav" color="primary" elevation={24} position="static">
                 <Toolbar variant="dense">
                     <IconButton
                         size="large"
@@ -41,8 +41,8 @@ export default function TitleBar(props:TitleBarProps) {
                             size="large"
                             color="inherit"
                             aria-label="menu"
-                            href={Link('/')}
-                            LinkComponent='a'
+                            href='/'
+                            LinkComponent={Link}
                             sx={{textTransform:'none'}}
                         >
                             <Typography variant="h6" component="div" sx={{ whiteSpace:"nowrap"}}>
@@ -61,7 +61,7 @@ export default function TitleBar(props:TitleBarProps) {
                         {
                             props.items?.map((item, index) => {
                                 return (
-                                    <Tab key={index} label={item.label} sx={{ textTransform:'none' }} LinkComponent='a' href={Link(item.url)}/>
+                                    <Tab key={index} label={item.label} sx={{ textTransform:'none' }} LinkComponent={Link} href={item.url}/>
                                 )
                             })
                         }
