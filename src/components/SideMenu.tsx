@@ -2,7 +2,9 @@
 
 import { Box, Collapse, Divider, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Paper, Slide, Tooltip } from "@mui/material";
 import { JSX, useEffect, useState } from "react";
+import Link from "next/link";
 
+import HomeIcon from '@mui/icons-material/Home';
 import TuneIcon from '@mui/icons-material/Tune';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
@@ -12,7 +14,6 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import FolderIcon from '@mui/icons-material/Folder';
 import ArticleIcon from '@mui/icons-material/Article';
-import Link from "next/link";
 
 export interface SideMenuItem {
     label: string;
@@ -93,6 +94,18 @@ export default function SideMenu(props:SideMenuProps) {
                     }}
                 >
                     <List sx={{width: "100%"}}>
+                        {/* 首页按钮 */}
+                        <ListItem disablePadding>
+                            <ListItemButton component={Link} href="/">
+                                <ListItemIcon>
+                                    <HomeIcon/>
+                                </ListItemIcon>
+                                <ListItemText>
+                                    首页
+                                </ListItemText>
+                            </ListItemButton>
+                        </ListItem>
+
                         {/* 菜单选项 */}
                         {
                             props.groups?.map((group, index) => {
