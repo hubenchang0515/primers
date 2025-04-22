@@ -4,6 +4,8 @@ import { AppBar, Box, Button, IconButton, Tab, Tabs, Toolbar, Typography } from 
 import MenuIcon from '@mui/icons-material/Menu';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useRouter } from 'next/navigation'; 
 
 export interface TitleBarItem {
     label: string;
@@ -22,6 +24,18 @@ export interface TitleBarProps {
 }
 
 export default function TitleBar(props:TitleBarProps) {
+    const [current, setCurrent] = useState(props.current);
+    const router = useRouter();
+
+    useEffect(() => {
+        if (current === props.current) {
+            return;
+        }
+        if (current !== undefined && props.items && current in props.items) {
+            router.push(props.items[current].url);
+        }
+    }, [current, props, router]);
+
     return (
         <Box>
             <AppBar component="nav" color="primary" elevation={24} position="static">
@@ -56,12 +70,13 @@ export default function TitleBar(props:TitleBarProps) {
                         variant="scrollable"
                         scrollButtons="auto"
                         sx={{ flex:1 }}
-                        value={props.current}
+                        value={current}
+                        onChange={(_, index)=>setCurrent(index)}
                     >
                         {
                             props.items?.map((item, index) => {
                                 return (
-                                    <Tab key={index} label={item.label} sx={{ textTransform:'none' }} LinkComponent={Link} href={item.url}/>
+                                    <Tab key={index} label={item.label} sx={{ textTransform:'none' }} LinkComponent={Link} href={item.url} onClick={(ev)=>ev.preventDefault()}/>
                                 )
                             })
                         }

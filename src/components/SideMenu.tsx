@@ -35,19 +35,21 @@ export interface SideMenuProps {
     expand?: boolean;
     onExpandChanged?: (expand:boolean) => void;
 
-    theme?: string;
-    onToggleTheme?: (theme?:string) => void;
+    mode?: 'light' | 'dark' | 'system';
+    onSetMode?: (theme:'light' | 'dark' | 'system') => void;
 }
 
 export default function SideMenu(props:SideMenuProps) {
     // 内部列表展开状态
-    const [groupExpanded, setGroupExpanded] = useState<boolean[]>(Array.from({length: props.groups?.length || 0}, (_, x) => x === props.current));
+    const [expanded, setExpanded] = useState(props.current);
 
     // 切换内部列表展开状态
     const toggleGroup = (index:number) => {
-        const values = [...groupExpanded]
-        values[index] = !groupExpanded[index];
-        setGroupExpanded(values);
+        if (index === expanded) {
+            setExpanded(NaN);
+        } else {
+            setExpanded(index);
+        }
     }
 
     // 设置列表展开状态
@@ -58,8 +60,6 @@ export default function SideMenu(props:SideMenuProps) {
 
     useEffect(() => {
         if (!props.expand) {
-            const values = Array.from({length: props.groups?.length || 0}, () => false);
-            setGroupExpanded(values);
             setSettingsExpanded(false);
             setChildrenVisible(false);
         }
@@ -120,10 +120,10 @@ export default function SideMenu(props:SideMenuProps) {
                                                     {group.icon  ?? <FolderIcon/>}
                                                 </ListItemIcon>
                                                 <ListItemText primary={group.label}/>
-                                                {groupExpanded[index] ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                                                {index == expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                                             </ListItemButton>
                                         </ListItem>
-                                        <Collapse in={props.expand && groupExpanded[index]} timeout="auto" unmountOnExit>
+                                        <Collapse in={props.expand && index == expanded } timeout="auto" unmountOnExit>
                                             <List component="div" disablePadding >
                                                 {
                                                     group.items?.map((item, index) => (
@@ -162,25 +162,25 @@ export default function SideMenu(props:SideMenuProps) {
                         <Collapse in={props.expand && settingsExpanded} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
                                 <ListItem disablePadding>
-                                    <ListItemButton sx={{ pl: 4 }} onClick={()=>props.onToggleTheme?.()}>
+                                    <ListItemButton sx={{ pl: 4 }} onClick={()=>props.onSetMode?.('system')}>
                                         <ListItemIcon>
                                             <Brightness4Icon />
                                         </ListItemIcon>
                                         <ListItemText primary="主题" />
                                             <Tooltip title="明亮" placement="top" arrow>
-                                                <IconButton color={props.theme === 'light' ? 'primary' : 'inherit'} onClick={(ev) => {props.onToggleTheme?.('light'); ev.stopPropagation();}}>
+                                                <IconButton color={props.mode === 'light' ? 'primary' : 'inherit'} onClick={(ev) => {props.onSetMode?.('light'); ev.stopPropagation();}}>
                                                     <LightModeIcon/>
                                                 </IconButton>
                                             </Tooltip>
 
                                             <Tooltip title="自动" placement="top" arrow>
-                                                <IconButton color={props.theme === 'auto' ? 'primary' : 'inherit'} onClick={(ev) => {props.onToggleTheme?.('auto'); ev.stopPropagation();}}>
+                                                <IconButton color={props.mode === 'system' ? 'primary' : 'inherit'} onClick={(ev) => {props.onSetMode?.('system'); ev.stopPropagation();}}>
                                                     <BrightnessAutoIcon/>
                                                 </IconButton>
                                             </Tooltip>
 
                                             <Tooltip title="黑暗" placement="top" arrow>
-                                                <IconButton color={props.theme === 'dark' ? 'primary' : 'inherit'} onClick={(ev) => {props.onToggleTheme?.('dark'); ev.stopPropagation();}}>
+                                                <IconButton color={props.mode === 'dark' ? 'primary' : 'inherit'} onClick={(ev) => {props.onSetMode?.('dark'); ev.stopPropagation();}}>
                                                     <DarkModeIcon/>
                                                 </IconButton>
                                             </Tooltip>

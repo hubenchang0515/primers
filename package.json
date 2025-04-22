@@ -7,20 +7,29 @@
     "build": "next build && npm run copy-resource",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "gh-pages -d out -t",
-    "copy-resource": "cpx ./primers-document/resource/**/* ./out/resource"
+    "deploy": "gh-pages -d out/primers -t",
+    "copy-resource": "cpx ./primers-document/resource/**/* ./out/primers/resource"
   },
   "dependencies": {
+    "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@fontsource/roboto": "^5.2.5",
+    "@hpcc-js/wasm-graphviz": "^1.7.0",
     "@mui/icons-material": "^7.0.2",
     "@mui/material": "^7.0.2",
+    "@mui/material-nextjs": "^7.0.2",
     "cpx2": "^8.0.0",
     "gh-pages": "^6.3.0",
+    "highlight.js": "^11.11.1",
+    "katex": "^0.16.22",
     "next": "15.3.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-markdown": "^10.1.0",
+    "rehype-katex": "^7.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-math": "^6.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

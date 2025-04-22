@@ -1,9 +1,9 @@
 import path from "path";
-import nextConfig from "../../next.config";
+import { SITE_CONFIG } from "@/config";
 
-export function Link(href:string) {
-    if (nextConfig.basePath && href.startsWith('/')) {
-        return path.join(nextConfig.basePath, href);
+export function Href(href:string) {
+    if (SITE_CONFIG.basePath && href.startsWith('/')) {
+        return path.join(SITE_CONFIG.basePath, href);
     } else {
         return href;
     }

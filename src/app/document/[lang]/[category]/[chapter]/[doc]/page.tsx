@@ -1,8 +1,11 @@
 import MainPage from "@/components/MainPage";
+import Markdown from "@/components/Markdown";
 import { SideMenuGroup } from "@/components/SideMenu";
 import { TitleBarItem } from "@/components/TitleBar";
+import { SITE_CONFIG } from "@/config";
 import { categories, chapters, content, docs, languages, title } from "@/utils/document";
-import { Container } from "@mui/material";
+import { Container, Fade, Paper } from "@mui/material";
+import { Metadata } from "next";
 
 export interface PageParams {
     lang:string;        // 语言： 例如 中文（zh）、英文（en）
@@ -11,6 +14,7 @@ export interface PageParams {
     doc:string;         // 文档： xxx.md
 }
 
+// 生成静态页面路径
 export async function generateStaticParams() {
     const paramsList:PageParams[] = []
     for (const lang of await languages()) {
@@ -30,6 +34,21 @@ export async function generateStaticParams() {
     return paramsList;
 }
 
+// 生成元数据
+export async function generateMetadata({params}:{params:Promise<PageParams>}): Promise<Metadata> {
+    const path = (await params);
+    const markdown = await content(decodeURIComponent(path.lang), decodeURIComponent(path.category), decodeURIComponent(path.chapter), decodeURIComponent(path.doc));
+    
+    return {
+        title: `${title(decodeURIComponent(path.category))} ${title(decodeURIComponent(path.chapter))} ${title(decodeURIComponent(path.doc))} - Primers 编程伙伴`,
+        description: markdown.replace(/\n+/g, '').substring(0, 150),
+        icons: {
+            icon: `${SITE_CONFIG.basePath}/icon.svg`,
+        }
+    };
+}
+
+// 生成页面
 export default async function Page({params}:{params:Promise<PageParams>}) {
     const path = (await params);
     const markdown = await content(decodeURIComponent(path.lang), decodeURIComponent(path.category), decodeURIComponent(path.chapter), decodeURIComponent(path.doc));
@@ -57,8 +76,12 @@ export default async function Page({params}:{params:Promise<PageParams>}) {
 
     return (
         <MainPage titleItems={titleItems} currentTitle={currentTitle} sideItems={sideItems} currentSide={currentSide}>
-            <Container maxWidth='lg'>
-                { markdown }
+            <Container maxWidth='lg' sx={{padding:1, width:{xs:'calc(100vw - 56px)', lg:'auto'}}}>
+                <Fade in={true}>
+                    <Paper sx={{padding:'1rem'}}>
+                        <Markdown content={ markdown }/>
+                    </Paper>
+                </Fade>
             </Container>
         </MainPage>
     )
