@@ -4,8 +4,6 @@ import { AppBar, Box, Button, IconButton, Tab, Tabs, Toolbar, Typography } from 
 import MenuIcon from '@mui/icons-material/Menu';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { useRouter } from 'next/navigation'; 
 
 export interface TitleBarItem {
     label: string;
@@ -18,24 +16,12 @@ export interface TitleBarProps {
 
     items?: TitleBarItem[];
     current?: number;
+    onCurrentChanged?: (index?:number) => void;
 
     onToggleMenu?: () => void
-    onSearch?:(text:string) => void
 }
 
 export default function TitleBar(props:TitleBarProps) {
-    const [current, setCurrent] = useState(props.current);
-    const router = useRouter();
-
-    useEffect(() => {
-        if (current === props.current) {
-            return;
-        }
-        if (current !== undefined && props.items && current in props.items) {
-            router.push(props.items[current].url);
-        }
-    }, [current, props, router]);
-
     return (
         <Box>
             <AppBar component="nav" color="primary" elevation={24} position="static">
@@ -47,6 +33,7 @@ export default function TitleBar(props:TitleBarProps) {
                         aria-label="menu"
                         sx={{ mr: props.title ? 2:0 }}
                         onClick={props.onToggleMenu}
+                        disabled={props.current === undefined}
                     >
                         <MenuIcon />
                     </IconButton>
@@ -70,8 +57,8 @@ export default function TitleBar(props:TitleBarProps) {
                         variant="scrollable"
                         scrollButtons="auto"
                         sx={{ flex:1 }}
-                        value={current}
-                        onChange={(_, index)=>setCurrent(index)}
+                        value={props.current}
+                        onChange={(_, index)=>props.onCurrentChanged?.(index)}
                     >
                         {
                             props.items?.map((item, index) => {

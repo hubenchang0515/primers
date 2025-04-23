@@ -3,10 +3,13 @@
 import SideMenu, { SideMenuGroup } from "@/components/SideMenu";
 import TitleBar, { TitleBarItem } from "@/components/TitleBar";
 import { Box } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useColorScheme } from '@mui/material/styles';
+import { useGlobalState } from "./GlobalState";
+import { useRouter } from 'next/navigation'; 
 
 export interface MainPageProps {
+    depth: number;
     titleItems?: TitleBarItem[];
     currentTitle?: number;
 
@@ -17,18 +20,42 @@ export interface MainPageProps {
 }
 
 export default function MainPage(props:MainPageProps) {
+    // 路由
+    const router = useRouter();
+
+    // 主题模式
     const {mode, setMode} = useColorScheme();
-    // const context = useDefaultContext();
 
-    // 侧边菜单展开状态
-    const [sideExpanded, setSideExpand] = useState<boolean>(true);
+    // 全局状态
+    const {
+        currentTitle, 
+        expandedSideGroup, 
+        sideExpanded,
+        sideCollapsedSize,
+        setCurrentTitle,
+        setExpandedSideGroup,
+        setSideExpanded
+    } = useGlobalState();
 
-    // 初始化
+    // 窄屏自动收起侧边栏
     useEffect(() => {
-        if (window.innerWidth < 720) {
-            setSideExpand(false);
+        if (props.depth === 3 && window.innerWidth < 900) {
+            setSideExpanded?.(false)
         }
-    }, []);
+    }, [props.depth, setSideExpanded]);
+
+    // 标题切换
+    useEffect(() => {
+        if (currentTitle === props.currentTitle) {
+            return;
+        }
+
+        setTimeout(() => {
+            if (currentTitle !== undefined && props.titleItems !== undefined && props.titleItems.length > currentTitle) {
+                router.push(props.titleItems[currentTitle].url)
+            }
+        }, 200);
+    }, [currentTitle, props, router]);
 
     return (
         <Box sx={{width: '100%', height: '100%', display: 'flex', flexDirection:'column'}}>
@@ -36,17 +63,20 @@ export default function MainPage(props:MainPageProps) {
                 title="Primers" 
                 github="https://github.com/hubenchang0515/primers" 
                 items={props.titleItems}
-                current={props.currentTitle}
-                onToggleMenu={()=>setSideExpand(!sideExpanded)}
+                current={currentTitle??props.currentTitle}
+                onToggleMenu={()=>setSideExpanded?.(!sideExpanded)}
+                onCurrentChanged={setCurrentTitle}
             />
             <Box sx={{display:'flex', height:'calc(100% - 48px)'}}>
                 <SideMenu
+                    collapsedSize={sideCollapsedSize}
                     expanded={sideExpanded} 
-                    onExpandedChanged={setSideExpand} 
+                    onExpandedChanged={setSideExpanded} 
                     mode={mode} 
                     onSetMode={(mode)=>setMode(mode)}
                     groups={props.sideGroups}
-                    expandedGroup={props.expandedSideGroup}
+                    expandedGroup={expandedSideGroup}
+                    onExpandedGroupChanged={setExpandedSideGroup}
                 />
                 <Box sx={{flex:1, overflow:'auto'}}>
                     { props.children }

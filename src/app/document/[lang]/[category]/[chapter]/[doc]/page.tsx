@@ -75,8 +75,8 @@ export default async function Page({params}:{params:Promise<PageParams>}) {
     const expandedSideGroup = sideGroups.findIndex(chapter=>chapter.label === title(decodeURIComponent(path.chapter)));
 
     return (
-        <MainPage titleItems={titleItems} currentTitle={currentTitle} sideGroups={sideGroups} expandedSideGroup={expandedSideGroup}>
-            <Container maxWidth='lg' sx={{padding:1, width:{xs:'calc(100vw - 56px)', lg:'auto'}}}>
+        <MainPage depth={3} titleItems={titleItems} currentTitle={currentTitle} sideGroups={sideGroups} expandedSideGroup={expandedSideGroup}>
+            <Container maxWidth='lg' sx={{padding:1, width:{xs:'calc(100vw)', md:'auto'}}}>
                 <Fade in={true}>
                     <Paper sx={{padding:'1rem'}}>
                         <Markdown content={ markdown }/>

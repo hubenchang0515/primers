@@ -15,8 +15,8 @@ export default async function Home() {
     })
 
     return (
-        <MainPage titleItems={titleItems}>
-            <Container maxWidth='lg' sx={{padding:1, width:{xs:'calc(100vw - 56px)', lg:'auto'}}}>
+        <MainPage depth={1} titleItems={titleItems}>
+            <Container maxWidth='lg' sx={{padding:1, width:{xs:'calc(100vw)', md:'auto'}}}>
                 <Fade in={true}>
                     <Paper sx={{padding:'1rem'}}>
                         <Markdown content={ markdown }/>

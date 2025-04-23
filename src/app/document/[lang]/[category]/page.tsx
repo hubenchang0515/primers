@@ -66,8 +66,8 @@ export default async function Page({params}:{params:Promise<PageParams>}) {
     })));
 
     return (
-        <MainPage titleItems={titleItems} currentTitle={currentTitle} sideGroups={sideGroups}>
-            <Container maxWidth='lg' sx={{padding:1, width:{xs:'calc(100vw - 56px)', lg:'auto'}}}>
+        <MainPage depth={2} titleItems={titleItems} currentTitle={currentTitle} sideGroups={sideGroups}>
+            <Container maxWidth='lg' sx={{padding:1, width:{xs:'calc(100vw)', md:'auto'}}}>
                 <Fade in={true}>
                     <Paper sx={{padding:'1rem'}}>
                         <Markdown content={ markdown }/>

@@ -11,6 +11,7 @@ import { ThemeProvider } from "@mui/material";
 import theme from "@/utils/theme";
 import InitColorSchemeScript from "@mui/material/InitColorSchemeScript";
 import { SITE_CONFIG } from "@/config";
+import { GlobalStateProvider } from "@/components/GlobalState";
 
 export const metadata: Metadata = {
   title: "Primers 编程伙伴",
@@ -31,7 +32,9 @@ export default function RootLayout({
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <InitColorSchemeScript attribute="class" />
-            {children}
+            <GlobalStateProvider>
+              {children}
+            </GlobalStateProvider>
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>

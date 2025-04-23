@@ -29,28 +29,20 @@ export interface SideMenuGroup {
 
 export interface SideMenuProps {
     groups?: SideMenuGroup[];
-    expandedGroup?: number;
     children?: React.ReactNode;
 
+    collapsedSize?: number;
     expanded?: boolean;
     onExpandedChanged?: (expand:boolean) => void;
+
+    expandedGroup?: number;
+    onExpandedGroupChanged?: (index:number) => void;
 
     mode?: 'light' | 'dark' | 'system';
     onSetMode?: (theme:'light' | 'dark' | 'system') => void;
 }
 
 export default function SideMenu(props:SideMenuProps) {
-    // 内部列表展开状态
-    const [expandedGroup, setExpandedGroup] = useState(props.expandedGroup);
-
-    // 切换内部列表展开状态
-    const toggleGroup = (index:number) => {
-        if (index === expandedGroup) {
-            setExpandedGroup(NaN);
-        } else {
-            setExpandedGroup(index);
-        }
-    }
 
     // 设置列表展开状态
     const [settingsExpanded, setSettingsExpanded] = useState<boolean>(false);
@@ -63,7 +55,7 @@ export default function SideMenu(props:SideMenuProps) {
             setSettingsExpanded(false);
             setChildrenVisible(false);
         }
-    }, [props.expanded, props.groups]);
+    }, [props.expanded]);
 
     return (
         <Paper
@@ -77,8 +69,8 @@ export default function SideMenu(props:SideMenuProps) {
             <Collapse 
                 sx={{height: '100%'}} 
                 orientation="horizontal" 
-                collapsedSize={56 /* 16 + 24 + 16 => 56 */} 
-                in={props.expanded} 
+                collapsedSize={props.groups ? props.collapsedSize??56 : 0} 
+                in={props.groups && props.expanded} 
                 onEntered={()=>setChildrenVisible(true)}
                 onExit={()=>setChildrenVisible(false)}
             >
@@ -113,17 +105,17 @@ export default function SideMenu(props:SideMenuProps) {
                                     <Box key={index}>
                                         <ListItem disablePadding>
                                             <ListItemButton onClick={() => {
-                                                toggleGroup(index);
+                                                props.onExpandedGroupChanged?.(index);
                                                 props.onExpandedChanged?.(true);
                                             }}>
                                                 <ListItemIcon>
                                                     {group.icon  ?? <FolderIcon/>}
                                                 </ListItemIcon>
                                                 <ListItemText primary={group.label}/>
-                                                {index == expandedGroup ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                                                {index == props.expandedGroup ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                                             </ListItemButton>
                                         </ListItem>
-                                        <Collapse in={props.expanded && index == expandedGroup } timeout="auto" unmountOnExit>
+                                        <Collapse in={props.expanded && index == props.expandedGroup } timeout="auto" unmountOnExit>
                                             <List component="div" disablePadding >
                                                 {
                                                     group.items?.map((item, index) => (
