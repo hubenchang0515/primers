@@ -53,7 +53,7 @@ export default async function Page({params}:{params:Promise<PageParams>}) {
     })
     const currentTitle = titleItems.findIndex(item=>item.label === title(decodeURIComponent(path.category)));
 
-    const sideItems:SideMenuGroup[] = await Promise.all(((await chapters(decodeURIComponent(path.lang), decodeURIComponent(path.category))).map(async (chapter) => {
+    const sideGroups:SideMenuGroup[] = await Promise.all(((await chapters(decodeURIComponent(path.lang), decodeURIComponent(path.category))).map(async (chapter) => {
         return {
             label: title(chapter),
             items: (await docs(decodeURIComponent(path.lang), decodeURIComponent(path.category), decodeURIComponent(chapter))).map((doc) => {
@@ -66,7 +66,7 @@ export default async function Page({params}:{params:Promise<PageParams>}) {
     })));
 
     return (
-        <MainPage titleItems={titleItems} currentTitle={currentTitle} sideItems={sideItems}>
+        <MainPage titleItems={titleItems} currentTitle={currentTitle} sideGroups={sideGroups}>
             <Container maxWidth='lg' sx={{padding:1, width:{xs:'calc(100vw - 56px)', lg:'auto'}}}>
                 <Fade in={true}>
                     <Paper sx={{padding:'1rem'}}>

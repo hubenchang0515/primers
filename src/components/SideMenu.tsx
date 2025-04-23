@@ -29,11 +29,11 @@ export interface SideMenuGroup {
 
 export interface SideMenuProps {
     groups?: SideMenuGroup[];
-    current?: number;
+    expandedGroup?: number;
     children?: React.ReactNode;
 
-    expand?: boolean;
-    onExpandChanged?: (expand:boolean) => void;
+    expanded?: boolean;
+    onExpandedChanged?: (expand:boolean) => void;
 
     mode?: 'light' | 'dark' | 'system';
     onSetMode?: (theme:'light' | 'dark' | 'system') => void;
@@ -41,14 +41,14 @@ export interface SideMenuProps {
 
 export default function SideMenu(props:SideMenuProps) {
     // 内部列表展开状态
-    const [expanded, setExpanded] = useState(props.current);
+    const [expandedGroup, setExpandedGroup] = useState(props.expandedGroup);
 
     // 切换内部列表展开状态
     const toggleGroup = (index:number) => {
-        if (index === expanded) {
-            setExpanded(NaN);
+        if (index === expandedGroup) {
+            setExpandedGroup(NaN);
         } else {
-            setExpanded(index);
+            setExpandedGroup(index);
         }
     }
 
@@ -59,11 +59,11 @@ export default function SideMenu(props:SideMenuProps) {
     const [childrenVisible, setChildrenVisible] = useState(false);
 
     useEffect(() => {
-        if (!props.expand) {
+        if (!props.expanded) {
             setSettingsExpanded(false);
             setChildrenVisible(false);
         }
-    }, [props.expand, props.groups]);
+    }, [props.expanded, props.groups]);
 
     return (
         <Paper
@@ -78,7 +78,7 @@ export default function SideMenu(props:SideMenuProps) {
                 sx={{height: '100%'}} 
                 orientation="horizontal" 
                 collapsedSize={56 /* 16 + 24 + 16 => 56 */} 
-                in={props.expand} 
+                in={props.expanded} 
                 onEntered={()=>setChildrenVisible(true)}
                 onExit={()=>setChildrenVisible(false)}
             >
@@ -114,16 +114,16 @@ export default function SideMenu(props:SideMenuProps) {
                                         <ListItem disablePadding>
                                             <ListItemButton onClick={() => {
                                                 toggleGroup(index);
-                                                props.onExpandChanged?.(true);
+                                                props.onExpandedChanged?.(true);
                                             }}>
                                                 <ListItemIcon>
                                                     {group.icon  ?? <FolderIcon/>}
                                                 </ListItemIcon>
                                                 <ListItemText primary={group.label}/>
-                                                {index == expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                                                {index == expandedGroup ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                                             </ListItemButton>
                                         </ListItem>
-                                        <Collapse in={props.expand && index == expanded } timeout="auto" unmountOnExit>
+                                        <Collapse in={props.expanded && index == expandedGroup } timeout="auto" unmountOnExit>
                                             <List component="div" disablePadding >
                                                 {
                                                     group.items?.map((item, index) => (
@@ -150,7 +150,7 @@ export default function SideMenu(props:SideMenuProps) {
                         <ListItem disablePadding>
                             <ListItemButton onClick={() => {
                                 setSettingsExpanded(!settingsExpanded);
-                                props.onExpandChanged?.(true);
+                                props.onExpandedChanged?.(true);
                             }}>
                                 <ListItemIcon>
                                     <TuneIcon/>
@@ -159,7 +159,7 @@ export default function SideMenu(props:SideMenuProps) {
                                 {settingsExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                             </ListItemButton>
                         </ListItem>
-                        <Collapse in={props.expand && settingsExpanded} timeout="auto" unmountOnExit>
+                        <Collapse in={props.expanded && settingsExpanded} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
                                 <ListItem disablePadding>
                                     <ListItemButton sx={{ pl: 4 }} onClick={()=>props.onSetMode?.('system')}>
@@ -193,7 +193,7 @@ export default function SideMenu(props:SideMenuProps) {
 
                     {
                         props.children && 
-                        <Slide in={props.expand && childrenVisible} direction="up" mountOnEnter unmountOnExit>
+                        <Slide in={props.expanded && childrenVisible} direction="up" mountOnEnter unmountOnExit>
                             <Box>
                                 {props.children}
                             </Box>

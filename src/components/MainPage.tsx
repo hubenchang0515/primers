@@ -10,22 +10,23 @@ export interface MainPageProps {
     titleItems?: TitleBarItem[];
     currentTitle?: number;
 
-    sideItems?: SideMenuGroup[];
-    currentSide?: number;
+    sideGroups?: SideMenuGroup[];
+    expandedSideGroup?: number;
 
     children?: React.ReactNode;
 }
 
 export default function MainPage(props:MainPageProps) {
     const {mode, setMode} = useColorScheme();
+    // const context = useDefaultContext();
 
     // 侧边菜单展开状态
-    const [menuExpand, setMenuExpand] = useState<boolean>(true);
+    const [sideExpanded, setSideExpand] = useState<boolean>(true);
 
     // 初始化
     useEffect(() => {
         if (window.innerWidth < 720) {
-            setMenuExpand(false);
+            setSideExpand(false);
         }
     }, []);
 
@@ -36,16 +37,16 @@ export default function MainPage(props:MainPageProps) {
                 github="https://github.com/hubenchang0515/primers" 
                 items={props.titleItems}
                 current={props.currentTitle}
-                onToggleMenu={()=>setMenuExpand(!menuExpand)}
+                onToggleMenu={()=>setSideExpand(!sideExpanded)}
             />
             <Box sx={{display:'flex', height:'calc(100% - 48px)'}}>
                 <SideMenu
-                    expand={menuExpand} 
-                    onExpandChanged={setMenuExpand} 
+                    expanded={sideExpanded} 
+                    onExpandedChanged={setSideExpand} 
                     mode={mode} 
                     onSetMode={(mode)=>setMode(mode)}
-                    groups={props.sideItems}
-                    current={props.currentSide}
+                    groups={props.sideGroups}
+                    expandedGroup={props.expandedSideGroup}
                 />
                 <Box sx={{flex:1, overflow:'auto'}}>
                     { props.children }
