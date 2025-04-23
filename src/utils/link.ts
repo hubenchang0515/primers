@@ -1,10 +1,10 @@
 import path from "path";
 import { SITE_CONFIG } from "@/config";
 
-export function Href(href:string) {
-    if (SITE_CONFIG.basePath && href.startsWith('/')) {
-        return path.join(SITE_CONFIG.basePath, href);
+export function URLWrap(url:string) {
+    if (SITE_CONFIG.basePath && url.startsWith('/')) {
+        return path.join(SITE_CONFIG.basePath, url);
     } else {
-        return href;
+        return url;
     }
 }
