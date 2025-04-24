@@ -4,11 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build && npm run copy-resource",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "gh-pages -d out/primers -t",
-    "copy-resource": "cpx ./primers-document/resource/**/* ./out/primers/resource"
+    "deploy": "gh-pages -d out/primers -t"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
@@ -19,11 +18,11 @@
     "@mui/icons-material": "^7.0.2",
     "@mui/material": "^7.0.2",
     "@mui/material-nextjs": "^7.0.2",
-    "cpx2": "^8.0.0",
     "gh-pages": "^6.3.0",
     "highlight.js": "^11.11.1",
     "katex": "^0.16.22",
     "next": "15.3.0",
+    "probe-image-size": "^7.2.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-markdown": "^10.1.0",
@@ -34,6 +33,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@types/node": "^20",
+    "@types/probe-image-size": "^7.2.5",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",

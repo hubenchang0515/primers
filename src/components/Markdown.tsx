@@ -15,7 +15,7 @@ import NotesIcon from '@mui/icons-material/Notes';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { ComponentProps, ElementType } from 'react';
 import NextLink from "next/link";
-import { URLWrap } from '@/utils/link';
+import Image from './Image';
 
 export interface MarkdownProps {
     content:string;
@@ -116,12 +116,7 @@ const components:Components = {
     },
 
     async img(props) {
-        const src = URLWrap(props.src??'');
-        return (
-            <Box sx={{marginBlock:'8px', textAlign:'center'}}>
-                <img src={src} alt={props.alt??'image'} style={{maxWidth:'100%'}}/>
-            </Box>
-        )
+        return <Image src={props.src} alt={props.alt} style={{display:'block', margin:'auto', maxWidth:'100%', height:'auto',}}/>
     },
 
     async blockquote(props) {
