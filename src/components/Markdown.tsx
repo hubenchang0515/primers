@@ -6,7 +6,7 @@ import { Node } from 'unist';
 import { Paragraph } from 'mdast';
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math';
-import rehypeKatex from 'rehype-katex';
+import rehypeMathjax from 'rehype-mathjax';
 import hljs from 'highlight.js';
 import { Graphviz } from "@hpcc-js/wasm-graphviz";
 import 'highlight.js/styles/nord.css';
@@ -247,7 +247,7 @@ export default function Markdown(props: MarkdownProps) {
     return (
         <ReactMarkdown
             remarkPlugins={[remarkGfm, customClass, remarkMath]}
-            rehypePlugins={[rehypeKatex]}
+            rehypePlugins={[rehypeMathjax]}
             components={components}
         >
             {props.content}
