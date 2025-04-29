@@ -86,17 +86,6 @@ export default function SideMenu(props:SideMenuProps) {
                     }}
                 >
                     <List sx={{width: "100%"}}>
-                        {/* 首页按钮 */}
-                        <ListItem disablePadding>
-                            <ListItemButton component={Link} href="/">
-                                <ListItemIcon>
-                                    <HomeIcon/>
-                                </ListItemIcon>
-                                <ListItemText>
-                                    首页
-                                </ListItemText>
-                            </ListItemButton>
-                        </ListItem>
 
                         {/* 菜单选项 */}
                         {

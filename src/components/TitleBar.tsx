@@ -45,6 +45,7 @@ export default function TitleBar(props:TitleBarProps) {
                             href='/'
                             LinkComponent={Link}
                             sx={{textTransform:'none'}}
+                            onClick={()=>{props.onCurrentChanged?.(undefined)}}
                         >
                             <Typography variant="h6" component="div" sx={{ whiteSpace:"nowrap"}}>
                                 { props.title }

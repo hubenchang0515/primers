@@ -32,6 +32,8 @@ export function GlobalStateProvider(props:GlobalStateProviderProps) {
     useEffect(() => {
         if (window.innerWidth < 900) {
             setSideCollapsedSize?.(0);
+        } else {
+            setSideExpanded?.(true);
         }
     }, [setSideCollapsedSize]);
 

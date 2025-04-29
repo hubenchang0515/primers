@@ -46,16 +46,26 @@ export default function MainPage(props:MainPageProps) {
 
     // 标题切换
     useEffect(() => {
-        if (currentTitle === props.currentTitle) {
+        if (currentTitle === undefined || currentTitle === props.currentTitle) {
             return;
         }
 
         setTimeout(() => {
             if (currentTitle !== undefined && props.titleItems !== undefined && props.titleItems.length > currentTitle) {
-                router.push(props.titleItems[currentTitle].url)
+                router.push(props.titleItems[currentTitle].url);
+                setSideExpanded?.(true);
             }
         }, 200);
     }, [currentTitle, props, router]);
+
+    // 展开侧边栏分组
+    const toggleSideGroup = (index:number) => {
+        if (index === expandedSideGroup) {
+            setExpandedSideGroup?.(undefined);
+        } else {
+            setExpandedSideGroup?.(index);
+        }
+    }
 
     return (
         <Box sx={{width: '100%', height: '100%', display: 'flex', flexDirection:'column'}}>
@@ -76,7 +86,7 @@ export default function MainPage(props:MainPageProps) {
                     onSetMode={(mode)=>setMode(mode)}
                     groups={props.sideGroups}
                     expandedGroup={expandedSideGroup}
-                    onExpandedGroupChanged={setExpandedSideGroup}
+                    onExpandedGroupChanged={toggleSideGroup}
                 />
                 <Box sx={{flex:1, overflow:'auto'}}>
                     { props.children }
