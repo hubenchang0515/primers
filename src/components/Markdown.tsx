@@ -233,7 +233,9 @@ const components:Components = {
             )
         } else {
             // 不存在换行，为行内代码，渲染为 Chip
-            return <Chip component='code' size="small" color="primary" sx={{borderRadius:0, border:'1px solid var(--mui-palette-background-paper)', verticalAlign:'bottom', fontFamily:'Consolas, Monaco, monospace'}} label={ code }/>
+            const quota = ((props.node?.position?.end.offset??0) - (props.node?.position?.start.offset??0)) - (props.children as string).length;
+            const color = quota === 4 ? 'primary' : quota === 6 ? 'secondary' : 'default';
+            return <Chip component='code' size="small" color={color} sx={{borderRadius:0, border:'1px solid var(--mui-palette-background-paper)', verticalAlign:'bottom', fontFamily:'Consolas, Monaco, monospace'}} label={ code }/>
         }
     },
 
