@@ -1,4 +1,4 @@
-import { Alert, AlertProps, Box, Chip, Link, Stack, Typography } from '@mui/material';
+import { Alert, AlertProps, Box, Chip, Link, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import ReactMarkdown, { Components } from 'react-markdown'
 import { hash } from '@/utils/crypto';
 import { visit } from 'unist-util-visit';
@@ -126,6 +126,38 @@ const components:Components = {
                 {props.children} 
             </Alert>
         )
+    },
+
+    async table(props) {
+        return (
+            <TableContainer component={Paper} variant="outlined" square>
+                <Table>
+                    { props.children }
+                </Table>
+            </TableContainer>
+        )
+    },
+
+    async thead(props) {
+        return <TableHead>{ props.children }</TableHead>
+    },
+
+    async tbody(props) {
+        return <TableBody>{ props.children }</TableBody>
+    },
+
+    async tr(props) {
+        return <TableRow>{ props.children }</TableRow>
+    },
+
+    async th(props) {
+        const align = props.node?.properties.align as "center" | "right" | "left" | "inherit" | "justify" | undefined
+        return <TableCell sx={{fontWeight:'bold', minWidth:'4rem'}} align={align}>{ props.children }</TableCell>
+    },
+
+    async td(props) {
+        const align = props.node?.properties.align as "center" | "right" | "left" | "inherit" | "justify" | undefined
+        return <TableCell align={align}>{ props.children }</TableCell>
     },
 
     async code(props) {
