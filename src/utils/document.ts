@@ -1,6 +1,12 @@
 import path from "path";
 import fs from 'fs/promises';
 import { DOCUMENT_CONFIG } from "@/config";
+import { exec } from "child_process";
+
+export interface DocState {
+    createdTime: Date;
+    updatedTime: Date;
+}
 
 export function title(filename:string) {
     if (filename.includes(".")) {
@@ -38,4 +44,26 @@ export async function content(lang:string, category:string, chapter?:string, doc
     const file = path.join(process.cwd(), DOCUMENT_CONFIG.root, 'document', lang, category, chapter??"", doc??"");
     const text = await fs.readFile(file, 'utf-8');
     return text;
+}
+
+export async function docState(lang:string, category:string, chapter?:string, doc?:string): Promise<DocState> {
+    const dir = path.join(process.cwd(), DOCUMENT_CONFIG.root);
+    const file = path.join(process.cwd(), DOCUMENT_CONFIG.root, 'document', lang, category, chapter??"", doc??"");
+
+    return new Promise((resolve) => {
+        exec(`git -C ${dir} log --format="%ai" ${file}`, (err, stdout) => {
+            if (err || stdout.trim().length === 0) {
+                resolve({
+                    createdTime: new Date(),
+                    updatedTime: new Date(),
+                });
+            } else {
+                const lines = stdout.split("\n").filter(Boolean);
+                resolve({
+                    createdTime: new Date(lines[lines.length - 1]),
+                    updatedTime: new Date(lines[0]),
+                });
+            }
+        })
+    })
 }

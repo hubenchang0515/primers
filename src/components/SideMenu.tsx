@@ -4,7 +4,6 @@ import { Box, Collapse, Divider, IconButton, List, ListItem, ListItemButton, Lis
 import { JSX, useEffect, useState } from "react";
 import Link from "next/link";
 
-import HomeIcon from '@mui/icons-material/Home';
 import TuneIcon from '@mui/icons-material/Tune';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';

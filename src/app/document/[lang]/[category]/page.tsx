@@ -1,9 +1,9 @@
+import { Content } from "@/components/Content";
 import MainPage from "@/components/MainPage";
-import Markdown from "@/components/Markdown";
 import { SideMenuGroup } from "@/components/SideMenu";
 import { TitleBarItem } from "@/components/TitleBar";
 import { SITE_CONFIG } from "@/config";
-import { categories, chapters, content, docs, languages, title } from "@/utils/document";
+import { categories, chapters, content, docs, languages, docState, title } from "@/utils/document";
 import { Container, Fade, Paper } from "@mui/material";
 import { Metadata } from "next";
 
@@ -41,9 +41,10 @@ export async function generateMetadata({params}:{params:Promise<PageParams>}): P
 }
 
 // 生成页面
-export default async function Page({params}:{params:Promise<PageParams>}) {
+export default async function Pastatege({params}:{params:Promise<PageParams>}) {
     const path = (await params);
     const markdown = await content(path.lang, decodeURIComponent(path.category), "00.index.md");
+    const state = await docState(path.lang, decodeURIComponent(path.category), "00.index.md");
 
     const titleItems:TitleBarItem[] = (await categories(decodeURIComponent(path.lang))).map((item) => {
         return {
@@ -70,7 +71,7 @@ export default async function Page({params}:{params:Promise<PageParams>}) {
             <Container maxWidth='lg' sx={{padding:1, width:{xs:'calc(100vw)', md:'auto'}}}>
                 <Fade in={true}>
                     <Paper sx={{padding:'1rem'}}>
-                        <Markdown content={ markdown }/>
+                        <Content content={markdown} state={state}/>
                     </Paper>
                 </Fade>
             </Container>

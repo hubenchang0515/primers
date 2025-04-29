@@ -3,7 +3,7 @@
 import SideMenu, { SideMenuGroup } from "@/components/SideMenu";
 import TitleBar, { TitleBarItem } from "@/components/TitleBar";
 import { Box } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useColorScheme } from '@mui/material/styles';
 import { useGlobalState } from "./GlobalState";
 import { useRouter } from 'next/navigation'; 
@@ -45,18 +45,15 @@ export default function MainPage(props:MainPageProps) {
     }, [props.depth, setSideExpanded]);
 
     // 标题切换
-    useEffect(() => {
-        if (currentTitle === undefined || currentTitle === props.currentTitle) {
-            return;
-        }
-
+    const setTitle = useCallback((index?:number) => {
+        setCurrentTitle?.(index);
         setTimeout(() => {
-            if (currentTitle !== undefined && props.titleItems !== undefined && props.titleItems.length > currentTitle) {
-                router.push(props.titleItems[currentTitle].url);
+            if (index !== undefined && props.titleItems !== undefined && props.titleItems.length > index) {
+                router.push(props.titleItems[index].url);
                 setSideExpanded?.(true);
             }
         }, 200);
-    }, [currentTitle, props, router]);
+    }, [props, router, setCurrentTitle, setSideExpanded]);
 
     // 展开侧边栏分组
     const toggleSideGroup = (index:number) => {
@@ -75,7 +72,7 @@ export default function MainPage(props:MainPageProps) {
                 items={props.titleItems}
                 current={currentTitle??props.currentTitle}
                 onToggleMenu={()=>setSideExpanded?.(!sideExpanded)}
-                onCurrentChanged={setCurrentTitle}
+                onCurrentChanged={setTitle}
             />
             <Box sx={{display:'flex', height:'calc(100% - 48px)'}}>
                 <SideMenu

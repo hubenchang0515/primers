@@ -1,4 +1,4 @@
-import { Alert, AlertProps, Box, Chip, Link, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import { Alert, AlertProps, Box, Chip, Link, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import ReactMarkdown, { Components } from 'react-markdown'
 import { hash } from '@/utils/crypto';
 import { visit } from 'unist-util-visit';
@@ -11,8 +11,6 @@ import hljs from 'highlight.js';
 import { Graphviz } from "@hpcc-js/wasm-graphviz";
 import 'highlight.js/styles/nord.css';
 import 'katex/dist/katex.min.css';
-import NotesIcon from '@mui/icons-material/Notes';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { ComponentProps, ElementType } from 'react';
 import NextLink from "next/link";
 import Image from './Image';
@@ -247,20 +245,12 @@ const components:Components = {
 export default function Markdown(props: MarkdownProps) {
     
     return (
-        <Box>
-            <Stack direction="row" spacing={1} sx={{color:'#bbb'}}>
-                <NotesIcon/> 
-                <Typography>约 {props.content.length} 字</Typography> 
-                <AccessTimeIcon sx={{color:'#bbb'}}/> 
-                <Typography>约 {Math.round(props.content.length / 200)} 分钟</Typography> 
-            </Stack>
-            <ReactMarkdown
-                remarkPlugins={[remarkGfm, customClass, remarkMath]}
-                rehypePlugins={[rehypeKatex]}
-                components={components}
-            >
-                {props.content}
-            </ReactMarkdown>
-        </Box>
+        <ReactMarkdown
+            remarkPlugins={[remarkGfm, customClass, remarkMath]}
+            rehypePlugins={[rehypeKatex]}
+            components={components}
+        >
+            {props.content}
+        </ReactMarkdown>
     )
 }
