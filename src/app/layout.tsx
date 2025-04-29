@@ -12,6 +12,7 @@ import theme from "@/utils/theme";
 import InitColorSchemeScript from "@mui/material/InitColorSchemeScript";
 import { SITE_CONFIG } from "@/config";
 import { GlobalStateProvider } from "@/components/GlobalState";
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 export const metadata: Metadata = {
   title: "Primers 编程伙伴",
@@ -38,6 +39,7 @@ export default function RootLayout({
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
+      <GoogleAnalytics gaId="G-HEWPX7E6EV"/>
     </html>
   );
 }
