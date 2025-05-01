@@ -129,7 +129,7 @@ const components:Components = {
     async table(props) {
         return (
             <TableContainer component={Paper} variant="outlined" square>
-                <Table>
+                <Table size='small'>
                     { props.children }
                 </Table>
             </TableContainer>
