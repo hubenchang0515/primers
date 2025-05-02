@@ -167,7 +167,7 @@ const components:Components = {
             // 标注为 embed 表示直接内嵌 HTML
             if (language === 'embed') {
                 return (
-                    <Box sx={{marginBlock:'8px'}} className={language} dangerouslySetInnerHTML={{__html: code}}/>
+                    <Box sx={{marginBlock:'8px', whiteSpace:'normal'}} className={language} dangerouslySetInnerHTML={{__html: code}}/>
                 )
             }
 
@@ -176,7 +176,7 @@ const components:Components = {
                 const graphviz = await Graphviz.load();
                 const result = graphviz.dot(code).replace(/\n/g, "").trim();
                 return (
-                    <Box sx={{marginBlock:'8px', textAlign:'center'}} className={language} dangerouslySetInnerHTML={{__html: result}}/>
+                    <Box sx={{marginBlock:'8px', textAlign:'center', whiteSpace:'normal'}} className={language} dangerouslySetInnerHTML={{__html: result}}/>
                 )
             }
 
