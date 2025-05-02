@@ -9,7 +9,7 @@ import remarkMath from 'remark-math';
 import rehypeMathjax from 'rehype-mathjax';
 import hljs from 'highlight.js';
 import { Graphviz } from "@hpcc-js/wasm-graphviz";
-import 'highlight.js/styles/nord.css';
+import '@/assets/highlight.css';
 import 'katex/dist/katex.min.css';
 import { ComponentProps, ElementType } from 'react';
 import NextLink from "next/link";
@@ -185,7 +185,7 @@ const components:Components = {
                 const result = hljs.highlightAuto(code);
                 return (
                     <Box sx={{marginBlock:'8px'}}>
-                        <code className={`language-${result.language} hljs`} style={{fontFamily:'"Sarasa Mono SC", Consolas, Monaco, monospace'}}  dangerouslySetInnerHTML={{__html: result.value}}></code>
+                        <code className={`language-${result.language} hljs`} dangerouslySetInnerHTML={{__html: result.value}}></code>
                     </Box>
                 )
             }
@@ -200,7 +200,7 @@ const components:Components = {
                     // 额外标记长度为 1 即只有 shift，则无参数
                     return (
                         <Box sx={{marginBlock:'8px', position:'relative', height:600}}>
-                            <code className={`language-${result.language} hljs`}  style={{height:'100%', width:'100%', position:'absolute', margin:0, padding: 0, overflow:'auto', fontFamily:'"Sarasa Mono SC", Consolas, Monaco, monospace'}} dangerouslySetInnerHTML={{__html: result.value}}></code>
+                            <code className={`language-${result.language} hljs`}  style={{height:'100%', width:'100%', position:'absolute', margin:0, padding: 0, overflow:'auto'}} dangerouslySetInnerHTML={{__html: result.value}}></code>
                             <iframe title={`Shift WASM runtime environment for ${result.language}`} style={{width:'100%', height:'100%', position:'absolute', border:0}} src={`https://xplanc.org/shift/?lang=${result.language}&code=${btoa(encodeURIComponent(code))}`}></iframe>
                         </Box>
                     )
@@ -208,7 +208,7 @@ const components:Components = {
                     // 额外标记长度不为 1，则有参数
                     return (
                         <Box sx={{marginBlock:'8px', position:'relative', height:600}}>
-                            <code className={`language-${result.language} hljs`}  style={{height:'100%', width:'100%', position:'absolute', margin:0, padding: 0, overflow:'auto', fontFamily:'"Sarasa Mono SC", Consolas, Monaco, monospace'}} dangerouslySetInnerHTML={{__html: result.value}}></code>
+                            <code className={`language-${result.language} hljs`}  style={{height:'100%', width:'100%', position:'absolute', margin:0, padding: 0, overflow:'auto'}} dangerouslySetInnerHTML={{__html: result.value}}></code>
                             <iframe title={`Shift WASM runtime environment for ${result.language}`} style={{width:'100%', height:'100%', position:'absolute', border:0}} src={`https://xplanc.org/shift/?lang=${result.language}&input=${btoa(encodeURIComponent(args.slice(1).join(' ')))}&code=${btoa(encodeURIComponent(code))}`}></iframe>
                         </Box>
                     )
@@ -217,7 +217,7 @@ const components:Components = {
                 // 没有额外标记，正常渲染语法高亮
                 return (
                     <Box sx={{marginBlock:'8px'}}>
-                        <code className={`language-${result.language} hljs`} style={{fontFamily:'"Sarasa Mono SC", Consolas, Monaco, monospace'}}  dangerouslySetInnerHTML={{__html: result.value}}></code>
+                        <code className={`language-${result.language} hljs`}  dangerouslySetInnerHTML={{__html: result.value}}></code>
                     </Box>
                 )
             }
@@ -228,14 +228,14 @@ const components:Components = {
             const result = hljs.highlight(code, {language: 'text'});
             return (
                 <Box sx={{marginBlock:'8px'}}>
-                    <code className={`language-${result.language} hljs`} style={{fontFamily:'"Sarasa Mono SC", Consolas, Monaco, monospace'}}  dangerouslySetInnerHTML={{__html: result.value}}></code>
+                    <code className={`language-${result.language} hljs`}  dangerouslySetInnerHTML={{__html: result.value}}></code>
                 </Box>
             )
         } else {
             // 不存在换行，为行内代码，渲染为 Chip
             const quota = ((props.node?.position?.end.offset??0) - (props.node?.position?.start.offset??0)) - (props.children as string).length;
             const color = quota === 4 ? 'primary' : quota === 6 ? 'secondary' : 'default';
-            return <Chip component='code' size="small" color={color} sx={{borderRadius:0, border:'1px solid var(--mui-palette-background-paper)', verticalAlign:'bottom', fontFamily:'"Sarasa Mono SC", Consolas, Monaco, monospace'}} label={ code }/>
+            return <Chip component='code' size="small" color={color} sx={{borderRadius:0, border:'1px solid var(--mui-palette-background-paper)', verticalAlign:'bottom'}} label={ code }/>
         }
     },
 
