@@ -201,7 +201,7 @@ const components:Components = {
                     return (
                         <Box sx={{marginBlock:'8px', position:'relative', height:600}}>
                             <code className={`language-${result.language} hljs`}  style={{height:'100%', width:'100%', position:'absolute', margin:0, padding: 0, overflow:'auto', fontFamily:'Consolas, Monaco, monospace'}} dangerouslySetInnerHTML={{__html: result.value}}></code>
-                            <iframe style={{width:'100%', height:'100%', position:'absolute', border:0}} src={`https://xplanc.org/shift/?lang=${result.language}&code=${btoa(encodeURIComponent(code))}`}></iframe>
+                            <iframe title={`Shift WASM runtime environment for ${result.language}`} style={{width:'100%', height:'100%', position:'absolute', border:0}} src={`https://xplanc.org/shift/?lang=${result.language}&code=${btoa(encodeURIComponent(code))}`}></iframe>
                         </Box>
                     )
                 } else {
@@ -209,7 +209,7 @@ const components:Components = {
                     return (
                         <Box sx={{marginBlock:'8px', position:'relative', height:600}}>
                             <code className={`language-${result.language} hljs`}  style={{height:'100%', width:'100%', position:'absolute', margin:0, padding: 0, overflow:'auto', fontFamily:'Consolas, Monaco, monospace'}} dangerouslySetInnerHTML={{__html: result.value}}></code>
-                            <iframe style={{width:'100%', height:'100%', position:'absolute', border:0}} src={`https://xplanc.org/shift/?lang=${result.language}&input=${btoa(encodeURIComponent(args.slice(1).join(' ')))}&code=${btoa(encodeURIComponent(code))}`}></iframe>
+                            <iframe title={`Shift WASM runtime environment for ${result.language}`} style={{width:'100%', height:'100%', position:'absolute', border:0}} src={`https://xplanc.org/shift/?lang=${result.language}&input=${btoa(encodeURIComponent(args.slice(1).join(' ')))}&code=${btoa(encodeURIComponent(code))}`}></iframe>
                         </Box>
                     )
                 }
