@@ -14,6 +14,7 @@ import 'katex/dist/katex.min.css';
 import { ComponentProps, ElementType } from 'react';
 import NextLink from "next/link";
 import Image from './Image';
+import DOMPurify from "isomorphic-dompurify";
 
 export interface MarkdownProps {
     content:string;
@@ -167,7 +168,7 @@ const components:Components = {
             // 标注为 embed 表示直接内嵌 HTML
             if (language === 'embed') {
                 return (
-                    <Box sx={{marginBlock:'8px', whiteSpace:'normal'}} className={language} dangerouslySetInnerHTML={{__html: code}}/>
+                    <Box sx={{marginBlock:'8px', whiteSpace:'normal'}} className={language} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(code)}}/>
                 )
             }
 
@@ -176,7 +177,7 @@ const components:Components = {
                 const graphviz = await Graphviz.load();
                 const result = graphviz.dot(code).replace(/\n/g, "").trim();
                 return (
-                    <Box sx={{marginBlock:'8px', textAlign:'center', whiteSpace:'normal'}} className={language} dangerouslySetInnerHTML={{__html: result}}/>
+                    <Box sx={{marginBlock:'8px', textAlign:'center', whiteSpace:'normal'}} className={language} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(result)}}/>
                 )
             }
 
@@ -185,7 +186,7 @@ const components:Components = {
                 const result = hljs.highlightAuto(code);
                 return (
                     <Box sx={{marginBlock:'8px'}}>
-                        <code className={`language-${result.language} hljs`} dangerouslySetInnerHTML={{__html: result.value}}></code>
+                        <code className={`language-${result.language} hljs`} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(result.value)}}></code>
                     </Box>
                 )
             }
@@ -200,7 +201,7 @@ const components:Components = {
                     // 额外标记长度为 1 即只有 shift，则无参数
                     return (
                         <Box sx={{marginBlock:'8px', position:'relative', height:600}}>
-                            <code className={`language-${result.language} hljs`}  style={{height:'100%', width:'100%', position:'absolute', margin:0, padding: 0, overflow:'auto'}} dangerouslySetInnerHTML={{__html: result.value}}></code>
+                            <code className={`language-${result.language} hljs`}  style={{height:'100%', width:'100%', position:'absolute', margin:0, padding: 0, overflow:'auto'}} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(result.value)}}></code>
                             <iframe title={`Shift WASM runtime environment for ${result.language}`} style={{width:'100%', height:'100%', position:'absolute', border:0}} src={`https://xplanc.org/shift/?lang=${result.language}&code=${btoa(encodeURIComponent(code))}`}></iframe>
                         </Box>
                     )
@@ -208,7 +209,7 @@ const components:Components = {
                     // 额外标记长度不为 1，则有参数
                     return (
                         <Box sx={{marginBlock:'8px', position:'relative', height:600}}>
-                            <code className={`language-${result.language} hljs`}  style={{height:'100%', width:'100%', position:'absolute', margin:0, padding: 0, overflow:'auto'}} dangerouslySetInnerHTML={{__html: result.value}}></code>
+                            <code className={`language-${result.language} hljs`}  style={{height:'100%', width:'100%', position:'absolute', margin:0, padding: 0, overflow:'auto'}} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(result.value)}}></code>
                             <iframe title={`Shift WASM runtime environment for ${result.language}`} style={{width:'100%', height:'100%', position:'absolute', border:0}} src={`https://xplanc.org/shift/?lang=${result.language}&input=${btoa(encodeURIComponent(args.slice(1).join(' ')))}&code=${btoa(encodeURIComponent(code))}`}></iframe>
                         </Box>
                     )
@@ -217,7 +218,7 @@ const components:Components = {
                 // 没有额外标记，正常渲染语法高亮
                 return (
                     <Box sx={{marginBlock:'8px'}}>
-                        <code className={`language-${result.language} hljs`}  dangerouslySetInnerHTML={{__html: result.value}}></code>
+                        <code className={`language-${result.language} hljs`}  dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(result.value)}}></code>
                     </Box>
                 )
             }
@@ -228,7 +229,7 @@ const components:Components = {
             const result = hljs.highlight(code, {language: 'text'});
             return (
                 <Box sx={{marginBlock:'8px'}}>
-                    <code className={`language-${result.language} hljs`}  dangerouslySetInnerHTML={{__html: result.value}}></code>
+                    <code className={`language-${result.language} hljs`}  dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(result.value)}}></code>
                 </Box>
             )
         } else {
