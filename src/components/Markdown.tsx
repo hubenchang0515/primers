@@ -1,4 +1,4 @@
-import { Alert, AlertProps, AlertTitle, Box, Chip, Link, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import { Alert, AlertProps, Box, Chip, Link, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import ReactMarkdown, { Components } from 'react-markdown'
 import { hash } from '@/utils/crypto';
 import { visit } from 'unist-util-visit';
