@@ -25,7 +25,7 @@ const customClass = () => {
         visit(tree, 'paragraph', (node:Paragraph) => {
             if (node.children.length > 0 && node.children[0].type === 'text') {
                 const text = node.children[0].value;
-                const match = text.match(/^!class:\s*([a-zA-Z0-9-_]+)\s*(.*)/);
+                const match = text.match(/^!class:\s*([a-zA-Z0-9-_]+)\s*([\s\S]*)/);
                 
                 if (match) {
                     const className = match[1];
