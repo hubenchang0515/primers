@@ -172,6 +172,18 @@ const components:Components = {
         return <TableCell align={align}>{ props.children }</TableCell>
     },
 
+    async ol(props) {
+        return <ol>{ props.children} </ol>
+    },
+
+    async ul(props) {
+        return <ul>{ props.children} </ul>
+    },
+
+    async li(props) {
+        return <li style={{marginBlock:'4px'}}>{ props.children} </li>
+    },
+
     async code(props) {
         const code = props.children as string ?? '';
         const match = /language-(\w+)/.exec(props.className || '')
