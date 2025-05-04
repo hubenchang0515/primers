@@ -1,4 +1,4 @@
-import { Alert, AlertProps, Box, Chip, Link, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import { Alert, AlertProps, AlertTitle, Box, Chip, Link, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import ReactMarkdown, { Components } from 'react-markdown'
 import { hash } from '@/utils/crypto';
 import { visit } from 'unist-util-visit';
@@ -107,7 +107,12 @@ const components:Components = {
     },
 
     async p(props) { 
-        return <Typography variant='body1' className={props.className} sx={{fontSize:'1rem', fontWeight:'normal', marginBlock:'8px'}}>{props.children}</Typography>
+        if (props.className) {
+            // 通过 span 消除样式，仅应用 class 样式
+            return <span className={props.className}>{props.children}</span>
+        } else {
+            return <Typography variant='body1' className={props.className} sx={{fontSize:'1rem', fontWeight:'normal', marginBlock:'8px'}}>{props.children}</Typography>
+        }
     },
 
     async a(props) {
@@ -120,11 +125,19 @@ const components:Components = {
 
     async blockquote(props) {
         const severity = props.node?.children.find(item => 'properties' in item)?.properties.className as AlertProps['severity'];
-        return (
-            <Alert severity={severity??'info'} icon={false}> 
-                {props.children} 
-            </Alert>
-        )
+        if (severity) {
+            return (
+                <Alert severity={severity}>
+                    {props.children}
+                </Alert>
+            )
+        } else {
+            return (
+                <blockquote style={{marginBlock:'1rem', marginInline:0, padding:'1rem', border:'1px solid var(--mui-palette-primary-main)', borderLeft:'3px solid var(--mui-palette-primary-main)'}}>
+                    {props.children}
+                </blockquote>
+            )
+        }
     },
 
     async table(props) {
