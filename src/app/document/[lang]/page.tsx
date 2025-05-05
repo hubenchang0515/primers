@@ -1,9 +1,10 @@
+import ChipNav from "@/components/ChipNav";
 import { Content } from "@/components/Content";
 import MainPage from "@/components/MainPage";
 import { TitleBarItem } from "@/components/TitleBar";
 import { SITE_CONFIG } from "@/config";
 import { categories, content, languages, docState, title } from "@/utils/document";
-import { Container, Fade, Paper } from "@mui/material";
+import { Box, Container, Fade, Paper } from "@mui/material";
 import { Metadata } from "next";
 
 export interface PageParams {
@@ -52,9 +53,12 @@ export default async function Pastatege({params}:{params:Promise<PageParams>}) {
         <MainPage depth={2} titleItems={titleItems}>
             <Container maxWidth='lg' sx={{padding:1, width:{xs:'calc(100vw)', md:'auto'}}}>
                 <Fade in={true}>
-                    <Paper sx={{padding:'1rem'}}>
-                        <Content content={markdown} state={state}/>
-                    </Paper>
+                    <Box sx={{display:'flex', flexDirection:'column', gap:1}}>
+                        <Paper sx={{padding:'1rem'}}>
+                            <Content content={markdown} state={state}/>
+                        </Paper>
+                        <ChipNav items={titleItems}/>
+                    </Box>
                 </Fade>
             </Container>
         </MainPage>
