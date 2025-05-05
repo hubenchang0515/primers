@@ -1,10 +1,11 @@
 import { Content } from "@/components/Content";
 import MainPage from "@/components/MainPage";
+import Pagination from "@/components/Pagination";
 import { SideMenuGroup } from "@/components/SideMenu";
 import { TitleBarItem } from "@/components/TitleBar";
 import { SITE_CONFIG } from "@/config";
-import { categories, chapters, content, docs, languages, docState, title } from "@/utils/document";
-import { Container, Fade, Paper } from "@mui/material";
+import { categories, chapters, content, docs, languages, docState, title, prevDoc, nextDoc } from "@/utils/document";
+import { Box, Container, Fade, Paper } from "@mui/material";
 import { Metadata } from "next";
 
 export interface PageParams {
@@ -53,6 +54,8 @@ export default async function Page({params}:{params:Promise<PageParams>}) {
     const path = (await params);
     const markdown = await content(decodeURIComponent(path.lang), decodeURIComponent(path.category), decodeURIComponent(path.chapter), decodeURIComponent(path.doc));
     const state = await docState(decodeURIComponent(path.lang), decodeURIComponent(path.category), decodeURIComponent(path.chapter), decodeURIComponent(path.doc));
+    const prev = await prevDoc(decodeURIComponent(path.lang), decodeURIComponent(path.category), decodeURIComponent(path.chapter), decodeURIComponent(path.doc));
+    const next = await nextDoc(decodeURIComponent(path.lang), decodeURIComponent(path.category), decodeURIComponent(path.chapter), decodeURIComponent(path.doc));
 
     const titleItems:TitleBarItem[] = (await categories(decodeURIComponent(path.lang))).map((item) => {
         return {
@@ -79,9 +82,13 @@ export default async function Page({params}:{params:Promise<PageParams>}) {
         <MainPage depth={3} titleItems={titleItems} currentTitle={currentTitle} sideGroups={sideGroups} expandedSideGroup={expandedSideGroup}>
             <Container maxWidth='lg' sx={{padding:1, width:{xs:'calc(100vw)', md:'auto'}}}>
                 <Fade in={true}>
-                    <Paper sx={{padding:'1rem'}}>
-                        <Content content={markdown} state={state}/>
-                    </Paper>
+                    <Box sx={{display:'flex', flexDirection:'column', gap:1}}>
+                        <Pagination lang={path.lang} prev={prev} next={next} />
+                        <Paper sx={{padding:'1rem'}}>
+                            <Content content={markdown} state={state}/>
+                        </Paper>
+                        <Pagination lang={path.lang} prev={prev} next={next} />
+                    </Box>
                 </Fade>
             </Container>
         </MainPage>
