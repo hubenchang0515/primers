@@ -14,7 +14,7 @@
 </url>
 <url>
 <loc>https://xplanc.org/primers/document/zh/02.Python/01.%E9%A2%84%E5%A4%87/00.Python%20%E7%9A%84%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85.md</loc>
-<lastmod>2025-05-05T20:06:35.435Z</lastmod>
+<lastmod>2025-05-06T15:43:38.957Z</lastmod>
 </url>
 <url>
 <loc>https://xplanc.org/primers/document/zh/02.Python/01.%E9%A2%84%E5%A4%87/01.%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81.md</loc>
@@ -54,11 +54,11 @@
 </url>
 <url>
 <loc>https://xplanc.org/primers/document/zh/02.Python/03.%E5%AE%B9%E5%99%A8%E7%B1%BB%E5%9E%8B/01.%E5%85%83%E7%BB%84%20tuple.md</loc>
-<lastmod>2025-05-05T20:06:36.483Z</lastmod>
+<lastmod>2025-05-06T15:43:39.693Z</lastmod>
 </url>
 <url>
 <loc>https://xplanc.org/primers/document/zh/02.Python/03.%E5%AE%B9%E5%99%A8%E7%B1%BB%E5%9E%8B/02.%E5%88%97%E8%A1%A8%20list.md</loc>
-<lastmod>2025-05-05T20:06:36.530Z</lastmod>
+<lastmod>2025-05-06T15:43:39.765Z</lastmod>
 </url>
 <url>
 <loc>https://xplanc.org/primers/document/zh/02.Python/03.%E5%AE%B9%E5%99%A8%E7%B1%BB%E5%9E%8B/03.%E5%88%87%E7%89%87%E6%93%8D%E4%BD%9C.md</loc>
@@ -66,11 +66,11 @@
 </url>
 <url>
 <loc>https://xplanc.org/primers/document/zh/02.Python/03.%E5%AE%B9%E5%99%A8%E7%B1%BB%E5%9E%8B/04.%E5%AD%97%E5%85%B8%20dict.md</loc>
-<lastmod>2025-05-05T20:06:36.649Z</lastmod>
+<lastmod>2025-05-06T15:43:40.022Z</lastmod>
 </url>
 <url>
 <loc>https://xplanc.org/primers/document/zh/02.Python/03.%E5%AE%B9%E5%99%A8%E7%B1%BB%E5%9E%8B/05.%E9%9B%86%E5%90%88%20set.md</loc>
-<lastmod>2025-05-05T20:06:36.702Z</lastmod>
+<lastmod>2025-05-06T15:43:40.073Z</lastmod>
 </url>
 <url>
 <loc>https://xplanc.org/primers/document/zh/02.Python/03.%E5%AE%B9%E5%99%A8%E7%B1%BB%E5%9E%8B/06.%E5%AE%B9%E5%99%A8%E8%BF%AD%E4%BB%A3.md</loc>
@@ -117,6 +117,10 @@
 <lastmod>2025-05-05T16:51:08.000Z</lastmod>
 </url>
 <url>
+<loc>https://xplanc.org/primers/document/zh/02.Python/04.%E5%87%BD%E6%95%B0/06.%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0.md</loc>
+<lastmod>2025-05-06T15:37:43.000Z</lastmod>
+</url>
+<url>
 <loc>https://xplanc.org/primers/document/zh/99.%E9%80%9A%E8%AF%86%E5%9F%BA%E7%A1%80</loc>
 <lastmod>2025-05-01T16:08:18.000Z</lastmod>
 </url>
@@ -146,6 +150,6 @@
 </url>
 <url>
 <loc>https://xplanc.org/primers/document/zh/99.%E9%80%9A%E8%AF%86%E5%9F%BA%E7%A1%80/03.%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/00.ASCII%20%E7%BC%96%E7%A0%81.md</loc>
-<lastmod>2025-05-05T20:06:38.042Z</lastmod>
+<lastmod>2025-05-06T15:43:41.524Z</lastmod>
 </url>
 </urlset>
