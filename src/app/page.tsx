@@ -4,6 +4,7 @@ import { categories, content, docState, title } from "@/utils/document";
 import { Box, Container, Fade, Paper } from "@mui/material";
 import { Content } from "@/components/Content";
 import ChipNav from "@/components/ChipNav";
+import Discussion from "@/components/Discussion";
 
 export default async function Home() {
     const markdown = await content("zh", "00.index.md");
@@ -25,6 +26,7 @@ export default async function Home() {
                             <Content content={markdown} state={state}/>
                         </Paper>
                         <ChipNav items={titleItems}/>
+                        <Discussion lang="zh-CN"/>
                     </Box>
                 </Fade>
             </Container>

@@ -1,5 +1,6 @@
 import Catalog from "@/components/Catalog";
 import { Content } from "@/components/Content";
+import Discussion from "@/components/Discussion";
 import MainPage from "@/components/MainPage";
 import { SideMenuGroup } from "@/components/SideMenu";
 import { TitleBarItem } from "@/components/TitleBar";
@@ -76,6 +77,7 @@ export default async function Pastatege({params}:{params:Promise<PageParams>}) {
                             <Content content={markdown} state={state}/>
                         </Paper>
                         <Catalog groups={sideGroups}/>
+                        <Discussion lang="zh-CN"/>
                     </Box>
                 </Fade>
             </Container>

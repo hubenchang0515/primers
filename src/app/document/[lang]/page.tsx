@@ -1,5 +1,6 @@
 import ChipNav from "@/components/ChipNav";
 import { Content } from "@/components/Content";
+import Discussion from "@/components/Discussion";
 import MainPage from "@/components/MainPage";
 import { TitleBarItem } from "@/components/TitleBar";
 import { SITE_CONFIG } from "@/config";
@@ -58,6 +59,7 @@ export default async function Pastatege({params}:{params:Promise<PageParams>}) {
                             <Content content={markdown} state={state}/>
                         </Paper>
                         <ChipNav items={titleItems}/>
+                        <Discussion lang="zh-CN"/>
                     </Box>
                 </Fade>
             </Container>

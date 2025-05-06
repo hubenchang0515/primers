@@ -1,4 +1,5 @@
 import { Content } from "@/components/Content";
+import Discussion from "@/components/Discussion";
 import MainPage from "@/components/MainPage";
 import Pagination from "@/components/Pagination";
 import { SideMenuGroup } from "@/components/SideMenu";
@@ -88,6 +89,7 @@ export default async function Page({params}:{params:Promise<PageParams>}) {
                             <Content content={markdown} state={state}/>
                         </Paper>
                         <Pagination lang={path.lang} prev={prev} next={next} />
+                        <Discussion lang="zh-CN"/>
                     </Box>
                 </Fade>
             </Container>
