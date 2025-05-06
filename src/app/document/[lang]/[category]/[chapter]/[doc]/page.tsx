@@ -84,7 +84,7 @@ export default async function Page({params}:{params:Promise<PageParams>}) {
             <Container maxWidth='lg' sx={{padding:1, width:{xs:'calc(100vw)', md:'auto'}}}>
                 <Fade in={true}>
                     <Box sx={{display:'flex', flexDirection:'column', gap:1}}>
-                        <Pagination lang={path.lang} prev={prev} next={next} />
+                        <Pagination lang={path.lang} prev={prev} next={next} sx={{display:{xs:'none', md:'block'}}}/>
                         <Paper sx={{padding:'1rem'}}>
                             <Content content={markdown} state={state}/>
                         </Paper>
