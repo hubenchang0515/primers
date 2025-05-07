@@ -9,6 +9,7 @@ import remarkMath from 'remark-math';
 import rehypeMathjax from 'rehype-mathjax';
 import hljs from 'highlight.js';
 import { Graphviz } from "@hpcc-js/wasm-graphviz";
+import '@/assets/font.css';
 import '@/assets/highlight.css';
 import 'katex/dist/katex.min.css';
 import { ComponentProps, ElementType } from 'react';
