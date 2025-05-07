@@ -225,17 +225,41 @@ const components:Components = {
                 if (args.length === 1) {
                     // 额外标记长度为 1 即只有 shift，则无参数
                     return (
-                        <Box sx={{marginBlock:'8px', position:'relative', height:600}}>
-                            <code className={`language-${result.language} hljs`}  style={{height:'100%', width:'100%', position:'absolute', margin:0, padding: 0, overflow:'auto'}} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(result.value)}}></code>
-                            <iframe title={`Shift WASM runtime environment for ${result.language}`} style={{width:'100%', height:'100%', position:'absolute', border:0}} src={`https://xplanc.org/shift/?lang=${result.language}&code=${btoa(encodeURIComponent(code))}`}></iframe>
+                        <Box sx={{marginBlock:'8px', position:'relative', display:'flex', flexDirection:'column'}}>
+                            <code className={`language-${result.language} hljs`} style={{minHeight:300, margin: 0, overflow:'auto'}} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(result.value)}}></code>
+                            <Box sx={{height:340, background:'black'}}>Loading...</Box>
+                            <iframe 
+                                title={`Shift WASM runtime environment for ${result.language}`} 
+                                style={{
+                                    width:'100%', 
+                                    height:'100%', 
+                                    position:'absolute', 
+                                    top:0, 
+                                    border:0, 
+                                    background:'transparent'
+                                }} 
+                                src={`https://xplanc.org/shift/?lang=${result.language}&code=${btoa(encodeURIComponent(code))}`}
+                            ></iframe>
                         </Box>
                     )
                 } else {
                     // 额外标记长度不为 1，则有参数
                     return (
-                        <Box sx={{marginBlock:'8px', position:'relative', height:600}}>
-                            <code className={`language-${result.language} hljs`}  style={{height:'100%', width:'100%', position:'absolute', margin:0, padding: 0, overflow:'auto'}} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(result.value)}}></code>
-                            <iframe title={`Shift WASM runtime environment for ${result.language}`} style={{width:'100%', height:'100%', position:'absolute', border:0}} src={`https://xplanc.org/shift/?lang=${result.language}&input=${btoa(encodeURIComponent(args.slice(1).join(' ')))}&code=${btoa(encodeURIComponent(code))}`}></iframe>
+                        <Box sx={{marginBlock:'8px', position:'relative'}}>
+                            <code className={`language-${result.language} hljs`} style={{minHeight:300, margin: 0, overflow:'auto'}}  dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(result.value)}}></code>
+                            <Box sx={{height:340, background:'black'}}>Loading...</Box>
+                            <iframe 
+                                title={`Shift WASM runtime environment for ${result.language}`} 
+                                style={{
+                                    width:'100%', 
+                                    height:'100%', 
+                                    position:'absolute', 
+                                    top:0, 
+                                    border:0, 
+                                    background:'transparent'
+                                }} 
+                                src={`https://xplanc.org/shift/?lang=${result.language}&input=${btoa(encodeURIComponent(args.slice(1).join(' ')))}&code=${btoa(encodeURIComponent(code))}`}
+                            ></iframe>
                         </Box>
                     )
                 }
