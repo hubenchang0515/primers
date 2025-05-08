@@ -128,7 +128,7 @@ const components:Components = {
         const severity = props.node?.children.find(item => 'properties' in item)?.properties.className as AlertProps['severity'];
         if (severity) {
             return (
-                <Alert severity={severity}>
+                <Alert severity={severity} sx={{marginBlock:'8px'}}>
                     {props.children}
                 </Alert>
             )
@@ -143,7 +143,7 @@ const components:Components = {
 
     async table(props) {
         return (
-            <TableContainer component={Paper} variant="outlined" square>
+            <TableContainer component={Paper} variant="outlined" square sx={{marginBlock:'8px'}}>
                 <Table size='small'>
                     { props.children }
                 </Table>
