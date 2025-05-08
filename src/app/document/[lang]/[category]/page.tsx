@@ -48,7 +48,7 @@ export default async function Pastatege({params}:{params:Promise<PageParams>}) {
     const markdown = await content(path.lang, decodeURIComponent(path.category), "00.index.md");
     const state = await docState(path.lang, decodeURIComponent(path.category), "00.index.md");
 
-    const titleItems:TitleBarItem[] = (await categories(decodeURIComponent(path.lang))).map((item) => {
+    const titleItems:TitleBarItem[] = (await categories(decodeURIComponent(path.lang))).filter(item=>!item.endsWith('.hide')).map((item) => {
         return {
             label: title(item),
             url: `/document/${path.lang}/${item}`,
@@ -56,10 +56,10 @@ export default async function Pastatege({params}:{params:Promise<PageParams>}) {
     })
     const currentTitle = titleItems.findIndex(item=>item.label === title(decodeURIComponent(path.category)));
 
-    const sideGroups:SideMenuGroup[] = await Promise.all(((await chapters(decodeURIComponent(path.lang), decodeURIComponent(path.category))).map(async (chapter) => {
+    const sideGroups:SideMenuGroup[] = await Promise.all(((await chapters(decodeURIComponent(path.lang), decodeURIComponent(path.category))).filter(item=>!item.endsWith('.hide')).map(async (chapter) => {
         return {
             label: title(chapter),
-            items: (await docs(decodeURIComponent(path.lang), decodeURIComponent(path.category), decodeURIComponent(chapter))).map((doc) => {
+            items: (await docs(decodeURIComponent(path.lang), decodeURIComponent(path.category), decodeURIComponent(chapter))).filter(item=>!item.endsWith('.hide')).map((doc) => {
                 return {
                     label: title(doc),
                     url: `/document/${path.lang}/${path.category}/${chapter}/${doc}`,

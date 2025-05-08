@@ -43,7 +43,7 @@ export default async function Pastatege({params}:{params:Promise<PageParams>}) {
     const markdown = await content(path.lang, "00.index.md");
     const state = await docState(path.lang, "00.index.md");
 
-    const titleItems:TitleBarItem[] = (await categories(decodeURIComponent(path.lang))).map((item) => {
+    const titleItems:TitleBarItem[] = (await categories(decodeURIComponent(path.lang))).filter(item=>!item.endsWith('.hide')).map((item) => {
         return {
             label: title(item),
             url: `/document/${path.lang}/${item}`,

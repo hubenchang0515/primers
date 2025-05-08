@@ -10,7 +10,7 @@ export default async function Home() {
     const markdown = await content("zh", "00.index.md");
     const state = await docState("zh", "00.index.md");
 
-    const titleItems:TitleBarItem[] = (await categories(decodeURIComponent("zh"))).map((item) => {
+    const titleItems:TitleBarItem[] = (await categories(decodeURIComponent("zh"))).filter(item=>!item.endsWith('.hide')).map((item) => {
         return {
             label: title(item),
             url: `/document/zh/${item}`,
