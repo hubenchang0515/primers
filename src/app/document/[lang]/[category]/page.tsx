@@ -43,7 +43,7 @@ export async function generateMetadata({params}:{params:Promise<PageParams>}): P
 }
 
 // 生成页面
-export default async function Pastatege({params}:{params:Promise<PageParams>}) {
+export default async function CategoryPage({params}:{params:Promise<PageParams>}) {
     const path = (await params);
     const markdown = await content(path.lang, decodeURIComponent(path.category), "00.index.md");
     const state = await docState(path.lang, decodeURIComponent(path.category), "00.index.md");

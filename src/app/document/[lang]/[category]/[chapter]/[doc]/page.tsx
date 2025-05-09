@@ -51,7 +51,7 @@ export async function generateMetadata({params}:{params:Promise<PageParams>}): P
 }
 
 // 生成页面
-export default async function Page({params}:{params:Promise<PageParams>}) {
+export default async function DocPage({params}:{params:Promise<PageParams>}) {
     const path = (await params);
     const markdown = await content(decodeURIComponent(path.lang), decodeURIComponent(path.category), decodeURIComponent(path.chapter), decodeURIComponent(path.doc));
     const state = await docState(decodeURIComponent(path.lang), decodeURIComponent(path.category), decodeURIComponent(path.chapter), decodeURIComponent(path.doc));
