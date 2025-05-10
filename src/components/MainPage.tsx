@@ -2,11 +2,12 @@
 
 import SideMenu, { SideMenuGroup } from "@/components/SideMenu";
 import TitleBar, { TitleBarItem } from "@/components/TitleBar";
-import { Box, LinearProgress } from "@mui/material";
+import { Box, Container, Fade, LinearProgress } from "@mui/material";
 import React, { useCallback, useEffect } from "react";
 import { useColorScheme } from '@mui/material/styles';
 import { useGlobalState } from "./GlobalState";
 import { useRouter } from 'next/navigation'; 
+import Discussion from "./Discussion";
 
 export interface MainPageProps {
     depth: number;
@@ -111,8 +112,15 @@ export default function MainPage(props:MainPageProps) {
                     onExpandedGroupChanged={toggleSideGroup}
                     setUrl={setUrl}
                 />
-                <Box sx={{flex:1, overflow:'auto'}}>
-                    { props.children }
+                <Box sx={{flex:1, display:'flex', flexDirection:'column', overflow:'auto'}}>
+                    <Container maxWidth='lg' sx={{padding:1}}>
+                        <Fade in={true}>
+                            <Box sx={{display:'flex', flexDirection:'column', gap:1}}>
+                                { props.children }
+                                <Discussion lang="zh-CN"/>
+                            </Box>
+                        </Fade>
+                    </Container>
                 </Box>
             </Box>
         </Box>

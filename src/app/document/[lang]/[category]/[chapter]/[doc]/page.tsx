@@ -1,12 +1,11 @@
 import { Content } from "@/components/Content";
-import Discussion from "@/components/Discussion";
 import MainPage from "@/components/MainPage";
 import Pagination from "@/components/Pagination";
 import { SideMenuGroup } from "@/components/SideMenu";
 import { TitleBarItem } from "@/components/TitleBar";
 import { SITE_CONFIG } from "@/config";
 import { categories, chapters, content, docs, languages, docState, title, prevDoc, nextDoc } from "@/utils/document";
-import { Box, Container, Fade, Paper } from "@mui/material";
+import { Paper } from "@mui/material";
 import { Metadata } from "next";
 
 export interface PageParams {
@@ -82,18 +81,11 @@ export default async function DocPage({params}:{params:Promise<PageParams>}) {
 
     return (
         <MainPage depth={3} titleItems={titleItems} currentTitle={currentTitle} sideGroups={sideGroups} selectedSideGroup={selectedSideGroup} selectedDoc={selectedDoc}>
-            <Container maxWidth='lg' sx={{padding:1, width:{xs:'calc(100vw)', md:'auto'}}}>
-                <Fade in={true}>
-                    <Box sx={{display:'flex', flexDirection:'column', gap:1}}>
-                        <Pagination lang={path.lang} prev={prev} next={next} sx={{display:{xs:'none', md:'block'}}}/>
-                        <Paper sx={{padding:'1rem'}}>
-                            <Content content={markdown} state={state}/>
-                        </Paper>
-                        <Pagination lang={path.lang} prev={prev} next={next} />
-                        <Discussion lang="zh-CN"/>
-                    </Box>
-                </Fade>
-            </Container>
+            <Pagination lang={path.lang} prev={prev} next={next} sx={{display:{xs:'none', md:'block'}}}/>
+            <Paper sx={{padding:'1rem'}}>
+                <Content content={markdown} state={state}/>
+            </Paper>
+            <Pagination lang={path.lang} prev={prev} next={next} />
         </MainPage>
     )
 }
