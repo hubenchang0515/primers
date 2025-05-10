@@ -44,7 +44,7 @@ export default function MainPage(props:MainPageProps) {
     const setUrl = useCallback((url:string) => {
         setLoading?.(true);
         router.push(url);
-    }, [setLoading, router.push])
+    }, [setLoading, router])
 
     // 窄屏自动收起侧边栏
     useEffect(() => {
@@ -69,12 +69,12 @@ export default function MainPage(props:MainPageProps) {
         if (expandedSideGroup === undefined) {
             setExpandedSideGroup?.(props.selectedSideGroup);
         }
-    }, [props.selectedSideGroup, setExpandedSideGroup]);
+    }, [expandedSideGroup, props.selectedSideGroup, setExpandedSideGroup]);
 
     // 展开侧边栏分组
     const toggleSideGroup = (index:number) => {
         if (index === expandedSideGroup) {
-            setExpandedSideGroup?.(undefined);
+            setExpandedSideGroup?.(-1); // undefined 是初始状态，自动展开选中的分组，-1 是关闭状态
         } else {
             setExpandedSideGroup?.(index);
         }

@@ -78,7 +78,7 @@ export default async function DocPage({params}:{params:Promise<PageParams>}) {
         };
     })));
     const selectedSideGroup = sideGroups.findIndex(chapter=>chapter.label === title(decodeURIComponent(path.chapter)));
-    const selectedDoc = sideGroups[selectedSideGroup].items?.findIndex(item=>item.label === title(decodeURIComponent(path.doc)));
+    const selectedDoc = selectedSideGroup >= 0 && selectedSideGroup < sideGroups.length ? sideGroups[selectedSideGroup].items?.findIndex(item=>item.label === title(decodeURIComponent(path.doc))) : undefined;
 
     return (
         <MainPage depth={3} titleItems={titleItems} currentTitle={currentTitle} sideGroups={sideGroups} selectedSideGroup={selectedSideGroup} selectedDoc={selectedDoc}>
