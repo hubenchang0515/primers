@@ -2,7 +2,7 @@
 
 import SideMenu, { SideMenuGroup } from "@/components/SideMenu";
 import TitleBar, { TitleBarItem } from "@/components/TitleBar";
-import { Box } from "@mui/material";
+import { Box, LinearProgress } from "@mui/material";
 import React, { useCallback, useEffect } from "react";
 import { useColorScheme } from '@mui/material/styles';
 import { useGlobalState } from "./GlobalState";
@@ -33,10 +33,18 @@ export default function MainPage(props:MainPageProps) {
         expandedSideGroup, 
         sideExpanded,
         sideCollapsedSize,
+        loading,
         setCurrentTitle,
         setExpandedSideGroup,
-        setSideExpanded
+        setSideExpanded,
+        setLoading,
     } = useGlobalState();
+
+    // 页面跳转
+    const setUrl = useCallback((url:string) => {
+        setLoading?.(true);
+        router.push(url);
+    }, [setLoading, router.push])
 
     // 窄屏自动收起侧边栏
     useEffect(() => {
@@ -50,18 +58,18 @@ export default function MainPage(props:MainPageProps) {
         setCurrentTitle?.(index);
         setTimeout(() => {
             if (index !== undefined && props.titleItems !== undefined && props.titleItems.length > index) {
-                router.push(props.titleItems[index].url);
+                setUrl(props.titleItems[index].url);
                 setSideExpanded?.(true);
             }
         }, 200);
-    }, [props, router, setCurrentTitle, setSideExpanded]);
+    }, [props, setUrl, setCurrentTitle, setSideExpanded]);
 
     // 初始展开选中的分组
     useEffect(() => {
         if (expandedSideGroup === undefined) {
             setExpandedSideGroup?.(props.selectedSideGroup);
         }
-    }, [props.selectedDoc, setExpandedSideGroup]);
+    }, [props.selectedSideGroup, setExpandedSideGroup]);
 
     // 展开侧边栏分组
     const toggleSideGroup = (index:number) => {
@@ -72,8 +80,14 @@ export default function MainPage(props:MainPageProps) {
         }
     }
 
+    // 清除加载状态
+    useEffect(() => {
+        setLoading?.(false);
+    }, [setLoading]);
+
     return (
         <Box sx={{width: '100%', height: '100%', display: 'flex', flexDirection:'column'}}>
+            <LinearProgress sx={{position:'fixed', top:0, width:'100%', height:2, zIndex:loading?9999:-9999}} color="secondary"/>
             <TitleBar 
                 title="Primers" 
                 github="https://github.com/hubenchang0515/primers" 
@@ -83,6 +97,7 @@ export default function MainPage(props:MainPageProps) {
                 onCurrentChanged={setTitle}
             />
             <Box sx={{display:'flex', height:'calc(100% - 48px)'}}>
+                
                 <SideMenu
                     collapsedSize={sideCollapsedSize}
                     expanded={sideExpanded} 
@@ -94,6 +109,7 @@ export default function MainPage(props:MainPageProps) {
                     selectedGroup={props.selectedSideGroup}
                     selectedItem={props.selectedDoc}
                     onExpandedGroupChanged={toggleSideGroup}
+                    setUrl={setUrl}
                 />
                 <Box sx={{flex:1, overflow:'auto'}}>
                     { props.children }

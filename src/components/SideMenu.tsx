@@ -42,6 +42,8 @@ export interface SideMenuProps {
 
     mode?: 'light' | 'dark' | 'system';
     onSetMode?: (theme:'light' | 'dark' | 'system') => void;
+
+    setUrl?:(url:string)=>void;
 }
 
 export default function SideMenu(props:SideMenuProps) {
@@ -121,6 +123,7 @@ export default function SideMenu(props:SideMenuProps) {
                                                                 component={Link} 
                                                                 href={item.url}
                                                                 sx={{pl:4}} 
+                                                                onClick={(ev)=>{if (props.setUrl) {props.setUrl?.(item.url); ev.preventDefault()}}}
                                                             >
                                                                 <ListItemIcon>
                                                                     {item.icon  ?? <ArticleIcon/>}

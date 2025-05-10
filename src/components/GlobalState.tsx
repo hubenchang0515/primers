@@ -6,11 +6,13 @@ export interface GlobalStateProps {
     expandedSideGroup?: number;
     sideExpanded?: boolean;
     sideCollapsedSize?: number;
+    loading?: boolean;
 
     setCurrentTitle?: (v?:number)=>void;
     setExpandedSideGroup?: (v?:number)=>void;
     setSideExpanded?: (v?:boolean)=>void;
     setSideCollapsedSize?: (v?:number)=>void;
+    setLoading?: (v?:boolean)=>void;
 }
 
 export const GlobalState = createContext<GlobalStateProps>({});
@@ -28,6 +30,7 @@ export function GlobalStateProvider(props:GlobalStateProviderProps) {
     const [expandedSideGroup, setExpandedSideGroup] = useState<number|undefined>(undefined);
     const [sideExpanded, setSideExpanded] = useState<boolean|undefined>(false);
     const [sideCollapsedSize, setSideCollapsedSize] = useState<number|undefined>(56);   // 16 + 24 + 16 => 56 
+    const [loading, setLoading] = useState<boolean|undefined>(false);   // 16 + 24 + 16 => 56 
 
     useEffect(() => {
         if (window.innerWidth < 900) {
@@ -44,10 +47,12 @@ export function GlobalStateProvider(props:GlobalStateProviderProps) {
                 expandedSideGroup, 
                 sideExpanded,
                 sideCollapsedSize,
+                loading,
                 setCurrentTitle,
                 setExpandedSideGroup,
                 setSideExpanded,
-                setSideCollapsedSize
+                setSideCollapsedSize,
+                setLoading,
             }}
         >
             { props.children }
