@@ -14,7 +14,8 @@ export interface MainPageProps {
     currentTitle?: number;
 
     sideGroups?: SideMenuGroup[];
-    expandedSideGroup?: number;
+    selectedSideGroup?: number;
+    selectedDoc?: number;
 
     children?: React.ReactNode;
 }
@@ -55,6 +56,13 @@ export default function MainPage(props:MainPageProps) {
         }, 200);
     }, [props, router, setCurrentTitle, setSideExpanded]);
 
+    // 初始展开选中的分组
+    useEffect(() => {
+        if (expandedSideGroup === undefined) {
+            setExpandedSideGroup?.(props.selectedSideGroup);
+        }
+    }, [props.selectedDoc, setExpandedSideGroup]);
+
     // 展开侧边栏分组
     const toggleSideGroup = (index:number) => {
         if (index === expandedSideGroup) {
@@ -83,6 +91,8 @@ export default function MainPage(props:MainPageProps) {
                     onSetMode={(mode)=>setMode(mode)}
                     groups={props.sideGroups}
                     expandedGroup={expandedSideGroup}
+                    selectedGroup={props.selectedSideGroup}
+                    selectedItem={props.selectedDoc}
                     onExpandedGroupChanged={toggleSideGroup}
                 />
                 <Box sx={{flex:1, overflow:'auto'}}>

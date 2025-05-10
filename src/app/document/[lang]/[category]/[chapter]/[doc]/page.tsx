@@ -77,10 +77,11 @@ export default async function DocPage({params}:{params:Promise<PageParams>}) {
             }),
         };
     })));
-    const expandedSideGroup = sideGroups.findIndex(chapter=>chapter.label === title(decodeURIComponent(path.chapter)));
+    const selectedSideGroup = sideGroups.findIndex(chapter=>chapter.label === title(decodeURIComponent(path.chapter)));
+    const selectedDoc = sideGroups[selectedSideGroup].items?.findIndex(item=>item.label === title(decodeURIComponent(path.doc)));
 
     return (
-        <MainPage depth={3} titleItems={titleItems} currentTitle={currentTitle} sideGroups={sideGroups} expandedSideGroup={expandedSideGroup}>
+        <MainPage depth={3} titleItems={titleItems} currentTitle={currentTitle} sideGroups={sideGroups} selectedSideGroup={selectedSideGroup} selectedDoc={selectedDoc}>
             <Container maxWidth='lg' sx={{padding:1, width:{xs:'calc(100vw)', md:'auto'}}}>
                 <Fade in={true}>
                     <Box sx={{display:'flex', flexDirection:'column', gap:1}}>

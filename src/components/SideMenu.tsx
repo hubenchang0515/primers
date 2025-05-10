@@ -37,6 +37,9 @@ export interface SideMenuProps {
     expandedGroup?: number;
     onExpandedGroupChanged?: (index:number) => void;
 
+    selectedGroup?: number;
+    selectedItem?: number;
+
     mode?: 'light' | 'dark' | 'system';
     onSetMode?: (theme:'light' | 'dark' | 'system') => void;
 }
@@ -88,31 +91,41 @@ export default function SideMenu(props:SideMenuProps) {
 
                         {/* 菜单选项 */}
                         {
-                            props.groups?.map((group, index) => {
+                            props.groups?.map((group, gIndex) => {
                                 return (
-                                    <Box key={index}>
-                                        <ListItem disablePadding>
-                                            <ListItemButton onClick={() => {
-                                                props.onExpandedGroupChanged?.(index);
-                                                props.onExpandedChanged?.(true);
-                                            }}>
+                                    <Box key={gIndex}>
+                                        <ListItem disablePadding
+                                            sx={gIndex === props.selectedGroup ? {boxShadow:  '-2px 0 0 0 var(--mui-palette-secondary-main) inset'} : {}}
+                                        >
+                                            <ListItemButton 
+                                                onClick={() => {
+                                                    props.onExpandedGroupChanged?.(gIndex);
+                                                    props.onExpandedChanged?.(true);
+                                                }}
+                                            >
                                                 <ListItemIcon>
                                                     {group.icon  ?? <FolderIcon/>}
                                                 </ListItemIcon>
                                                 <ListItemText primary={group.label}/>
-                                                {index == props.expandedGroup ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                                                {gIndex == props.expandedGroup ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                                             </ListItemButton>
                                         </ListItem>
-                                        <Collapse in={props.expanded && index == props.expandedGroup } timeout="auto" unmountOnExit>
+                                        <Collapse in={props.expanded && gIndex == props.expandedGroup } timeout="auto" unmountOnExit>
                                             <List component="div" disablePadding >
                                                 {
-                                                    group.items?.map((item, index) => (
-                                                        <ListItem disablePadding key={index}>
-                                                            <ListItemButton sx={{ pl: 4 }} component={Link} href={item.url} >
+                                                    group.items?.map((item, dIndex) => (
+                                                        <ListItem disablePadding key={dIndex}
+                                                            sx={gIndex === props.selectedGroup && dIndex === props.selectedItem ? {boxShadow:  '-2px 0 0 0 var(--mui-palette-secondary-main) inset'} : {}}
+                                                        >
+                                                            <ListItemButton 
+                                                                component={Link} 
+                                                                href={item.url}
+                                                                sx={{pl:4}} 
+                                                            >
                                                                 <ListItemIcon>
                                                                     {item.icon  ?? <ArticleIcon/>}
                                                                 </ListItemIcon>
-                                                                <ListItemText primary={item.label} />
+                                                                <ListItemText primary={item.label}/>
                                                             </ListItemButton>
                                                         </ListItem>
                                                     ))
