@@ -58,7 +58,7 @@ export async function docState(lang:string, category:string, chapter?:string, do
     const file = path.join(process.cwd(), DOCUMENT_CONFIG.root, 'document', lang, category, chapter??"", doc??"");
 
     return new Promise((resolve) => {
-        exec(`git -C ${dir} log --format="%ai" ${file}`, (err, stdout) => {
+        exec(`git -C ${dir} log --format="%ai" "${file}"`, (err, stdout) => {
             if (err || stdout.trim().length === 0) {
                 resolve({
                     createdTime: new Date(),
