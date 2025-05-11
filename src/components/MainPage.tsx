@@ -41,12 +41,6 @@ export default function MainPage(props:MainPageProps) {
         setLoading,
     } = useGlobalState();
 
-    // 页面跳转
-    const setUrl = useCallback((url:string) => {
-        setLoading?.(true);
-        router.push(url);
-    }, [setLoading, router])
-
     // 窄屏自动收起侧边栏
     useEffect(() => {
         if (props.depth === 3 && window.innerWidth < 900) {
@@ -57,13 +51,14 @@ export default function MainPage(props:MainPageProps) {
     // 标题切换
     const setTitle = useCallback((index?:number) => {
         setCurrentTitle?.(index);
+        setLoading?.(true);
         setTimeout(() => {
             if (index !== undefined && props.titleItems !== undefined && props.titleItems.length > index) {
-                setUrl(props.titleItems[index].url);
+                router.push(props.titleItems[index].url);
                 setSideExpanded?.(true);
             }
         }, 200);
-    }, [props, setUrl, setCurrentTitle, setSideExpanded]);
+    }, [props, router, setLoading, setCurrentTitle, setSideExpanded]);
 
     // 初始展开选中的分组
     useEffect(() => {
@@ -83,6 +78,7 @@ export default function MainPage(props:MainPageProps) {
 
     // 清除加载状态
     useEffect(() => {
+        console.log('set loading false')
         setLoading?.(false);
     }, [setLoading]);
 
@@ -110,7 +106,6 @@ export default function MainPage(props:MainPageProps) {
                     selectedGroup={props.selectedSideGroup}
                     selectedItem={props.selectedDoc}
                     onExpandedGroupChanged={toggleSideGroup}
-                    setUrl={setUrl}
                 />
                 <Box sx={{flex:1, display:'flex', flexDirection:'column', overflow:'auto'}}>
                     <Container maxWidth='lg' sx={{padding:1}}>

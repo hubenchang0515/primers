@@ -1,9 +1,9 @@
 import { Box, Button, SxProps, Theme } from "@mui/material";
-import Link from "next/link";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArticleIcon from '@mui/icons-material/Article';
 import { title } from "@/utils/document";
+import Link from "./Link";
 
 export interface PaginationProps {
     lang: string;

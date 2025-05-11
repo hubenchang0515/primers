@@ -1,4 +1,4 @@
-import { Alert, AlertProps, Box, Chip, Link, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import { Alert, AlertProps, Box, Chip, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import ReactMarkdown, { Components } from 'react-markdown'
 import { hash } from '@/utils/crypto';
 import { visit } from 'unist-util-visit';
@@ -13,15 +13,15 @@ import '@/assets/font.css';
 import '@/assets/highlight.css';
 import 'katex/dist/katex.min.css';
 import { ComponentProps, ElementType } from 'react';
-import NextLink from "next/link";
 import Image from './Image';
 import DOMPurify from "isomorphic-dompurify";
+import Link from './Link';
 
 export interface MarkdownProps {
     content:string;
 }
 
-const customClass = () => {
+const customClass = () => {    
     return (tree:Node) => {
         visit(tree, 'paragraph', (node:Paragraph) => {
             if (node.children.length > 0 && node.children[0].type === 'text') {
@@ -117,7 +117,7 @@ const components:Components = {
     },
 
     async a(props) {
-        return <Link href={props.href??''} component={NextLink}>{ props.children }</Link>
+        return <Link href={props.href??''}>{ props.children }</Link>
     },
 
     async img(props) {

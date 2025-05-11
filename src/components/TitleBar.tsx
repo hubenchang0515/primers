@@ -3,7 +3,7 @@
 import { AppBar, Box, Button, IconButton, Tab, Tabs, Toolbar, Typography } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import Link from "next/link";
+import Link from "./Link";
 
 export interface TitleBarItem {
     label: string;

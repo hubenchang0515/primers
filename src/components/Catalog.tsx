@@ -1,6 +1,6 @@
 import { Box, Button, Paper, Typography } from "@mui/material";
 import { SideMenuGroup } from "./SideMenu";
-import Link from "next/link";
+import Link from "./Link";
 
 export interface CatalogProps {
     groups: SideMenuGroup[]

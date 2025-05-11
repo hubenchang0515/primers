@@ -1,6 +1,6 @@
 import { Box, Button, Grid, Paper, Typography } from "@mui/material";
 import { TitleBarItem } from "./TitleBar";
-import Link from "next/link";
+import Link from "./Link";
 
 export interface ChipNavProps {
     items?: TitleBarItem[];
