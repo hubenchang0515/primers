@@ -16,7 +16,12 @@ export default function Link(props:MuiLinkProps) {
     }
     
     return (
-        <MuiLink component={NextLink} {...props} onClick={(ev:MouseEvent<HTMLAnchorElement>)=>{setLoading?.(true); props.onClick?.(ev)}}>
+        <MuiLink
+            component={NextLink}
+            {...props}
+            onClick={(ev:MouseEvent<HTMLAnchorElement>)=>{setLoading?.(true); props.onClick?.(ev)}} 
+            onNavigate={()=>setLoading?.(false)}
+        >
             {props.children}
         </MuiLink>
     )
