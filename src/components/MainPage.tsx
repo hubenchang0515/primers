@@ -8,6 +8,8 @@ import { useColorScheme } from '@mui/material/styles';
 import { useGlobalState } from "./GlobalState";
 import { useRouter } from 'next/navigation'; 
 import Discussion from "./Discussion";
+import Footer from "./Footer";
+import { OWNER_CONFIG, SITE_CONFIG } from "@/config";
 
 export interface MainPageProps {
     depth: number;
@@ -85,8 +87,8 @@ export default function MainPage(props:MainPageProps) {
         <Box sx={{width: '100%', height: '100%', display: 'flex', flexDirection:'column'}}>
             <LinearProgress sx={{position:'fixed', top:0, width:'100%', height:2, zIndex:loading?9999:-9999}} color="secondary"/>
             <TitleBar 
-                title="Primers" 
-                github="https://github.com/hubenchang0515/primers" 
+                title={SITE_CONFIG.title}
+                github={SITE_CONFIG.repo}
                 items={props.titleItems}
                 current={currentTitle??props.currentTitle}
                 onToggleMenu={()=>setSideExpanded?.(!sideExpanded)}
@@ -106,12 +108,13 @@ export default function MainPage(props:MainPageProps) {
                     selectedItem={props.selectedDoc}
                     onExpandedGroupChanged={toggleSideGroup}
                 />
-                <Box sx={{flex:1, display:'flex', flexDirection:'column', overflow:'auto'}}>
-                    <Container maxWidth='lg' sx={{padding:1}}>
+                <Box sx={{flex:1, overflow:'auto'}}>
+                    <Container maxWidth='lg' sx={{padding:1, height:'100%'}}>
                         <Fade in={true}>
-                            <Box sx={{display:'flex', flexDirection:'column', gap:1}}>
+                            <Box sx={{height:'100%', display:'flex', flexDirection:'column', gap:1}}>
                                 { props.children }
                                 <Discussion lang="zh-CN"/>
+                                <Footer sx={{marginTop:'auto'}} owner={OWNER_CONFIG.name} owner_url={OWNER_CONFIG.url} email={OWNER_CONFIG.email}/>
                             </Box>
                         </Fade>
                     </Container>
