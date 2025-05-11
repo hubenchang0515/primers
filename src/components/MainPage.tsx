@@ -78,7 +78,6 @@ export default function MainPage(props:MainPageProps) {
 
     // 清除加载状态
     useEffect(() => {
-        console.log('set loading false')
         setLoading?.(false);
     }, [setLoading]);
 
