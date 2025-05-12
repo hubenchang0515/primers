@@ -1,4 +1,4 @@
-import { Alert, AlertProps, Box, Chip, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import { Alert, AlertProps, Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import ReactMarkdown, { Components } from 'react-markdown'
 import { hash } from '@/utils/crypto';
 import { visit } from 'unist-util-visit';
@@ -283,10 +283,24 @@ const components:Components = {
                 </Box>
             )
         } else {
-            // 不存在换行，为行内代码，渲染为 Chip
+            // 不存在换行，为行内代码
             const quota = ((props.node?.position?.end.offset??0) - (props.node?.position?.start.offset??0)) - (props.children as string).length;
-            const color = quota === 4 ? 'primary' : quota === 6 ? 'secondary' : 'default';
-            return <Chip component='code' size="small" color={color} sx={{borderRadius:0, border:'1px solid var(--mui-palette-background-paper)', verticalAlign:'bottom'}} label={ code }/>
+            const color = quota === 4 ? 'var(--mui-palette-primary-contrastText)' : quota === 6 ? 'var(--mui-palette-secondary-contrastText)' : 'var(--mui-palette-text-primary)';
+            const background = quota === 4 ? 'var(--mui-palette-primary-main)' : quota === 6 ? 'var(--mui-palette-secondary-main)' : 'var(--mui-palette-action-selected)';
+            return (
+                <code 
+                    style={{
+                        color: color,
+                        background: background, 
+                        fontSize: '0.8em', 
+                        padding: '0.2em 4px 1px 4px', 
+                        verticalAlign: 'middle', 
+                        border: '1px solid var(--mui-palette-background-paper)'
+                    }}
+                >
+                    {code}
+                </code>
+            )
         }
     },
 
