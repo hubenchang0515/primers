@@ -228,7 +228,7 @@ const components:Components = {
                     return (
                         <Box sx={{marginBlock:'8px', position:'relative', display:'flex', flexDirection:'column'}}>
                             <code className={`language-${result.language} hljs`} style={{minHeight:300, margin: 0, overflow:'auto'}} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(result.value)}}></code>
-                            <Box sx={{height:340, background:'black'}}>Loading...</Box>
+                            <Box sx={{height:290, background:'black', color:'white'}}> Loading... </Box>
                             <iframe 
                                 title={`Shift WASM runtime environment for ${result.language}`} 
                                 style={{
@@ -239,7 +239,7 @@ const components:Components = {
                                     border:0, 
                                     background:'transparent'
                                 }} 
-                                src={`https://xplanc.org/shift/?lang=${result.language}&code=${btoa(encodeURIComponent(code))}`}
+                                src={`https://xplanc.org/shift/?lang=${result.language}&code=${btoa(encodeURIComponent(code.trim()))}`}
                             ></iframe>
                         </Box>
                     )
@@ -248,7 +248,7 @@ const components:Components = {
                     return (
                         <Box sx={{marginBlock:'8px', position:'relative'}}>
                             <code className={`language-${result.language} hljs`} style={{minHeight:300, margin: 0, overflow:'auto'}}  dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(result.value)}}></code>
-                            <Box sx={{height:340, background:'black'}}>Loading...</Box>
+                            <Box sx={{height:290, background:'black', color:'white'}}> Loading... </Box>
                             <iframe 
                                 title={`Shift WASM runtime environment for ${result.language}`} 
                                 style={{
@@ -259,7 +259,7 @@ const components:Components = {
                                     border:0, 
                                     background:'transparent'
                                 }} 
-                                src={`https://xplanc.org/shift/?lang=${result.language}&input=${btoa(encodeURIComponent(args.slice(1).join(' ')))}&code=${btoa(encodeURIComponent(code))}`}
+                                src={`https://xplanc.org/shift/?lang=${result.language}&input=${btoa(encodeURIComponent(args.slice(1).join(' ')))}&code=${btoa(encodeURIComponent(code.trim()))}`}
                             ></iframe>
                         </Box>
                     )
