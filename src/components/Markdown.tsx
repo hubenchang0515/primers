@@ -191,28 +191,6 @@ const components:Components = {
         if (match) {
             const language = match[1];
 
-            // 标注为 embed 表示直接内嵌 HTML
-            if (language === 'embed') {
-                return (
-                    <Box sx={{marginBlock:'8px', whiteSpace:'normal'}} className={language} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(code)}}/>
-                )
-            }
-
-            // 标注为 iframe 表示 通过 iframe 内嵌 HTML
-            if (language === 'iframe') {
-                const args = props.node?.data?.meta?.trim().split(/\s+/); // 获取标题
-                return (
-                    <Box sx={{marginBlock:'8px', whiteSpace:'normal'}} className={language}>
-                        <Box sx={{width:'fit-content', padding:1, background:'var(--mui-palette-primary-main)'}}>{args?.join(' ')??'HTML'}</Box>
-                        <Box sx={{width:'100%', boxSizing:'border-box', border: '4px solid var(--mui-palette-primary-main)', position:'relative'}}>
-                            <Box sx={{all: 'initial', display:'block', margin:'8px'}} className={language} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(code)}}/>
-                            <iframe style={{position:'absolute', top:0, left:0, width:'100%', height:'100%', border:0, background:'#fff'}} srcDoc={code}/>
-                        </Box>
-                    </Box>
-                )
-            }
-
-
             // 标注为 graphviz 表示使用 graphviz 绘图
             if (language === 'graphviz') {
                 const graphviz = await Graphviz.load();
@@ -279,6 +257,41 @@ const components:Components = {
                         </Box>
                     )
                 }
+            } else if (props.node?.data?.meta?.trim().startsWith('embed')) {
+                // 额外标记 embed， 直接内嵌 HTML
+                return (
+                    <Box sx={{marginBlock:'8px', whiteSpace:'normal'}} className={language} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(code)}}/>
+                )
+            } else if (props.node?.data?.meta?.trim().startsWith('iframe')) {
+                // 额外标记 iframe，通过 iframe 内嵌 HTML
+                const args = props.node?.data?.meta?.trim().split(/\s+/); // 获取标题
+                return (
+                    <Box sx={{marginBlock:'8px', whiteSpace:'normal'}} className={language}>
+                        <Box sx={{width:'fit-content', padding:1, background:'var(--mui-palette-primary-main)'}}>{args?.slice(1).join(' ')??'HTML'}</Box>
+                        <Box sx={{width:'100%', boxSizing:'border-box', border: '4px solid var(--mui-palette-primary-main)', position:'relative'}}>
+                            <Box sx={{all: 'initial', display:'block', margin:'8px'}} className={language} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(code)}}/>
+                            <iframe 
+                                style={{position:'absolute', top:0, left:0, width:'100%', height:'100%', border:0, background:'#fff'}} 
+                                srcDoc={DOMPurify.sanitize(code)}
+                            />
+                        </Box>
+                    </Box>
+                )
+            } else if (props.node?.data?.meta?.trim().startsWith('unsafe')) {
+                // 额外标记 unsafe，通过 iframe 内嵌 HTML 并且不使用 DOMPurify
+                const args = props.node?.data?.meta?.trim().split(/\s+/); // 获取标题
+                return (
+                    <Box sx={{marginBlock:'8px', whiteSpace:'normal'}} className={language}>
+                        <Box sx={{width:'fit-content', padding:1, background:'var(--mui-palette-primary-main)'}}>{args?.slice(1).join(' ')??'HTML'}</Box>
+                        <Box sx={{width:'100%', boxSizing:'border-box', border: '4px solid var(--mui-palette-primary-main)', position:'relative'}}>
+                            <Box sx={{all: 'initial', display:'block', margin:'8px'}} className={language} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(code)}}/>
+                            <iframe 
+                                style={{position:'absolute', top:0, left:0, width:'100%', height:'100%', border:0, background:'#fff'}} 
+                                srcDoc={code}
+                            />
+                        </Box>
+                    </Box>
+                )
             } else {
                 // 没有额外标记，正常渲染语法高亮
                 return (
