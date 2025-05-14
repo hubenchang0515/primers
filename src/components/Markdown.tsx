@@ -204,7 +204,7 @@ const components:Components = {
                 return (
                     <Box sx={{marginBlock:'8px', whiteSpace:'normal'}} className={language}>
                         <Box sx={{width:'fit-content', padding:1, background:'var(--mui-palette-primary-main)'}}>{args??'HTML'}</Box>
-                        <Box sx={{width:'100%', boxSizing:'border-box', padding:1, border: '4px solid var(--mui-palette-primary-main)'}} className={language} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(code)}}/>
+                        <Box sx={{width:'100%', boxSizing:'border-box', padding:1, border: '4px solid var(--mui-palette-primary-main)'}} className={language} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(code, {ADD_ATTR:['target']})}}/>
                     </Box>
                 )
             }
@@ -306,7 +306,7 @@ const components:Components = {
                         background: background, 
                         fontSize: '0.8em', 
                         padding: '0.2em 4px 1px 4px', 
-                        verticalAlign: 'middle', 
+                        verticalAlign: '0.1em', 
                         border: '1px solid var(--mui-palette-background-paper)'
                     }}
                 >
