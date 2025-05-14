@@ -203,7 +203,7 @@ const components:Components = {
                 const args = props.node?.data?.meta?.trim().split(/\s+/); // 获取标题
                 return (
                     <Box sx={{marginBlock:'8px', whiteSpace:'normal'}} className={language}>
-                        <Box sx={{width:'fit-content', padding:1, background:'var(--mui-palette-primary-main)'}}>{args??'HTML'}</Box>
+                        <Box sx={{width:'fit-content', padding:1, background:'var(--mui-palette-primary-main)'}}>{args?.join(' ')??'HTML'}</Box>
                         <Box sx={{width:'100%', boxSizing:'border-box', padding:1, border: '4px solid var(--mui-palette-primary-main)'}} className={language} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(code, {ADD_ATTR:['target']})}}/>
                     </Box>
                 )
