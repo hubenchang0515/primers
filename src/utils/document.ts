@@ -1,7 +1,7 @@
 import path from "path";
 import fs from 'fs/promises';
 import { DOCUMENT_CONFIG } from "@/config";
-import { exec } from "child_process";
+import { execFile } from "child_process";
 
 export interface DocState {
     createdTime: Date;
@@ -58,8 +58,9 @@ export async function docState(lang:string, category:string, chapter?:string, do
     const file = path.join(process.cwd(), DOCUMENT_CONFIG.root, 'document', lang, category, chapter??"", doc??"");
 
     return new Promise((resolve) => {
-        exec(`git -C ${dir} log --format="%ai" "${file}"`, (err, stdout) => {
+        execFile('git', ['-C', dir, 'log', '--format="%ai"', file], (err, stdout) => {
             if (err || stdout.trim().length === 0) {
+                console.error(err)
                 resolve({
                     createdTime: new Date(),
                     updatedTime: new Date(),
