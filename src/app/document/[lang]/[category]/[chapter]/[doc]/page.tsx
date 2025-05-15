@@ -80,7 +80,7 @@ export default async function DocPage({params}:{params:Promise<PageParams>}) {
     const selectedDoc = selectedSideGroup >= 0 && selectedSideGroup < sideGroups.length ? sideGroups[selectedSideGroup].items?.findIndex(item=>item.label === title(decodeURIComponent(path.doc))) : undefined;
 
     return (
-        <MainPage depth={3} titleItems={titleItems} currentTitle={currentTitle} sideGroups={sideGroups} selectedSideGroup={selectedSideGroup} selectedDoc={selectedDoc}>
+        <MainPage lang={path.lang} depth={3} titleItems={titleItems} currentTitle={currentTitle} sideGroups={sideGroups} selectedSideGroup={selectedSideGroup} selectedDoc={selectedDoc}>
             <Pagination lang={path.lang} prev={prev} next={next} sx={{display:{xs:'none', md:'block'}}}/>
             <Paper sx={{padding:'1rem'}}>
                 <Content content={markdown} state={state}/>

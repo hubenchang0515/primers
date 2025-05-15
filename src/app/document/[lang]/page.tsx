@@ -1,4 +1,4 @@
-import ChipNav from "@/components/ChipNav";
+import Navigation from "@/components/Navigation";
 import { Content } from "@/components/Content";
 import MainPage from "@/components/MainPage";
 import { TitleBarItem } from "@/components/TitleBar";
@@ -50,11 +50,11 @@ export default async function LanguagePage({params}:{params:Promise<PageParams>}
     })
 
     return (
-        <MainPage depth={2} titleItems={titleItems}>
+        <MainPage lang={path.lang} depth={2} titleItems={titleItems}>
             <Paper sx={{padding:'1rem'}}>
                 <Content content={markdown} state={state}/>
             </Paper>
-            <ChipNav items={titleItems}/>
+            <Navigation lang={path.lang} items={titleItems}/>
         </MainPage>
     )
 }

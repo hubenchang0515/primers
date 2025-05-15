@@ -1,4 +1,5 @@
 "use client";
+import { iana } from '@/utils/language';
 import Giscus from '@giscus/react';
 import { Box, useColorScheme } from '@mui/material';
 
@@ -22,7 +23,7 @@ export default function Discussion(props:DiscussionProps) {
                 emitMetadata="0"
                 inputPosition="top"
                 theme={mode === 'system' ? 'preferred_color_scheme' : mode}
-                lang={props.lang||'en'}
+                lang={iana(props.lang)}
                 loading="lazy"
             />
         </Box>

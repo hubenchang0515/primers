@@ -68,7 +68,7 @@ export default async function CategoryPage({params}:{params:Promise<PageParams>}
     })));
 
     return (
-        <MainPage depth={2} titleItems={titleItems} currentTitle={currentTitle} sideGroups={sideGroups}>
+        <MainPage lang={path.lang} depth={2} titleItems={titleItems} currentTitle={currentTitle} sideGroups={sideGroups}>
             <Paper sx={{padding:'1rem'}}>
                 <Content content={markdown} state={state}/>
             </Paper>

@@ -27,6 +27,7 @@ export interface SideMenuGroup {
 }
 
 export interface SideMenuProps {
+    lang?: string;
     groups?: SideMenuGroup[];
     children?: React.ReactNode;
 
@@ -148,7 +149,7 @@ export default function SideMenu(props:SideMenuProps) {
                                 <ListItemIcon>
                                     <TuneIcon/>
                                 </ListItemIcon>
-                                <ListItemText primary="设置"/>
+                                <ListItemText primary={props.lang === 'zh' ? "设置" : 'Settings'}/>
                                 {settingsExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                             </ListItemButton>
                         </ListItem>
@@ -159,20 +160,20 @@ export default function SideMenu(props:SideMenuProps) {
                                         <ListItemIcon>
                                             <Brightness4Icon />
                                         </ListItemIcon>
-                                        <ListItemText primary="主题" />
-                                            <Tooltip title="明亮" placement="top" arrow>
+                                        <ListItemText primary={props.lang === 'zh' ? "主题" : 'Theme'} />
+                                            <Tooltip title={props.lang === 'zh' ? "明亮" : 'Light'} placement="top" arrow>
                                                 <IconButton color={props.mode === 'light' ? 'primary' : 'inherit'} onClick={(ev) => {props.onSetMode?.('light'); ev.stopPropagation();}}>
                                                     <LightModeIcon/>
                                                 </IconButton>
                                             </Tooltip>
 
-                                            <Tooltip title="自动" placement="top" arrow>
+                                            <Tooltip title={props.lang === 'zh' ? "系统" : 'System'} placement="top" arrow>
                                                 <IconButton color={props.mode === 'system' ? 'primary' : 'inherit'} onClick={(ev) => {props.onSetMode?.('system'); ev.stopPropagation();}}>
                                                     <BrightnessAutoIcon/>
                                                 </IconButton>
                                             </Tooltip>
 
-                                            <Tooltip title="黑暗" placement="top" arrow>
+                                            <Tooltip title={props.lang === 'zh' ? "黑暗" : 'Dark'} placement="top" arrow>
                                                 <IconButton color={props.mode === 'dark' ? 'primary' : 'inherit'} onClick={(ev) => {props.onSetMode?.('dark'); ev.stopPropagation();}}>
                                                     <DarkModeIcon/>
                                                 </IconButton>

@@ -3,6 +3,7 @@ import { Box, Button, SxProps, Theme, Typography } from "@mui/material";
 import NextLink from "next/link";
 import { useEffect, useState } from "react";
 
+import HomeIcon from '@mui/icons-material/Home';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import EmailIcon from '@mui/icons-material/Email';
 import Link from "./Link";
@@ -24,6 +25,7 @@ export default function Footer(props:FooterProps) {
         <Box component='footer' sx={props.sx}>
             <Typography align="center" variant="caption">
                 <Typography>
+                    <Button LinkComponent={Link} href='/' startIcon={<HomeIcon/>}>Home</Button> | 
                     {props.email && <> <Button href={`mailto://${props.email}`} startIcon={<EmailIcon/>}>Contact</Button> | </>}
                     <Button LinkComponent={Link} href='/sitemap.xml' startIcon={<LocationOnIcon/>}>Sitemap</Button>
                 </Typography>

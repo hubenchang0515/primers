@@ -10,8 +10,10 @@ import { useRouter } from 'next/navigation';
 import Discussion from "./Discussion";
 import Footer from "./Footer";
 import { OWNER_CONFIG, SITE_CONFIG } from "@/config";
+import Locale from "./Locale";
 
 export interface MainPageProps {
+    lang?: string;
     depth: number;
     titleItems?: TitleBarItem[];
     currentTitle?: number;
@@ -85,8 +87,10 @@ export default function MainPage(props:MainPageProps) {
 
     return (
         <Box sx={{width: '100%', height: '100%', display: 'flex', flexDirection:'column'}}>
+            <Locale lang={props.lang??'en'}/>
             <LinearProgress sx={{position:'fixed', top:0, width:'100%', height:2, zIndex:loading?9999:-9999}} color="secondary"/>
             <TitleBar 
+                lang={props.lang}
                 title={SITE_CONFIG.title}
                 github={SITE_CONFIG.repo}
                 items={props.titleItems}
@@ -97,6 +101,7 @@ export default function MainPage(props:MainPageProps) {
             <Box sx={{display:'flex', height:'calc(100% - 48px)'}}>
                 
                 <SideMenu
+                    lang={props.lang}
                     collapsedSize={sideCollapsedSize}
                     expanded={sideExpanded} 
                     onExpandedChanged={setSideExpanded} 
@@ -113,7 +118,7 @@ export default function MainPage(props:MainPageProps) {
                         <Fade in={true}>
                             <Box sx={{height:'100%', display:'flex', flexDirection:'column', gap:1}}>
                                 { props.children }
-                                <Discussion lang="zh-CN"/>
+                                <Discussion lang={props.lang}/>
                                 <Footer sx={{marginTop:'auto'}} owner={OWNER_CONFIG.name} owner_url={OWNER_CONFIG.url} email={OWNER_CONFIG.email}/>
                             </Box>
                         </Fade>

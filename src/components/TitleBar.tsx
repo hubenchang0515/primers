@@ -11,6 +11,7 @@ export interface TitleBarItem {
 }
 
 export interface TitleBarProps {
+    lang?: string;
     title: string;
     github: string;
 
@@ -42,7 +43,7 @@ export default function TitleBar(props:TitleBarProps) {
                             size="large"
                             color="inherit"
                             aria-label="menu"
-                            href='/'
+                            href={props.lang ? `/document/${props.lang}` : '/'}
                             LinkComponent={Link}
                             sx={{textTransform:'none'}}
                             onClick={()=>{props.onCurrentChanged?.(undefined)}}

@@ -42,7 +42,7 @@ export default function Pagination(props:PaginationProps) {
                         startIcon={<ArrowBackIcon/>}
                         endIcon={<ArticleIcon/>}
                     >
-                        没有了
+                        
                     </Button>
                 }
                 {
