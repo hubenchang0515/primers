@@ -60,7 +60,10 @@ export async function docState(lang:string, category:string, chapter?:string, do
     return new Promise((resolve) => {
         execFile('git', ['-C', dir, 'log', '--format="%ai"', file], (err, stdout) => {
             if (err || stdout.trim().length === 0) {
-                console.error(err)
+                if (err) {
+                    console.error(err);
+                }
+
                 resolve({
                     createdTime: new Date(),
                     updatedTime: new Date(),
