@@ -10,6 +10,9 @@ const theme = createTheme({
                     main: "#39c5bb"
                 },
                 secondary: pink,
+                info: {
+                    main: "#66CCFF",
+                },
                 mode: 'light',
             },
         },
@@ -19,6 +22,9 @@ const theme = createTheme({
                     main: "#39c5bb"
                 },
                 secondary: pink,
+                info: {
+                    main: "#66CCFF",
+                },
                 mode: 'dark',
             },
         }
