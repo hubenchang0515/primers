@@ -18,14 +18,14 @@ export default async function sitemap():Promise<MetadataRoute.Sitemap> {
     for (const lang of await languages()) {
         const state = await docState(lang, '00.index.md');
         sites.push({
-            url: new URL(`${SITE_CONFIG.basePath}/document/${lang}`, SITE_CONFIG.origin).toString(),
+            url: new URL(`${SITE_CONFIG.basePath}/document/${encodeURIComponent(lang)}`, SITE_CONFIG.origin).toString(),
             lastModified: state.updatedTime
         });
 
         for (const category of await categories(lang)) {
             const state = await docState(lang, category, '00.index.md');
             sites.push({
-                url: new URL(`${SITE_CONFIG.basePath}/document/${lang}/${category}`, SITE_CONFIG.origin).toString(),
+                url: new URL(`${SITE_CONFIG.basePath}/document/${encodeURIComponent(lang)}/${encodeURIComponent(category)}`, SITE_CONFIG.origin).toString(),
                 lastModified: state.updatedTime
             });
 
@@ -33,7 +33,7 @@ export default async function sitemap():Promise<MetadataRoute.Sitemap> {
                 for (const doc of await docs(lang, category, chapter)) {
                     const state = await docState(lang, category, chapter, doc);
                     sites.push({
-                        url: new URL(`${SITE_CONFIG.basePath}/document/${lang}/${category}/${chapter}/${doc}`, SITE_CONFIG.origin).toString(),
+                        url: new URL(`${SITE_CONFIG.basePath}/document/${encodeURIComponent(lang)}/${encodeURIComponent(category)}/${encodeURIComponent(chapter)}/${encodeURIComponent(doc)}`, SITE_CONFIG.origin).toString(),
                         lastModified: state.updatedTime
                     });
                 }
