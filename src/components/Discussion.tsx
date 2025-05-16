@@ -14,9 +14,9 @@ export default function Discussion(props:DiscussionProps) {
             <Giscus
                 id="comments"
                 repo="hubenchang0515/primers"
-                repoId="MDEwOlJlcG9zaXRvcnkzOTEzMTMwMjA="
+                repoId="R_kgDOOW5w2A"
                 category="Announcements"
-                categoryId="DIC_kwDOF1L2fM4B-hVS"
+                categoryId="DIC_kwDOOW5w2M4Cp13Z"
                 mapping="pathname"
                 term="Welcome to @giscus/react component!"
                 reactionsEnabled="1"
