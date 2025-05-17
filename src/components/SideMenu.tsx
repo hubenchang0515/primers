@@ -46,6 +46,8 @@ export interface SideMenuProps {
 }
 
 export default function SideMenu(props:SideMenuProps) {
+    // 初始化
+    const [initialized, setInitialized] = useState(false);
 
     // 设置列表展开状态
     const [settingsExpanded, setSettingsExpanded] = useState<boolean>(false);
@@ -65,6 +67,11 @@ export default function SideMenu(props:SideMenuProps) {
             sx={{
                 borderRadius: 0,
                 zIndex:99,
+                position: {xs:'absolute', md:'static'},
+                visibility: {xs: initialized ? 'visible' : 'hidden', md:'visible'},
+                top:0,
+                bottom:0,
+                left:0
             }}
             elevation={12}
             square
@@ -73,9 +80,10 @@ export default function SideMenu(props:SideMenuProps) {
                 sx={{height: '100%'}} 
                 orientation="horizontal" 
                 collapsedSize={props.groups ? props.collapsedSize??56 : 0} 
-                in={props.groups && props.expanded} 
+                in={props.groups && props.expanded}
                 onEntered={()=>setChildrenVisible(true)}
                 onExit={()=>setChildrenVisible(false)}
+                onExited={()=>setInitialized(true)}
             >
                 <Box 
                     sx={{
