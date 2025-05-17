@@ -34,15 +34,15 @@ export default function MainPage(props:MainPageProps) {
 
     // 全局状态
     const {
+        loading,
         currentTitle, 
         expandedSideGroup, 
         sideExpanded,
         sideCollapsedSize,
-        loading,
+        setLoading,
         setCurrentTitle,
         setExpandedSideGroup,
         setSideExpanded,
-        setLoading,
     } = useGlobalState();
 
     // 窄屏自动收起侧边栏
@@ -98,8 +98,7 @@ export default function MainPage(props:MainPageProps) {
                 onToggleMenu={()=>setSideExpanded?.(!sideExpanded)}
                 onCurrentChanged={setTitle}
             />
-            <Box sx={{display:'flex', height:'calc(100% - 48px)'}}>
-                
+            <Box sx={{display:'flex', height:'calc(100% - 48px)', position:'relative'}}>
                 <SideMenu
                     lang={props.lang}
                     collapsedSize={sideCollapsedSize}
