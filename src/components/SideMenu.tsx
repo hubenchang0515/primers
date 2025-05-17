@@ -102,25 +102,28 @@ export default function SideMenu(props:SideMenuProps) {
                         {
                             props.groups?.map((group, gIndex) => {
                                 return (
-                                    <Box key={gIndex}>
-                                        <ListItem disablePadding
-                                            sx={gIndex === props.selectedGroup ? {boxShadow:  '-2px 0 0 0 var(--mui-palette-secondary-main) inset'} : {}}
+                                    <ListItem disablePadding key={gIndex}
+                                        sx={{
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            alignItems:'stretch',
+                                        }}
+                                    >
+                                        <ListItemButton 
+                                            sx={{boxShadow: gIndex === props.selectedGroup ? '-2px 0 0 0 var(--mui-palette-secondary-main) inset' : ''}}
+                                            onClick={() => {
+                                                props.onExpandedGroupChanged?.(gIndex);
+                                                props.onExpandedChanged?.(true);
+                                            }}
                                         >
-                                            <ListItemButton 
-                                                onClick={() => {
-                                                    props.onExpandedGroupChanged?.(gIndex);
-                                                    props.onExpandedChanged?.(true);
-                                                }}
-                                            >
-                                                <ListItemIcon>
-                                                    {group.icon  ?? <FolderIcon/>}
-                                                </ListItemIcon>
-                                                <ListItemText primary={group.label}/>
-                                                {gIndex == props.expandedGroup ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-                                            </ListItemButton>
-                                        </ListItem>
-                                        <Collapse in={props.expanded && gIndex == props.expandedGroup } timeout="auto" unmountOnExit>
-                                            <List component="div" disablePadding >
+                                            <ListItemIcon>
+                                                {group.icon  ?? <FolderIcon/>}
+                                            </ListItemIcon>
+                                            <ListItemText primary={group.label}/>
+                                            {gIndex == props.expandedGroup ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                                        </ListItemButton>
+                                        <Collapse in={props.expanded && gIndex == props.expandedGroup } timeout="auto">
+                                            <List disablePadding >
                                                 {
                                                     group.items?.map((item, dIndex) => (
                                                         <ListItem disablePadding key={dIndex}
@@ -141,7 +144,7 @@ export default function SideMenu(props:SideMenuProps) {
                                                 }
                                             </List>
                                         </Collapse>
-                                    </Box>
+                                    </ListItem>
                                 )
                             })
                         }
@@ -149,7 +152,13 @@ export default function SideMenu(props:SideMenuProps) {
                         <Divider/>
 
                         {/* 设置 */}
-                        <ListItem disablePadding>
+                        <ListItem disablePadding
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems:'stretch',
+                            }}
+                        >
                             <ListItemButton onClick={() => {
                                 setSettingsExpanded(!settingsExpanded);
                                 props.onExpandedChanged?.(true);
@@ -160,37 +169,38 @@ export default function SideMenu(props:SideMenuProps) {
                                 <ListItemText primary={props.lang === 'zh' ? "设置" : 'Settings'}/>
                                 {settingsExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                             </ListItemButton>
+                            <Collapse in={props.expanded && settingsExpanded} timeout="auto" unmountOnExit>
+                                <List disablePadding>
+                                    <ListItem disablePadding>
+                                        <ListItemButton sx={{ pl: 4 }} onClick={()=>props.onSetMode?.('system')}>
+                                            <ListItemIcon>
+                                                <Brightness4Icon />
+                                            </ListItemIcon>
+                                            <ListItemText primary={props.lang === 'zh' ? "主题" : 'Theme'} />
+                                                <Tooltip title={props.lang === 'zh' ? "明亮" : 'Light'} placement="top" arrow>
+                                                    <IconButton color={props.mode === 'light' ? 'primary' : 'inherit'} onClick={(ev) => {props.onSetMode?.('light'); ev.stopPropagation();}}>
+                                                        <LightModeIcon/>
+                                                    </IconButton>
+                                                </Tooltip>
+
+                                                <Tooltip title={props.lang === 'zh' ? "系统" : 'System'} placement="top" arrow>
+                                                    <IconButton color={props.mode === 'system' ? 'primary' : 'inherit'} onClick={(ev) => {props.onSetMode?.('system'); ev.stopPropagation();}}>
+                                                        <BrightnessAutoIcon/>
+                                                    </IconButton>
+                                                </Tooltip>
+
+                                                <Tooltip title={props.lang === 'zh' ? "黑暗" : 'Dark'} placement="top" arrow>
+                                                    <IconButton color={props.mode === 'dark' ? 'primary' : 'inherit'} onClick={(ev) => {props.onSetMode?.('dark'); ev.stopPropagation();}}>
+                                                        <DarkModeIcon/>
+                                                    </IconButton>
+                                                </Tooltip>
+                                            
+                                        </ListItemButton>
+                                    </ListItem>
+                                </List>
+                            </Collapse>
                         </ListItem>
-                        <Collapse in={props.expanded && settingsExpanded} timeout="auto" unmountOnExit>
-                            <List component="div" disablePadding>
-                                <ListItem disablePadding>
-                                    <ListItemButton sx={{ pl: 4 }} onClick={()=>props.onSetMode?.('system')}>
-                                        <ListItemIcon>
-                                            <Brightness4Icon />
-                                        </ListItemIcon>
-                                        <ListItemText primary={props.lang === 'zh' ? "主题" : 'Theme'} />
-                                            <Tooltip title={props.lang === 'zh' ? "明亮" : 'Light'} placement="top" arrow>
-                                                <IconButton color={props.mode === 'light' ? 'primary' : 'inherit'} onClick={(ev) => {props.onSetMode?.('light'); ev.stopPropagation();}}>
-                                                    <LightModeIcon/>
-                                                </IconButton>
-                                            </Tooltip>
-
-                                            <Tooltip title={props.lang === 'zh' ? "系统" : 'System'} placement="top" arrow>
-                                                <IconButton color={props.mode === 'system' ? 'primary' : 'inherit'} onClick={(ev) => {props.onSetMode?.('system'); ev.stopPropagation();}}>
-                                                    <BrightnessAutoIcon/>
-                                                </IconButton>
-                                            </Tooltip>
-
-                                            <Tooltip title={props.lang === 'zh' ? "黑暗" : 'Dark'} placement="top" arrow>
-                                                <IconButton color={props.mode === 'dark' ? 'primary' : 'inherit'} onClick={(ev) => {props.onSetMode?.('dark'); ev.stopPropagation();}}>
-                                                    <DarkModeIcon/>
-                                                </IconButton>
-                                            </Tooltip>
-                                        
-                                    </ListItemButton>
-                                </ListItem>
-                            </List>
-                        </Collapse>
+                        
                     </List>
 
                     {
