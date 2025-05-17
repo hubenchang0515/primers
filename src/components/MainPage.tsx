@@ -88,7 +88,7 @@ export default function MainPage(props:MainPageProps) {
     return (
         <Box sx={{width: '100%', height: '100%', display: 'flex', flexDirection:'column'}}>
             <Locale lang={props.lang??'en'}/>
-            <LinearProgress sx={{position:'fixed', top:0, width:'100%', height:2, zIndex:loading?9999:-9999}} color="secondary"/>
+            <LinearProgress aria-label='loading' sx={{position:'fixed', top:0, width:'100%', height:2, zIndex:loading?9999:-9999}} color="secondary" variant={loading?'indeterminate':'determinate'} value={100}/>
             <TitleBar 
                 lang={props.lang}
                 title={SITE_CONFIG.title}
