@@ -114,7 +114,7 @@ export default function MainPage(props:MainPageProps) {
                 />
                 <Box sx={{flex:1, overflow:'auto'}}>
                     <Container maxWidth='lg' sx={{padding:1, height:'100%'}}>
-                        <Fade in={true}>
+                        <Fade in={true} appear={false}>
                             <Box sx={{height:'100%', display:'flex', flexDirection:'column', gap:1}}>
                                 { props.children }
                                 <Discussion lang={props.lang}/>
