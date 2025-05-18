@@ -8,7 +8,6 @@ import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math';
 import rehypeMathjax from 'rehype-mathjax';
 import hljs from 'highlight.js';
-import { Graphviz } from "@hpcc-js/wasm-graphviz";
 import '@/assets/font.css';
 import '@/assets/highlight.css';
 import 'katex/dist/katex.min.css';
@@ -16,6 +15,8 @@ import { ComponentProps, ElementType } from 'react';
 import Image from './Image';
 import DOMPurify from "isomorphic-dompurify";
 import Link from './Link';
+import Mermaid from './Mermaid';
+import Graphviz from './Graphviz';
 
 export interface MarkdownProps {
     content:string;
@@ -193,11 +194,14 @@ const components:Components = {
 
             // 标注为 graphviz 表示使用 graphviz 绘图
             if (language === 'graphviz') {
-                const graphviz = await Graphviz.load();
-                const result = graphviz.dot(code).replace(/\n/g, "").trim();
                 return (
-                    <Box sx={{marginBlock:'8px', textAlign:'center', whiteSpace:'normal'}} className={language} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(result)}}/>
+                    <Graphviz sx={{marginBlock:'8px', textAlign:'center', whiteSpace:'normal'}} code={code}/>
                 )
+            }
+
+            // 标注为 mermaid 表示使用 mermaid 绘图
+            if (language === 'mermaid') {
+                return <Mermaid sx={{marginBlock:'8px', textAlign:'center', whiteSpace:'normal'}} code={code}/>
             }
 
             // 标注为 auto 表示自动检测语言类型

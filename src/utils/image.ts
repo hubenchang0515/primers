@@ -9,8 +9,8 @@ export interface ImageInfo {
     src: string;
 }
 
-export async function imageInfo(filepath:string): Promise<ImageInfo> {
-    const file = path.join(process.cwd(), DOCUMENT_CONFIG.root, filepath);
+export async function imageInfo(filepath:string, absolute?:boolean): Promise<ImageInfo> {
+    const file = absolute ? filepath : path.join(process.cwd(), DOCUMENT_CONFIG.root, filepath);
     const fp = await fs.open(file);
     const info = await probe(fp.createReadStream());
     const base64 = (await fs.readFile(file)).toString('base64');
