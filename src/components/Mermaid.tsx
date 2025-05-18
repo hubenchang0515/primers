@@ -1,4 +1,3 @@
-"use server";
 import { render } from "@/utils/mermaid";
 import { Box, SxProps, Theme } from "@mui/material";
 
