@@ -19,7 +19,7 @@ export default function EmbedPage(props:EmbedPageProps) {
             ref.current.style.height = ref.current.contentWindow.document.documentElement.scrollHeight + 'px';
 
         }
-    }, [ref.current]);
+    }, [ref]);
 
     return (
         <Box sx={{width:'100%', boxSizing:'border-box', }}>
