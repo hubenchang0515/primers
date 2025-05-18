@@ -18,6 +18,7 @@ import Link from './Link';
 import Mermaid from './Mermaid';
 import Graphviz from './Graphviz';
 import EmbedPage from './EmbedPage';
+import { include } from '@/utils/include';
 
 export interface MarkdownProps {
     content:string;
@@ -188,10 +189,15 @@ const components:Components = {
     },
 
     async code(props) {
-        const code = props.children as string ?? '';
-        const match = /language-(\w+)/.exec(props.className || '')
-        if (match) {
-            const language = match[1];
+        let code = props.children as string ?? '';
+        const includeMatch = /\$include\((.*?)\)/.exec(code)
+        if (includeMatch) {
+            code = await include(includeMatch[1]);
+        }
+
+        const languageMatch = /language-(\w+)/.exec(props.className || '')
+        if (languageMatch) {
+            const language = languageMatch[1];
 
             // 标注为 graphviz 表示使用 graphviz 绘图
             if (language === 'graphviz') {
