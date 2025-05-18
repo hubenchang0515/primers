@@ -271,7 +271,7 @@ const components:Components = {
                 const args = props.node?.data?.meta?.trim().split(/\s+/); // 获取标题
                 return (
                     <Box sx={{marginBlock:'8px', whiteSpace:'normal'}} className={language}>
-                        <Box sx={{width:'fit-content', padding:1, background:'var(--mui-palette-primary-main)'}}>{args?.slice(1).join(' ')??'HTML'}</Box>
+                        <Box sx={{width:'fit-content', padding:1, background:'var(--mui-palette-primary-main)'}}>{args?.slice(1).join(' ')||'HTML'}</Box>
                         <Box sx={{width:'100%', boxSizing:'border-box', border: '4px solid var(--mui-palette-primary-main)', position:'relative'}}>
                             <Box sx={{all: 'initial', display:'block', margin:'8px'}} className={language} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(code)}}/>
                             <iframe 
@@ -286,7 +286,7 @@ const components:Components = {
                 const args = props.node?.data?.meta?.trim().split(/\s+/); // 获取标题
                 return (
                     <Box sx={{marginBlock:'8px', whiteSpace:'normal'}} className={language}>
-                        <Box sx={{width:'fit-content', padding:1, background:'var(--mui-palette-primary-main)'}}>{args?.slice(1).join(' ')??'HTML'}</Box>
+                        <Box sx={{width:'fit-content', padding:1, background:'var(--mui-palette-primary-main)'}}>{args?.slice(1).join(' ')||'HTML'}</Box>
                         <Box sx={{width:'100%', boxSizing:'border-box', border: '4px solid var(--mui-palette-primary-main)', position:'relative'}}>
                             <Box sx={{all: 'initial', display:'block', margin:'8px'}} className={language} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(code)}}/>
                             <iframe 
