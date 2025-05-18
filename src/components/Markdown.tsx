@@ -276,7 +276,7 @@ const components:Components = {
                             <Box sx={{all: 'initial', display:'block', margin:'8px'}} className={language} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(code)}}/>
                             <iframe 
                                 style={{position:'absolute', top:0, left:0, width:'100%', height:'100%', border:0, background:'#fff'}} 
-                                srcDoc={DOMPurify.sanitize(code)}
+                                srcDoc={DOMPurify.sanitize(code, {WHOLE_DOCUMENT: true})}
                             />
                         </Box>
                     </Box>
