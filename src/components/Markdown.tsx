@@ -17,6 +17,7 @@ import DOMPurify from "isomorphic-dompurify";
 import Link from './Link';
 import Mermaid from './Mermaid';
 import Graphviz from './Graphviz';
+import EmbedPage from './EmbedPage';
 
 export interface MarkdownProps {
     content:string;
@@ -272,12 +273,9 @@ const components:Components = {
                 return (
                     <Box sx={{marginBlock:'8px', whiteSpace:'normal'}} className={language}>
                         <Box sx={{width:'fit-content', padding:1, background:'var(--mui-palette-primary-main)'}}>{args?.slice(1).join(' ')||'HTML'}</Box>
-                        <Box sx={{width:'100%', boxSizing:'border-box', border: '4px solid var(--mui-palette-primary-main)', position:'relative'}}>
-                            <Box sx={{all: 'initial', display:'block', margin:'8px'}} className={language} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(code)}}/>
-                            <iframe 
-                                style={{position:'absolute', top:0, left:0, width:'100%', height:'100%', border:0, background:'#fff'}} 
-                                srcDoc={DOMPurify.sanitize(code, {WHOLE_DOCUMENT: true})}
-                            />
+                        <Box sx={{width:'100%', lineHeight:0, border: '4px solid var(--mui-palette-primary-main)', position:'relative'}}>
+                            <Box sx={{position:'absolute', boxSizing:'border-box', height:'100%', overflow:'auto', zIndex:-1}} className={language} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(code)}}/>
+                            <EmbedPage code={code}/>
                         </Box>
                     </Box>
                 )
@@ -288,11 +286,8 @@ const components:Components = {
                     <Box sx={{marginBlock:'8px', whiteSpace:'normal'}} className={language}>
                         <Box sx={{width:'fit-content', padding:1, background:'var(--mui-palette-primary-main)'}}>{args?.slice(1).join(' ')||'HTML'}</Box>
                         <Box sx={{width:'100%', boxSizing:'border-box', border: '4px solid var(--mui-palette-primary-main)', position:'relative'}}>
-                            <Box sx={{all: 'initial', display:'block', margin:'8px'}} className={language} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(code)}}/>
-                            <iframe 
-                                style={{position:'absolute', top:0, left:0, width:'100%', height:'100%', border:0, background:'#fff'}} 
-                                srcDoc={code}
-                            />
+                            <Box sx={{position:'absolute', boxSizing:'border-box', height:'100%', overflow:'auto', zIndex:-1}} className={language} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(code)}}/>
+                            <EmbedPage code={code} unsafe/>
                         </Box>
                     </Box>
                 )
