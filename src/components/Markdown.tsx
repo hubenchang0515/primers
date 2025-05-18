@@ -273,10 +273,7 @@ const components:Components = {
                 return (
                     <Box sx={{marginBlock:'8px', whiteSpace:'normal'}} className={language}>
                         <Box sx={{width:'fit-content', padding:1, background:'var(--mui-palette-primary-main)'}}>{args?.slice(1).join(' ')||'HTML'}</Box>
-                        <Box sx={{width:'100%', lineHeight:0, border: '4px solid var(--mui-palette-primary-main)', position:'relative'}}>
-                            <Box sx={{position:'absolute', boxSizing:'border-box', height:'100%', overflow:'auto', zIndex:-1}} className={language} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(code)}}/>
-                            <EmbedPage code={code}/>
-                        </Box>
+                        <EmbedPage code={code}/>
                     </Box>
                 )
             } else if (props.node?.data?.meta?.trim().startsWith('unsafe')) {
@@ -285,10 +282,7 @@ const components:Components = {
                 return (
                     <Box sx={{marginBlock:'8px', whiteSpace:'normal'}} className={language}>
                         <Box sx={{width:'fit-content', padding:1, background:'var(--mui-palette-primary-main)'}}>{args?.slice(1).join(' ')||'HTML'}</Box>
-                        <Box sx={{width:'100%', boxSizing:'border-box', border: '4px solid var(--mui-palette-primary-main)', position:'relative'}}>
-                            <Box sx={{position:'absolute', boxSizing:'border-box', height:'100%', overflow:'auto', zIndex:-1}} className={language} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(code)}}/>
-                            <EmbedPage code={code} unsafe/>
-                        </Box>
+                        <EmbedPage unsafe code={code}/>
                     </Box>
                 )
             } else {
