@@ -1,7 +1,6 @@
 "use server";
 import { render } from "@/utils/mermaid";
 import { Box, SxProps, Theme } from "@mui/material";
-import DOMPurify from "isomorphic-dompurify";
 
 export interface MermaidProps {
     code: string;

@@ -19,20 +19,20 @@ export default function EmbedPage(props:EmbedPageProps) {
             ref.current.style.height = ref.current.contentWindow.document.documentElement.scrollHeight + 'px';
 
         }
-    }, [ref.current, expanded]);
+    }, [ref.current]);
 
     return (
         <Box sx={{width:'100%', boxSizing:'border-box', }}>
             <Box sx={{width:'100%', boxSizing:'border-box', lineHeight:0, border: '4px solid var(--mui-palette-primary-main)', position:'relative'}}>
                 <Box 
-                    sx={{position:'absolute', boxSizing:'border-box', height:'100%', overflow:'auto', zIndex:-1}} 
+                    sx={{position:'absolute', boxSizing:'border-box', top:0, bottom:0, width:'100%', overflow:'auto'}} 
                     dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(props.code)}}
                 />
                 <Collapse in={expanded} collapsedSize={150}>
                     <iframe 
                         ref={ref}
                         srcDoc={props.unsafe ? props.code : DOMPurify.sanitize(props.code, {WHOLE_DOCUMENT: true, ADD_ATTR:['id']})}
-                        style={{width:'100%', height:'100%', minHeight:0, boxSizing:'border-box', border:0, margin:0, lineHeight:0, overflow:'hidden'}}
+                        style={{width:'100%', height:'100%', background:'#fafafa', position:'relative', zIndex:1, minHeight:0, boxSizing:'border-box', border:0, margin:0, lineHeight:0, overflow:'hidden'}}
                     />
                 </Collapse>
             </Box>
