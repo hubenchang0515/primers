@@ -1,7 +1,7 @@
 "use client";
 import { Box, Button, Collapse } from "@mui/material";
 import DOMPurify from "isomorphic-dompurify";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
@@ -14,10 +14,9 @@ export default function EmbedPage(props:EmbedPageProps) {
     const ref = useRef<HTMLIFrameElement>(null);
     const [expanded, setExpanded] = useState(false);
 
-    useEffect(() => {
+    const initHeight = useCallback(() => {
         if (ref.current?.contentWindow) {
             ref.current.style.height = ref.current.contentWindow.document.documentElement.scrollHeight + 'px';
-
         }
     }, [ref]);
 
@@ -36,7 +35,7 @@ export default function EmbedPage(props:EmbedPageProps) {
                     />
                 </Collapse>
             </Box>
-            <Button variant="contained" color="secondary" size="small" sx={{margin:'auto',borderRadius:0}} onClick={()=>{setExpanded(!expanded)}}>
+            <Button variant="contained" color="secondary" size="small" sx={{margin:'auto',borderRadius:0}} onClick={()=>{initHeight(); setExpanded(!expanded);}}>
                 {expanded ? <ExpandLessIcon/> : <ExpandMoreIcon/>}
             </Button>
         </Box>
