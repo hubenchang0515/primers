@@ -1,9 +1,7 @@
 "use client";
-import { Box, Button, Collapse } from "@mui/material";
+import { Box } from "@mui/material";
 import DOMPurify from "isomorphic-dompurify";
-import { useCallback, useEffect, useRef, useState } from "react";
-import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { useCallback, useEffect, useRef } from "react";
 import { useGlobalState } from "./GlobalState";
 
 export interface EmbedPageProps {
