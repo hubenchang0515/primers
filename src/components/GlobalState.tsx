@@ -4,7 +4,9 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 
 export interface GlobalStateProps {
     loading?: boolean;
+    initialized?: boolean;
     setLoading?: (v?:boolean)=>void;
+    setInitialized?: (v?:boolean)=>void;
 
     currentTitle?: number;
     expandedSideGroup?: number;
@@ -28,6 +30,7 @@ export interface GlobalStateProviderProps {
 
 export function GlobalStateProvider(props:GlobalStateProviderProps) {
     const [loading, setLoading] = useState<boolean|undefined>(true);
+    const [initialized, setInitialized] = useState<boolean|undefined>(false);
 
     const [currentTitle, setCurrentTitle] = useState<number|undefined>(undefined);
     const [expandedSideGroup, setExpandedSideGroup] = useState<number|undefined>(undefined);
@@ -48,7 +51,9 @@ export function GlobalStateProvider(props:GlobalStateProviderProps) {
         <GlobalState.Provider 
             value={{
                 loading,
+                initialized,
                 setLoading,
+                setInitialized,
 
                 currentTitle, 
                 expandedSideGroup, 

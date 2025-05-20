@@ -59,7 +59,6 @@ export default function MainPage(props:MainPageProps) {
         setTimeout(() => {
             if (index !== undefined && props.titleItems !== undefined && props.titleItems.length > index) {
                 router.push(props.titleItems[index].url);
-                setSideExpanded?.(true);
             }
         }, 200);
     }, [props, router, setLoading, setCurrentTitle, setSideExpanded]);
