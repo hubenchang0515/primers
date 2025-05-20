@@ -13,6 +13,7 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import FolderIcon from '@mui/icons-material/Folder';
 import ArticleIcon from '@mui/icons-material/Article';
+import { useGlobalState } from "./GlobalState";
 
 export interface SideMenuItem {
     label: string;
@@ -46,8 +47,7 @@ export interface SideMenuProps {
 }
 
 export default function SideMenu(props:SideMenuProps) {
-    // 初始化
-    const [initialized, setInitialized] = useState(false);
+    const {initialized, setInitialized} = useGlobalState();
 
     // 设置列表展开状态
     const [settingsExpanded, setSettingsExpanded] = useState<boolean>(false);
@@ -83,7 +83,7 @@ export default function SideMenu(props:SideMenuProps) {
                 in={props.groups && props.expanded}
                 onEntered={()=>setChildrenVisible(true)}
                 onExit={()=>setChildrenVisible(false)}
-                onExited={()=>setInitialized(true)}
+                onExited={()=>setInitialized?.(true)}
             >
                 <Box 
                     sx={{
