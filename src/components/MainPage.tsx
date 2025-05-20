@@ -61,7 +61,7 @@ export default function MainPage(props:MainPageProps) {
                 router.push(props.titleItems[index].url);
             }
         }, 200);
-    }, [props, router, setLoading, setCurrentTitle, setSideExpanded]);
+    }, [props, router, setLoading, setCurrentTitle]);
 
     // 初始展开选中的分组
     useEffect(() => {
