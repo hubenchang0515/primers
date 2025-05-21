@@ -24,7 +24,7 @@ export default function EmbedPage(props:EmbedPageProps) {
 
     useEffect(() => {
         initHeight();
-    }, [loading]);
+    }, [loading, initHeight]);
 
     return (
         <Box sx={{width:'100%', boxSizing:'border-box', }}>
