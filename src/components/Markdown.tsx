@@ -278,7 +278,16 @@ const components:Components = {
                 const args = props.node?.data?.meta?.trim().split(/\s+/); // 获取标题
                 return (
                     <Box sx={{marginBlock:'8px', whiteSpace:'normal'}} className={language}>
-                        <Box sx={{width:'fit-content', padding:1, background:'var(--mui-palette-primary-main)'}}>{args?.slice(1).join(' ')||'HTML'}</Box>
+                        <Box 
+                            sx={{
+                                width:'fit-content', 
+                                padding:1, 
+                                color:'var(--mui-palette-primary-contrastText)', 
+                                background:'var(--mui-palette-primary-main)'
+                            }}
+                        >
+                            {args?.slice(1).join(' ')||'HTML'}
+                        </Box>
                         <EmbedPage code={code}/>
                     </Box>
                 )
@@ -287,7 +296,16 @@ const components:Components = {
                 const args = props.node?.data?.meta?.trim().split(/\s+/); // 获取标题
                 return (
                     <Box sx={{marginBlock:'8px', whiteSpace:'normal'}} className={language}>
-                        <Box sx={{width:'fit-content', padding:1, background:'var(--mui-palette-primary-main)'}}>{args?.slice(1).join(' ')||'HTML'}</Box>
+                        <Box 
+                            sx={{
+                                width:'fit-content', 
+                                padding:1, 
+                                color:'var(--mui-palette-primary-contrastText)', 
+                                background:'var(--mui-palette-primary-main)'
+                            }}
+                        >
+                            {args?.slice(1).join(' ')||'HTML'}
+                        </Box>
                         <EmbedPage unsafe code={code}/>
                     </Box>
                 )

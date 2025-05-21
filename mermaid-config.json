@@ -3,15 +3,15 @@
     "themeVariables": {
         "primaryColor": "#39c5bb",
         "primaryBorderColor": "#39c5bb",
-        "primaryTextColor": "#fafafa",
+        "primaryTextColor": "#000",
 
         "secondaryColor": "#66ccff",
         "secondaryBorderColor": "#66ccff",
-        "secondaryTextColor": "#fafafa",
+        "secondaryTextColor": "#000",
 
         "tertiaryColor": "#e91e63",
         "tertiaryBorderColor": "#e91e63",
-        "tertiaryTextColor": "#fafafa",
+        "tertiaryTextColor": "#000",
         
         "lineColor": "#e91e63"
     }
