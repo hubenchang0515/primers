@@ -1,6 +1,7 @@
 import { Box, Button, Paper, Typography } from "@mui/material";
 import { SideMenuGroup } from "./SideMenu";
 import Link from "./Link";
+import i18n from "@/utils/i18n";
 
 export interface CatalogProps {
     groups: SideMenuGroup[]
@@ -10,7 +11,7 @@ export default function Catalog(props:CatalogProps) {
     return (
         <Paper sx={{padding:'1rem', display:"flex", flexDirection:'column', gap:1}}>
             <Box sx={{display:'flex', justifyContent:'center'}}>
-                <Typography variant="h6" textAlign='center' sx={{margin:'2px', borderBottom:'3px solid var(--mui-palette-primary-main)'}}>章节目录</Typography>
+                <Typography variant="h6" textAlign='center' sx={{margin:'2px', borderBottom:'3px solid var(--mui-palette-primary-main)'}}>{i18n.t('catalog.title')}</Typography>
             </Box>
             <ol>
             {

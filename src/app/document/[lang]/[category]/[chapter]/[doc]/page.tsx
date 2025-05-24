@@ -5,6 +5,7 @@ import { SideMenuGroup } from "@/components/SideMenu";
 import { TitleBarItem } from "@/components/TitleBar";
 import { SITE_CONFIG } from "@/config";
 import { categories, chapters, content, docs, languages, docState, title, prevDoc, nextDoc } from "@/utils/document";
+import i18n from "@/utils/i18n";
 import { Paper } from "@mui/material";
 import { Metadata } from "next";
 
@@ -78,6 +79,8 @@ export default async function DocPage({params}:{params:Promise<PageParams>}) {
     })));
     const selectedSideGroup = sideGroups.findIndex(chapter=>chapter.label === title(decodeURIComponent(path.chapter)));
     const selectedDoc = selectedSideGroup >= 0 && selectedSideGroup < sideGroups.length ? sideGroups[selectedSideGroup].items?.findIndex(item=>item.label === title(decodeURIComponent(path.doc))) : undefined;
+    
+    i18n.setLanguage(path.lang);
 
     return (
         <MainPage lang={path.lang} depth={3} titleItems={titleItems} currentTitle={currentTitle} sideGroups={sideGroups} selectedSideGroup={selectedSideGroup} selectedDoc={selectedDoc}>
