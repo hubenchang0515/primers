@@ -1,0 +1,17 @@
+{
+    "catalog": {
+        "title": "Catalog"
+    },
+
+    "navigation": {
+        "title": "Navigation"
+    },
+
+    "content": {
+        "about": "About",
+        "letters": "letters",
+        "minutes": "minutes",
+        "created_in": "Created in",
+        "updated_in": "Updated in"
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "catalog": {
+        "title": "章节目录"
+    },
+
+    "navigation": {
+        "title": "导航"
+    },
+
+    "content": {
+        "about": "约",
+        "letters": "字",
+        "minutes": "分钟"
+    }
+}

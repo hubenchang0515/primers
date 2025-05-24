@@ -1,5 +1,6 @@
 import { Box, Button, Grid, Paper, Typography } from "@mui/material";
 import Link from "./Link";
+import i18n from "@/utils/i18n";
 
 export interface ChapNavItem {
     label: string;
@@ -15,7 +16,7 @@ export default function Navigation(props:ChipNavProps) {
     return (
         <Paper sx={{padding:'1rem'}}>
             <Box sx={{display:'flex', justifyContent:'center'}}>
-                <Typography variant="h6" textAlign='center' sx={{margin:'2px', borderBottom:'3px solid var(--mui-palette-primary-main)'}}> {props.lang === 'zh' ? '导航' : 'Navigation'} </Typography>
+                <Typography variant="h6" textAlign='center' sx={{margin:'2px', borderBottom:'3px solid var(--mui-palette-primary-main)'}}> {i18n.t('navigation.title')} </Typography>
             </Box>
             <Grid container columns={{xs:1, sm:2, md: 4, lg:8}}>
             {

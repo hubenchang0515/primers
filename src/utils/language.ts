@@ -1,4 +1,4 @@
-export function iana(lang?:string) {
+export function wrapLang(lang?:string) {
     if (lang === undefined) {
         return "en";
     }
