@@ -10,6 +10,8 @@
     "content": {
         "about": "约",
         "letters": "字",
-        "minutes": "分钟"
+        "minutes": "分钟",
+        "created_in": "创建于",
+        "updated_in": "更新于"
     }
 }
