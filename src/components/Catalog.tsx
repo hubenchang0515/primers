@@ -1,13 +1,15 @@
 import { Box, Button, Paper, Typography } from "@mui/material";
 import { SideMenuGroup } from "./SideMenu";
 import Link from "./Link";
-import i18n from "@/utils/i18n";
+import I18n from "@/utils/i18n";
 
 export interface CatalogProps {
     groups: SideMenuGroup[]
+    lang?: string;
 }
 
 export default function Catalog(props:CatalogProps) {
+    const i18n = new I18n(props.lang);
     return (
         <Paper sx={{padding:'1rem', display:"flex", flexDirection:'column', gap:1}}>
             <Box sx={{display:'flex', justifyContent:'center'}}>

@@ -5,7 +5,6 @@ import { Paper } from "@mui/material";
 import { Content } from "@/components/Content";
 import Navigation from "@/components/Navigation";
 import { name } from "@/utils/language";
-import i18n from "@/utils/i18n";
 
 export default async function Home() {
     const markdown = await content("en", "00.index.md");
@@ -16,9 +15,7 @@ export default async function Home() {
             label: name(lang),
             url: `/document/${lang}`,
         }
-    })
-
-    i18n.setLanguage('en');
+    });
 
     return (
         <MainPage depth={1}>

@@ -7,6 +7,14 @@
         "title": "导航"
     },
 
+    "footer": {
+        "home": "主页",
+        "contact": "联系",
+        "sitemap": "站点地图",
+        "about": "关于",
+        "privacy": "隐私"
+    },
+
     "content": {
         "about": "约",
         "letters": "字",

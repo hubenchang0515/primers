@@ -1,6 +1,6 @@
 import { Box, Button, Grid, Paper, Typography } from "@mui/material";
 import Link from "./Link";
-import i18n from "@/utils/i18n";
+import I18n from "@/utils/i18n";
 
 export interface ChapNavItem {
     label: string;
@@ -13,6 +13,7 @@ export interface ChipNavProps {
 }
 
 export default function Navigation(props:ChipNavProps) {
+    const i18n = new I18n(props.lang);
     return (
         <Paper sx={{padding:'1rem'}}>
             <Box sx={{display:'flex', justifyContent:'center'}}>

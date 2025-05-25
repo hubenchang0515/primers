@@ -5,7 +5,6 @@ import { SideMenuGroup } from "@/components/SideMenu";
 import { TitleBarItem } from "@/components/TitleBar";
 import { SITE_CONFIG } from "@/config";
 import { categories, chapters, content, docs, languages, docState, title } from "@/utils/document";
-import i18n from "@/utils/i18n";
 import { Paper } from "@mui/material";
 import { Metadata } from "next";
 
@@ -68,14 +67,12 @@ export default async function CategoryPage({params}:{params:Promise<PageParams>}
         };
     })));
 
-    i18n.setLanguage(path.lang);
-
     return (
         <MainPage lang={path.lang} depth={2} titleItems={titleItems} currentTitle={currentTitle} sideGroups={sideGroups}>
             <Paper sx={{padding:'1rem'}}>
-                <Content content={markdown} state={state}/>
+                <Content content={markdown} state={state} lang={path.lang}/>
             </Paper>
-            <Catalog groups={sideGroups}/>
+            <Catalog groups={sideGroups} lang={path.lang}/>
         </MainPage>
     )
 }

@@ -6,7 +6,6 @@ import { SITE_CONFIG } from "@/config";
 import { categories, content, languages, docState, title } from "@/utils/document";
 import { Paper } from "@mui/material";
 import { Metadata } from "next";
-import i18n from "@/utils/i18n";
 
 export interface PageParams {
     lang:string;        // 语言： 例如 中文（zh）、英文（en）
@@ -50,12 +49,10 @@ export default async function LanguagePage({params}:{params:Promise<PageParams>}
         }
     });
 
-    i18n.setLanguage(path.lang);
-
     return (
         <MainPage lang={path.lang} depth={2} titleItems={titleItems}>
             <Paper sx={{padding:'1rem'}}>
-                <Content content={markdown} state={state}/>
+                <Content content={markdown} state={state} lang={path.lang}/>
             </Paper>
             <Navigation lang={path.lang} items={titleItems}/>
         </MainPage>

@@ -3,16 +3,16 @@ import zh from '@/locales/zh.json';
 
 type Record = {[key:string]: string|Record};
 
-class I18n {
+export default class I18n {
     translations:{ [key: string]: Record };
     lang:string;
 
-    constructor() {
+    constructor(lang?:string) {
         this.translations = {
             'en': en,
             'zh': zh,
         }
-        this.lang = 'en';
+        this.lang = (lang != undefined && lang in this.translations) ? lang : 'en';
     }
 
     setLanguage(lang:string) {
@@ -34,7 +34,3 @@ class I18n {
         return entry as string
     }
 }
-
-const i18n = new I18n();
-
-export default i18n;

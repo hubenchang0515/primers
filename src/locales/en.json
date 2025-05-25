@@ -7,6 +7,14 @@
         "title": "Navigation"
     },
 
+    "footer": {
+        "home": "Home",
+        "contact": "Contact",
+        "sitemap": "Sitemap",
+        "about": "About",
+        "privacy": "Privacy"
+    },
+
     "content": {
         "about": "About",
         "letters": "letters",

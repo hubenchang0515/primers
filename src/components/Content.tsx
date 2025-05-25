@@ -5,14 +5,16 @@ import NotesIcon from '@mui/icons-material/Notes';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 import { DocState } from "@/utils/document";
-import i18n from "@/utils/i18n";
+import I18n from "@/utils/i18n";
 
 export interface ContentProps {
     content: string;
     state: DocState;
+    lang?: string;
 }
 
 export function Content(props:ContentProps) {
+    const i18n = new I18n(props.lang);
     return (
         <Box>
             <Stack direction="row" spacing={1} sx={{color:'#bbb'}}>

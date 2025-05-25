@@ -117,7 +117,7 @@ export default function MainPage(props:MainPageProps) {
                             <Box sx={{height:'100%', display:'flex', flexDirection:'column', gap:1}}>
                                 { props.children }
                                 <Discussion lang={props.lang}/>
-                                <Footer sx={{marginTop:'auto'}} owner={OWNER_CONFIG.name} owner_url={OWNER_CONFIG.url} email={OWNER_CONFIG.email}/>
+                                <Footer sx={{marginTop:'auto'}} owner={OWNER_CONFIG.name} owner_url={OWNER_CONFIG.url} email={OWNER_CONFIG.email} lang={props.lang}/>
                             </Box>
                         </Fade>
                     </Container>
