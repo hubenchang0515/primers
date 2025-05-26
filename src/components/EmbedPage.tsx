@@ -18,12 +18,12 @@ export default function EmbedPage(props:EmbedPageProps) {
 
     const initHeight = useCallback(() => {
         if (ref.current?.contentWindow) {
-            ref.current.style.height = ref.current.contentWindow.document.documentElement.scrollHeight + 'px';
+            ref.current.style.height = (ref.current.contentWindow.document?.documentElement?.scrollHeight??150)+ 'px';
         }
     }, [ref]);
 
     useEffect(() => {
-        initHeight();
+        setTimeout(initHeight, 50);
     }, [loading, initHeight]);
 
     return (
