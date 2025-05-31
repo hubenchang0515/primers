@@ -11,7 +11,15 @@ export interface DocState {
 // 分割序号和扩展名，提取标题
 export function title(filename:string) {
     if (filename.includes(".")) {
-        return filename.split(".")[1];
+        const items = filename.split(".");
+        if (items.length < 2) {
+            return filename;
+        }
+        else if (items.length === 2) {
+            return items[1]
+        } else {
+            return items.slice(1, -1).join(".")
+        }
     } else {
         return filename;
     }
