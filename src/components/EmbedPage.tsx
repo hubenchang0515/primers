@@ -9,6 +9,10 @@ export interface EmbedPageProps {
     unsafe?: boolean;
 }
 
+const ADD_TAGS = ['base'];
+
+const ADD_ATTR = ['id', 'class', 'target', 'onclick'];
+
 export default function EmbedPage(props:EmbedPageProps) {
     const ref = useRef<HTMLIFrameElement>(null);
 
@@ -35,7 +39,7 @@ export default function EmbedPage(props:EmbedPageProps) {
                 />
                 <iframe 
                     ref={ref}
-                    srcDoc={props.unsafe ? props.code : DOMPurify.sanitize(props.code, {WHOLE_DOCUMENT: true, ADD_ATTR:['id', 'class', 'target']})}
+                    srcDoc={props.unsafe ? props.code : DOMPurify.sanitize(props.code, {WHOLE_DOCUMENT:true, ADD_TAGS:ADD_TAGS, ADD_ATTR:ADD_ATTR})}
                     style={{
                         width:'100%', 
                         height: '100%', 
