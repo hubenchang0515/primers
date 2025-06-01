@@ -35,7 +35,7 @@ export default function EmbedPage(props:EmbedPageProps) {
                 />
                 <iframe 
                     ref={ref}
-                    srcDoc={props.unsafe ? props.code : DOMPurify.sanitize(props.code, {WHOLE_DOCUMENT: true, ADD_ATTR:['id']})}
+                    srcDoc={props.unsafe ? props.code : DOMPurify.sanitize(props.code, {WHOLE_DOCUMENT: true, ADD_ATTR:['id', 'class', 'target']})}
                     style={{
                         width:'100%', 
                         height: '100%', 
