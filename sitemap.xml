@@ -221,6 +221,10 @@
 <lastmod>2025-05-15T21:26:38.000Z</lastmod>
 </url>
 <url>
+<loc>https://xplanc.org/primers/document/en/02.Python/98.FAQ/01.Not%20Printing%20Output%20in%20nohup.md</loc>
+<lastmod>2025-06-02T10:45:13.000Z</lastmod>
+</url>
+<url>
 <loc>https://xplanc.org/primers/document/en/02.Python/99.API%20Help%20Manual/00.Built-in%20functions.md</loc>
 <lastmod>2025-05-15T09:08:56.000Z</lastmod>
 </url>
@@ -1419,6 +1423,10 @@
 <url>
 <loc>https://xplanc.org/primers/document/zh/02.Python/98.%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/00.%E5%9C%A8%E7%BA%BF%E7%8E%AF%E5%A2%83.md</loc>
 <lastmod>2025-05-08T12:59:40.000Z</lastmod>
+</url>
+<url>
+<loc>https://xplanc.org/primers/document/zh/02.Python/98.%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/01.%E5%9C%A8%20nohup%20%E4%B8%AD%E6%B2%A1%E6%9C%89%E6%89%93%E5%8D%B0.md</loc>
+<lastmod>2025-06-02T10:45:13.000Z</lastmod>
 </url>
 <url>
 <loc>https://xplanc.org/primers/document/zh/02.Python/99.API%20%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C/00.%E5%86%85%E5%BB%BA%E5%87%BD%E6%95%B0.md</loc>
