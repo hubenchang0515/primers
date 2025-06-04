@@ -26,12 +26,16 @@ export async function generateStaticParams() {
 export async function generateMetadata({params}:{params:Promise<PageParams>}): Promise<Metadata> {
     const path = (await params);
     const markdown = await content(decodeURIComponent(path.lang), "00.index.md");
+    const canonical = SITE_CONFIG.origin + SITE_CONFIG.basePath + `/document/${path.lang}`;
     
     return {
         title: `Primers 编程伙伴`,
         description: markdown.replace(/\n+/g, '').substring(0, 150),
         icons: {
             icon: `${SITE_CONFIG.basePath}/icon.svg`,
+        },
+        alternates: {
+            canonical: canonical,
         }
     };
 }
