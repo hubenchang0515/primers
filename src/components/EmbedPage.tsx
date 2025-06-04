@@ -9,7 +9,7 @@ export interface EmbedPageProps {
     unsafe?: boolean;
 }
 
-const ADD_TAGS = ['base'];
+const ADD_TAGS = ['base', 'script'];
 
 const ADD_ATTR = ['id', 'class', 'target', 'onclick'];
 
