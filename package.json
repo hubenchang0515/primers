@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "gh-pages -d out/primers -t"
+    "deploy": "npm run deploy:vercel",
+    "deploy:gh": "gh-pages -d out/primers -t",
+    "deploy:vercel": "npx vercel ./out/primers/ --prod"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
@@ -42,6 +44,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.3.0",
     "gh-pages": "^6.3.0",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vercel": "^42.3.0"
   }
 }

@@ -1,0 +1,9 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/primers/:path*",
+      "destination": "/:path*"
+    }
+  ]
+}
