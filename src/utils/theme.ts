@@ -33,7 +33,7 @@ const theme = createTheme({
         colorSchemeSelector: 'class'
     },
     typography: {
-        fontFamily: `Inter, SF Pro, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, Helvetica, Arial, sans-serif;`,   
+        fontFamily: `Maple Mono CN, Consolas, Monaco, monospace;`,   
     }, 
 });
 
