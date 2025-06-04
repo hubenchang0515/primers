@@ -2,6 +2,11 @@
   "cleanUrls": true,
   "rewrites": [
     {
+      "source": "/primers/",
+      "destination": "/"
+    },
+
+    {
       "source": "/primers/:path*",
       "destination": "/:path*"
     }
