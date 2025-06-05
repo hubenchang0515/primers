@@ -1,8 +1,9 @@
 "use client";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Collapse, Typography } from "@mui/material";
 import { useState } from "react";
 import TerminalIcon from '@mui/icons-material/Terminal';
 import I18n from "@/utils/i18n";
+import Link from "./Link";
 
 export interface ShiftProps {
     lang?: string;
@@ -15,13 +16,21 @@ export interface ShiftProps {
 export default function Shift(props:ShiftProps) {
     const i18n = new I18n(props.lang);
     const [run, setRun] = useState(false);
+    const shiftUrl = `https://xplanc.org/shift/?lang=${props.language}&input=${btoa(encodeURIComponent(props.input??''))}&code=${btoa(encodeURIComponent(props.code.trim()))}`
 
     return (
         <Box className="shift" sx={{transition:'all 300ms ease'}}>
             {   run?
                 <Box sx={{marginBlock:'8px', position:'relative'}}>
                     <code className={`language-${props.language} hljs`} style={{minHeight:300, margin: 0, overflow:'auto'}} dangerouslySetInnerHTML={{__html: props.highlight}}></code>
-                    <Box sx={{height:290, background:'black', color:'white'}}> Loading... </Box>
+                    <Box sx={{height:290, background:'black', color:'white'}}>
+                        <Collapse in>
+                            <Typography>Loading <Link href={shiftUrl} color="info">Shift</Link> ...</Typography>
+                            <Typography>Loading {props.language}.wasm ...</Typography>
+                            <Typography>Loading {props.language}.data ...</Typography>
+                            <Typography>Executing ...</Typography>
+                        </Collapse>
+                    </Box>
                     <iframe 
                         title={`Shift WASM runtime environment for ${props.language}`} 
                         style={{
@@ -32,14 +41,19 @@ export default function Shift(props:ShiftProps) {
                             border:0, 
                             background:'transparent'
                         }} 
-                        src={`https://xplanc.org/shift/?lang=${props.language}&input=${btoa(encodeURIComponent(props.input??''))}&code=${btoa(encodeURIComponent(props.code.trim()))}`}
+                        src={shiftUrl}
                     ></iframe>
                 </Box>
                 :
                 <Box sx={{marginBlock:'8px'}}>
                     <code className={`language-${props.language} hljs`} style={{minHeight:300, margin: 0, overflow:'auto'}} dangerouslySetInnerHTML={{__html: props.highlight}}></code>
-                    <Box sx={{height:290, background:'black', color:'white', display:'flex', justifyContent:'center', alignItems:'start'}}>
+                    <Box sx={{height:290, background:'black', color:'white', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
                         <Button variant="contained" size="large" color="secondary" sx={{margin:1}} startIcon={<TerminalIcon/>} onClick={()=>{setRun(true)}}>{i18n.t("shift.run")}</Button>
+                        <Box>
+                            <Typography>&gt;&gt;&gt; Establishing WebAssembly Runtime. </Typography>
+                            <Typography>&gt;&gt;&gt; Standby. </Typography>
+                            <Typography>Powered by <Link href={shiftUrl} color="info">Shift</Link>.</Typography>
+                        </Box>
                     </Box>
                 </Box>
             }
