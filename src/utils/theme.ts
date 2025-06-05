@@ -33,7 +33,7 @@ const theme = createTheme({
         colorSchemeSelector: 'class'
     },
     typography: {
-        fontFamily: `Maple Mono CN, Consolas, Monaco, monospace;`,   
+        fontFamily: `Maple MonoNL CN, Consolas, Monaco, monospace;`,   
     }, 
 });
 
