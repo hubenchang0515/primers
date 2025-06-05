@@ -26,7 +26,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({params}:{params:Promise<PageParams>}): Promise<Metadata> {
     const path = (await params);
     const markdown = await content(decodeURIComponent(path.lang), "00.index.md");
-    const canonical = SITE_CONFIG.origin + SITE_CONFIG.basePath + `/document/${path.lang}`;
+    const canonical = SITE_CONFIG.origin + SITE_CONFIG.basePath + `/document/${decodeURIComponent(path.lang)}`;
     
     return {
         title: `Primers 编程伙伴`,

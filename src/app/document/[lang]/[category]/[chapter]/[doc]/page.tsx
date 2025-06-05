@@ -39,7 +39,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({params}:{params:Promise<PageParams>}): Promise<Metadata> {
     const path = (await params);
     const markdown = await content(decodeURIComponent(path.lang), decodeURIComponent(path.category), decodeURIComponent(path.chapter), decodeURIComponent(path.doc));
-    const canonical = SITE_CONFIG.origin + SITE_CONFIG.basePath + `/document/${path.lang}/${path.category}/${path.chapter}/${path.doc}`;
+    const canonical = SITE_CONFIG.origin + SITE_CONFIG.basePath + `/document/${decodeURIComponent(path.lang)}/${decodeURIComponent(path.category)}/${decodeURIComponent(path.chapter)}/${decodeURIComponent(path.doc)}`;
     
     return {
         title: `${title(decodeURIComponent(path.category))} ${title(decodeURIComponent(path.chapter))} ${title(decodeURIComponent(path.doc))} - Primers 编程伙伴`,
