@@ -26,8 +26,8 @@ export function Content(props:ContentProps) {
             <Markdown lang={props.lang} content={ props.content }/>
             <Stack direction="row" spacing={1} sx={{color:'#bbb', marginTop:'1rem'}}>
                 <EditCalendarIcon/> 
-                <Typography>{i18n.t("content.created_in")} {props.state.createdTime.toLocaleDateString()}</Typography> 
-                <Typography>{i18n.t("content.updated_in")} {props.state.updatedTime.toLocaleDateString()}</Typography>
+                <Typography>{i18n.t("content.created_in")} {props.state.createdTime.toLocaleDateString(props.lang)}</Typography> 
+                <Typography>{i18n.t("content.updated_in")} {props.state.updatedTime.toLocaleDateString(props.lang)}</Typography>
             </Stack>
         </Box>
     )
