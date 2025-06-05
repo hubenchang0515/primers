@@ -19,8 +19,10 @@ import Mermaid from './Mermaid';
 import Graphviz from './Graphviz';
 import EmbedPage from './EmbedPage';
 import { include } from '@/utils/include';
+import Shift from './Shift';
 
 export interface MarkdownProps {
+    lang?: string;
     content:string;
 }
 
@@ -55,303 +57,264 @@ const shortHash = async (props:ComponentProps<ElementType>) => {
     return (await hash('SHA-256', new TextEncoder().encode(rawText(props)))).substring(0, 6);
 }
 
-const components:Components = {
-    async h1(props) { 
-        return (
-            <Typography id={`${await shortHash(props)}`} variant='h1' className={props.className} sx={{fontSize:'2.5rem', fontWeight:'bolder', marginBlock:'1rem'}}>
-                <Link sx={{paddingRight:1}} href={`#${await shortHash(props)}`}>#</Link>
-                {props.children}
-            </Typography>
-        )
-    },
-
-    async h2(props) { 
-        return (
-            <Typography id={`${await shortHash(props)}`} variant='h2' className={props.className} sx={{fontSize:'2.25rem', fontWeight:'bolder', marginBlock:'1rem'}}>
-                <Link sx={{paddingRight:1}} href={`#${await shortHash(props)}`}>#</Link>
-                {props.children}
-            </Typography>
-        )
-    },
-
-    async h3(props) { 
-        return (
-            <Typography id={`${await shortHash(props)}`} variant='h3' className={props.className} sx={{fontSize:'2rem', fontWeight:'bolder', marginBlock:'1rem'}}>
-                <Link sx={{paddingRight:1}} href={`#${await shortHash(props)}`}>#</Link>
-                {props.children}
-            </Typography>
-        )
-    },
-
-    async h4(props) { 
-        return (
-            <Typography id={`${await shortHash(props)}`} variant='h4' className={props.className} sx={{fontSize:'1.75rem', fontWeight:'bolder', marginBlock:'1rem'}}>
-                <Link sx={{paddingRight:1}} href={`#${await shortHash(props)}`}>#</Link>
-                {props.children}
-            </Typography>
-        )
-    },
-
-    async h5(props) { 
-        return (
-            <Typography id={`${await shortHash(props)}`} variant='h5' className={props.className} sx={{fontSize:'1.5rem', fontWeight:'bolder', marginBlock:'1rem'}}>
-                <Link sx={{paddingRight:1}} href={`#${await shortHash(props)}`}>#</Link>
-                {props.children}
-            </Typography>
-        )
-    },
-
-    async h6(props) { 
-        return (
-            <Typography id={`${await shortHash(props)}`} variant='h6' className={props.className} sx={{fontSize:'1.25rem', fontWeight:'bolder', marginBlock:'1rem'}}>
-                <Link sx={{paddingRight:1}} href={`#${await shortHash(props)}`}>#</Link>
-                {props.children}
-            </Typography>
-        )
-    },
-
-    async p(props) { 
-        if (props.className) {
-            // 通过 span 消除样式，仅应用 class 样式
-            return <span className={props.className}>{props.children}</span>
-        } else {
-            return <Typography variant='body1' className={props.className} sx={{fontSize:'1rem', fontWeight:'normal', marginBlock:'8px'}}>{props.children}</Typography>
-        }
-    },
-
-    async a(props) {
-        return <Link href={props.href??''}>{ props.children }</Link>
-    },
-
-    async img(props) {
-        return <Image src={props.src} alt={props.alt} style={{display:'block', margin:'auto', maxWidth:'100%', height:'auto',}}/>
-    },
-
-    async blockquote(props) {
-        const severity = props.node?.children.find(item => 'properties' in item)?.properties.className as AlertProps['severity'];
-        if (severity) {
+const MakeComponents = (lang?:string):Components => {
+    return {
+        async h1(props) { 
             return (
-                <Alert severity={severity} sx={{marginBlock:'8px'}}>
+                <Typography id={`${await shortHash(props)}`} variant='h1' className={props.className} sx={{fontSize:'2.5rem', fontWeight:'bolder', marginBlock:'1rem'}}>
+                    <Link sx={{paddingRight:1}} href={`#${await shortHash(props)}`}>#</Link>
                     {props.children}
-                </Alert>
+                </Typography>
             )
-        } else {
+        },
+
+        async h2(props) { 
             return (
-                <blockquote style={{marginBlock:'1rem', marginInline:0, padding:'1rem', border:'1px solid var(--mui-palette-primary-main)', borderLeft:'3px solid var(--mui-palette-primary-main)'}}>
+                <Typography id={`${await shortHash(props)}`} variant='h2' className={props.className} sx={{fontSize:'2.25rem', fontWeight:'bolder', marginBlock:'1rem'}}>
+                    <Link sx={{paddingRight:1}} href={`#${await shortHash(props)}`}>#</Link>
                     {props.children}
-                </blockquote>
+                </Typography>
             )
-        }
-    },
+        },
 
-    async table(props) {
-        return (
-            <TableContainer component={Paper} variant="outlined" square sx={{marginBlock:'8px'}}>
-                <Table size='small'>
-                    { props.children }
-                </Table>
-            </TableContainer>
-        )
-    },
+        async h3(props) { 
+            return (
+                <Typography id={`${await shortHash(props)}`} variant='h3' className={props.className} sx={{fontSize:'2rem', fontWeight:'bolder', marginBlock:'1rem'}}>
+                    <Link sx={{paddingRight:1}} href={`#${await shortHash(props)}`}>#</Link>
+                    {props.children}
+                </Typography>
+            )
+        },
 
-    async thead(props) {
-        return <TableHead>{ props.children }</TableHead>
-    },
+        async h4(props) { 
+            return (
+                <Typography id={`${await shortHash(props)}`} variant='h4' className={props.className} sx={{fontSize:'1.75rem', fontWeight:'bolder', marginBlock:'1rem'}}>
+                    <Link sx={{paddingRight:1}} href={`#${await shortHash(props)}`}>#</Link>
+                    {props.children}
+                </Typography>
+            )
+        },
 
-    async tbody(props) {
-        return <TableBody>{ props.children }</TableBody>
-    },
+        async h5(props) { 
+            return (
+                <Typography id={`${await shortHash(props)}`} variant='h5' className={props.className} sx={{fontSize:'1.5rem', fontWeight:'bolder', marginBlock:'1rem'}}>
+                    <Link sx={{paddingRight:1}} href={`#${await shortHash(props)}`}>#</Link>
+                    {props.children}
+                </Typography>
+            )
+        },
 
-    async tr(props) {
-        return <TableRow>{ props.children }</TableRow>
-    },
+        async h6(props) { 
+            return (
+                <Typography id={`${await shortHash(props)}`} variant='h6' className={props.className} sx={{fontSize:'1.25rem', fontWeight:'bolder', marginBlock:'1rem'}}>
+                    <Link sx={{paddingRight:1}} href={`#${await shortHash(props)}`}>#</Link>
+                    {props.children}
+                </Typography>
+            )
+        },
 
-    async th(props) {
-        const align = props.node?.properties.align as "center" | "right" | "left" | "inherit" | "justify" | undefined
-        return <TableCell sx={{fontWeight:'bold', minWidth:'4rem'}} align={align}>{ props.children }</TableCell>
-    },
+        async p(props) { 
+            if (props.className) {
+                // 通过 span 消除样式，仅应用 class 样式
+                return <span className={props.className}>{props.children}</span>
+            } else {
+                return <Typography variant='body1' className={props.className} sx={{fontSize:'1rem', fontWeight:'normal', marginBlock:'8px'}}>{props.children}</Typography>
+            }
+        },
 
-    async td(props) {
-        const align = props.node?.properties.align as "center" | "right" | "left" | "inherit" | "justify" | undefined
-        return <TableCell align={align}>{ props.children }</TableCell>
-    },
+        async a(props) {
+            return <Link href={props.href??''}>{ props.children }</Link>
+        },
 
-    async ol(props) {
-        return <ol>{ props.children} </ol>
-    },
+        async img(props) {
+            return <Image src={props.src} alt={props.alt} style={{display:'block', margin:'auto', maxWidth:'100%', height:'auto',}}/>
+        },
 
-    async ul(props) {
-        return <ul>{ props.children} </ul>
-    },
-
-    async li(props) {
-        return <li style={{marginBlock:'4px'}}>{ props.children} </li>
-    },
-
-    async code(props) {
-        let code = props.children as string ?? '';
-        const includeMatch = /\$include\((.*?)\)/.exec(code)
-        if (includeMatch) {
-            code = await include(includeMatch[1]);
-        }
-
-        const languageMatch = /language-(\w+)/.exec(props.className || '')
-        if (languageMatch) {
-            const language = languageMatch[1];
-
-            // 标注为 graphviz 表示使用 graphviz 绘图
-            if (language === 'graphviz') {
+        async blockquote(props) {
+            const severity = props.node?.children.find(item => 'properties' in item)?.properties.className as AlertProps['severity'];
+            if (severity) {
                 return (
-                    <Graphviz sx={{marginBlock:'8px', textAlign:'center', whiteSpace:'normal'}} code={code}/>
+                    <Alert severity={severity} sx={{marginBlock:'8px'}}>
+                        {props.children}
+                    </Alert>
+                )
+            } else {
+                return (
+                    <blockquote style={{marginBlock:'1rem', marginInline:0, padding:'1rem', border:'1px solid var(--mui-palette-primary-main)', borderLeft:'3px solid var(--mui-palette-primary-main)'}}>
+                        {props.children}
+                    </blockquote>
                 )
             }
+        },
 
-            // 标注为 mermaid 表示使用 mermaid 绘图
-            if (language === 'mermaid') {
-                return <Mermaid sx={{marginBlock:'8px', textAlign:'center', whiteSpace:'normal'}} code={code}/>
+        async table(props) {
+            return (
+                <TableContainer component={Paper} variant="outlined" square sx={{marginBlock:'8px'}}>
+                    <Table size='small'>
+                        { props.children }
+                    </Table>
+                </TableContainer>
+            )
+        },
+
+        async thead(props) {
+            return <TableHead>{ props.children }</TableHead>
+        },
+
+        async tbody(props) {
+            return <TableBody>{ props.children }</TableBody>
+        },
+
+        async tr(props) {
+            return <TableRow>{ props.children }</TableRow>
+        },
+
+        async th(props) {
+            const align = props.node?.properties.align as "center" | "right" | "left" | "inherit" | "justify" | undefined
+            return <TableCell sx={{fontWeight:'bold', minWidth:'4rem'}} align={align}>{ props.children }</TableCell>
+        },
+
+        async td(props) {
+            const align = props.node?.properties.align as "center" | "right" | "left" | "inherit" | "justify" | undefined
+            return <TableCell align={align}>{ props.children }</TableCell>
+        },
+
+        async ol(props) {
+            return <ol>{ props.children} </ol>
+        },
+
+        async ul(props) {
+            return <ul>{ props.children} </ul>
+        },
+
+        async li(props) {
+            return <li style={{marginBlock:'4px'}}>{ props.children} </li>
+        },
+
+        async code(props) {
+            let code = props.children as string ?? '';
+            const includeMatch = /\$include\((.*?)\)/.exec(code)
+            if (includeMatch) {
+                code = await include(includeMatch[1]);
             }
 
-            // 标注为 auto 表示自动检测语言类型
-            if (language === 'auto') {
-                const result = hljs.highlightAuto(code);
-                return (
-                    <Box sx={{marginBlock:'8px'}}>
-                        <code className={`language-${result.language} hljs`} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(result.value)}}></code>
-                    </Box>
-                )
-            }
-            
-            const result = hljs.highlight(code, {language: language});
-            
-            if (props.node?.data?.meta?.trim().startsWith('shift')) {
-                // 额外标记 shift 表示用 shift 运行
-                const args = props.node?.data?.meta?.trim().split(/\s+/);
+            const languageMatch = /language-(\w+)/.exec(props.className || '')
+            if (languageMatch) {
+                const language = languageMatch[1];
 
-                if (args.length === 1) {
-                    // 额外标记长度为 1 即只有 shift，则无参数
+                // 标注为 graphviz 表示使用 graphviz 绘图
+                if (language === 'graphviz') {
                     return (
-                        <Box sx={{marginBlock:'8px', position:'relative', display:'flex', flexDirection:'column'}}>
-                            <code className={`language-${result.language} hljs`} style={{minHeight:300, margin: 0, overflow:'auto'}} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(result.value)}}></code>
-                            <Box sx={{height:290, background:'black', color:'white'}}> Loading... </Box>
-                            <iframe 
-                                title={`Shift WASM runtime environment for ${result.language}`} 
-                                style={{
-                                    width:'100%', 
-                                    height:'100%', 
-                                    position:'absolute', 
-                                    top:0, 
-                                    border:0, 
-                                    background:'transparent'
-                                }} 
-                                src={`https://xplanc.org/shift/?lang=${result.language}&code=${btoa(encodeURIComponent(code.trim()))}`}
-                            ></iframe>
-                        </Box>
+                        <Graphviz sx={{marginBlock:'8px', textAlign:'center', whiteSpace:'normal'}} code={code}/>
                     )
-                } else {
-                    // 额外标记长度不为 1，则有参数
+                }
+
+                // 标注为 mermaid 表示使用 mermaid 绘图
+                if (language === 'mermaid') {
+                    return <Mermaid sx={{marginBlock:'8px', textAlign:'center', whiteSpace:'normal'}} code={code}/>
+                }
+
+                // 标注为 auto 表示自动检测语言类型
+                if (language === 'auto') {
+                    const result = hljs.highlightAuto(code);
                     return (
-                        <Box sx={{marginBlock:'8px', position:'relative'}}>
-                            <code className={`language-${result.language} hljs`} style={{minHeight:300, margin: 0, overflow:'auto'}}  dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(result.value)}}></code>
-                            <Box sx={{height:290, background:'black', color:'white'}}> Loading... </Box>
-                            <iframe 
-                                title={`Shift WASM runtime environment for ${result.language}`} 
-                                style={{
-                                    width:'100%', 
-                                    height:'100%', 
-                                    position:'absolute', 
-                                    top:0, 
-                                    border:0, 
-                                    background:'transparent'
-                                }} 
-                                src={`https://xplanc.org/shift/?lang=${result.language}&input=${btoa(encodeURIComponent(args.slice(1).join(' ')))}&code=${btoa(encodeURIComponent(code.trim()))}`}
-                            ></iframe>
+                        <Box sx={{marginBlock:'8px'}}>
+                            <code className={`language-${result.language} hljs`} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(result.value)}}></code>
                         </Box>
                     )
                 }
-            } else if (props.node?.data?.meta?.trim().startsWith('embed')) {
-                // 额外标记 embed， 直接内嵌 HTML
-                return (
-                    <Box sx={{marginBlock:'8px', whiteSpace:'normal'}} className={language} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(code)}}/>
-                )
-            } else if (props.node?.data?.meta?.trim().startsWith('iframe')) {
-                // 额外标记 iframe，通过 iframe 内嵌 HTML
-                const args = props.node?.data?.meta?.trim().split(/\s+/); // 获取标题
-                return (
-                    <Box sx={{marginBlock:'8px', whiteSpace:'normal'}} className={language}>
-                        <Box 
-                            sx={{
-                                width:'fit-content', 
-                                padding:1, 
-                                color:'var(--mui-palette-primary-contrastText)', 
-                                background:'var(--mui-palette-primary-main)'
-                            }}
-                        >
-                            {args?.slice(1).join(' ')||'HTML'}
+                
+                const result = hljs.highlight(code, {language: language});
+                
+                if (props.node?.data?.meta?.trim().startsWith('shift')) {
+                    // 额外标记 shift 表示用 shift 运行
+                    const args = props.node?.data?.meta?.trim().split(/\s+/);
+                    return <Shift lang={lang} language={result.language??'text'} code={code} highlight={DOMPurify.sanitize(result.value)} input={args.slice(1).join(" ")}/>
+                } else if (props.node?.data?.meta?.trim().startsWith('embed')) {
+                    // 额外标记 embed， 直接内嵌 HTML
+                    return (
+                        <Box sx={{marginBlock:'8px', whiteSpace:'normal'}} className={language} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(code)}}/>
+                    )
+                } else if (props.node?.data?.meta?.trim().startsWith('iframe')) {
+                    // 额外标记 iframe，通过 iframe 内嵌 HTML
+                    const args = props.node?.data?.meta?.trim().split(/\s+/); // 获取标题
+                    return (
+                        <Box sx={{marginBlock:'8px', whiteSpace:'normal'}} className={language}>
+                            <Box 
+                                sx={{
+                                    width:'fit-content', 
+                                    padding:1, 
+                                    color:'var(--mui-palette-primary-contrastText)', 
+                                    background:'var(--mui-palette-primary-main)'
+                                }}
+                            >
+                                {args?.slice(1).join(' ')||'HTML'}
+                            </Box>
+                            <EmbedPage code={code}/>
                         </Box>
-                        <EmbedPage code={code}/>
-                    </Box>
-                )
-            } else if (props.node?.data?.meta?.trim().startsWith('unsafe')) {
-                // 额外标记 unsafe，通过 iframe 内嵌 HTML 并且不使用 DOMPurify
-                const args = props.node?.data?.meta?.trim().split(/\s+/); // 获取标题
-                return (
-                    <Box sx={{marginBlock:'8px', whiteSpace:'normal'}} className={language}>
-                        <Box 
-                            sx={{
-                                width:'fit-content', 
-                                padding:1, 
-                                color:'var(--mui-palette-primary-contrastText)', 
-                                background:'var(--mui-palette-primary-main)'
-                            }}
-                        >
-                            {args?.slice(1).join(' ')||'HTML'}
+                    )
+                } else if (props.node?.data?.meta?.trim().startsWith('unsafe')) {
+                    // 额外标记 unsafe，通过 iframe 内嵌 HTML 并且不使用 DOMPurify
+                    const args = props.node?.data?.meta?.trim().split(/\s+/); // 获取标题
+                    return (
+                        <Box sx={{marginBlock:'8px', whiteSpace:'normal'}} className={language}>
+                            <Box 
+                                sx={{
+                                    width:'fit-content', 
+                                    padding:1, 
+                                    color:'var(--mui-palette-primary-contrastText)', 
+                                    background:'var(--mui-palette-primary-main)'
+                                }}
+                            >
+                                {args?.slice(1).join(' ')||'HTML'}
+                            </Box>
+                            <EmbedPage unsafe code={code}/>
                         </Box>
-                        <EmbedPage unsafe code={code}/>
-                    </Box>
-                )
-            } else {
-                // 没有额外标记，正常渲染语法高亮
+                    )
+                } else {
+                    // 没有额外标记，正常渲染语法高亮
+                    return (
+                        <Box sx={{marginBlock:'8px'}}>
+                            <code className={`language-${result.language} hljs`}  dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(result.value)}}></code>
+                        </Box>
+                    )
+                }
+            }
+
+            if (code.includes('\n')) {
+                // 存在换行，正常渲染语法高亮
+                const result = hljs.highlight(code, {language: 'text'});
                 return (
                     <Box sx={{marginBlock:'8px'}}>
                         <code className={`language-${result.language} hljs`}  dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(result.value)}}></code>
                     </Box>
                 )
+            } else {
+                // 不存在换行，为行内代码
+                const quota = ((props.node?.position?.end.offset??0) - (props.node?.position?.start.offset??0)) - (props.children as string).length;
+                const color = quota === 4 ? 'var(--mui-palette-primary-contrastText)' : quota === 6 ? 'var(--mui-palette-secondary-contrastText)' : 'var(--mui-palette-text-primary)';
+                const background = quota === 4 ? 'var(--mui-palette-primary-main)' : quota === 6 ? 'var(--mui-palette-secondary-main)' : 'var(--mui-palette-action-selected)';
+                return (
+                    <code 
+                        style={{
+                            color: color,
+                            background: background, 
+                            fontSize: '0.8em', 
+                            padding: '0.2em 4px 1px 4px', 
+                            verticalAlign: '0.1em', 
+                            border: '1px solid var(--mui-palette-background-paper)'
+                        }}
+                    >
+                        {code}
+                    </code>
+                )
             }
-        }
+        },
 
-        if (code.includes('\n')) {
-            // 存在换行，正常渲染语法高亮
-            const result = hljs.highlight(code, {language: 'text'});
-            return (
-                <Box sx={{marginBlock:'8px'}}>
-                    <code className={`language-${result.language} hljs`}  dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(result.value)}}></code>
-                </Box>
-            )
-        } else {
-            // 不存在换行，为行内代码
-            const quota = ((props.node?.position?.end.offset??0) - (props.node?.position?.start.offset??0)) - (props.children as string).length;
-            const color = quota === 4 ? 'var(--mui-palette-primary-contrastText)' : quota === 6 ? 'var(--mui-palette-secondary-contrastText)' : 'var(--mui-palette-text-primary)';
-            const background = quota === 4 ? 'var(--mui-palette-primary-main)' : quota === 6 ? 'var(--mui-palette-secondary-main)' : 'var(--mui-palette-action-selected)';
-            return (
-                <code 
-                    style={{
-                        color: color,
-                        background: background, 
-                        fontSize: '0.8em', 
-                        padding: '0.2em 4px 1px 4px', 
-                        verticalAlign: '0.1em', 
-                        border: '1px solid var(--mui-palette-background-paper)'
-                    }}
-                >
-                    {code}
-                </code>
-            )
-        }
-    },
-
-    async pre(props) {
-        return <pre className={props.className}>{ props.children }</pre>
-    },
+        async pre(props) {
+            return <pre className={props.className}>{ props.children }</pre>
+        },
+    }
 }
 
 export default function Markdown(props: MarkdownProps) {
@@ -360,7 +323,7 @@ export default function Markdown(props: MarkdownProps) {
         <ReactMarkdown
             remarkPlugins={[remarkGfm, customClass, remarkMath]}
             rehypePlugins={[rehypeMathjax]}
-            components={components}
+            components={MakeComponents(props.lang)}
         >
             {props.content}
         </ReactMarkdown>

@@ -21,5 +21,9 @@
         "minutes": "分钟",
         "created_in": "创建于",
         "updated_in": "更新于"
+    },
+
+    "shift": {
+        "run": "运行代码"
     }
 }

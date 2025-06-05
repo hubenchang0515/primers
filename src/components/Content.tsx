@@ -23,7 +23,7 @@ export function Content(props:ContentProps) {
                 <AccessTimeIcon/> 
                 <Typography>{i18n.t("content.about")} {Math.round(props.content.length / 200)} {i18n.t("content.minutes")} </Typography> 
             </Stack>
-            <Markdown content={ props.content }/>
+            <Markdown lang={props.lang} content={ props.content }/>
             <Stack direction="row" spacing={1} sx={{color:'#bbb', marginTop:'1rem'}}>
                 <EditCalendarIcon/> 
                 <Typography>{i18n.t("content.created_in")} {props.state.createdTime.toLocaleDateString()}</Typography> 
