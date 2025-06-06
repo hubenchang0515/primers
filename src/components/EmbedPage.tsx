@@ -9,9 +9,11 @@ export interface EmbedPageProps {
     unsafe?: boolean;
 }
 
-const ADD_TAGS = ['base', 'script'];
+const ADD_TAGS = ['base', 'script', 'link'];
 
 const ADD_ATTR = ['id', 'class', 'target', 'onclick'];
+
+// const DATA_URI_TAGS = ['a'];
 
 export default function EmbedPage(props:EmbedPageProps) {
     const ref = useRef<HTMLIFrameElement>(null);
