@@ -52,7 +52,7 @@ export default function Shift(props:ShiftProps) {
                         <Box>
                             <Typography>&gt;&gt;&gt; Establishing WebAssembly Runtime. </Typography>
                             <Typography>&gt;&gt;&gt; Standby. </Typography>
-                            <Typography>Powered by <Link href={shiftUrl} color="info">Shift</Link>.</Typography>
+                            <Typography>Powered by <Link href={shiftUrl} color="info" rel="nofollow">Shift</Link>.</Typography>
                         </Box>
                     </Box>
                 </Box>
