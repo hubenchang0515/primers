@@ -30,7 +30,7 @@ export default function Footer(props:FooterProps) {
             <Typography align="center" variant="caption">
                 <Typography>
                     <Button LinkComponent={Link} href='/' startIcon={<HomeIcon/>}>{i18n.t('footer.home')}</Button>
-                    {props.email && <> <Button href={`mailto://${props.email}`} startIcon={<EmailIcon/>}>{i18n.t('footer.contact')}</Button> </>}
+                    {props.email && <> <Button href={`mailto://${props.email}`} rel="nofollow" startIcon={<EmailIcon/>}>{i18n.t('footer.contact')}</Button> </>}
                     <Button LinkComponent={Link} href={`/document/${props.lang??'en'}/EX.Site.hide/EX.privacy.hide/EX.privacy.md`} startIcon={<PrivacyTipIcon/>}>{i18n.t('footer.privacy')}</Button>
                     <Button LinkComponent={Link} href='/sitemap.xml' startIcon={<LocationOnIcon/>}>{i18n.t('footer.sitemap')}</Button>
                 </Typography>
