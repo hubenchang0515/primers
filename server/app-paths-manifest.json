@@ -1,7 +1,1 @@
-{
-  "/_not-found/page": "app/_not-found/page.js",
-  "/document/[lang]/[category]/[chapter]/[doc]/page": "app/document/[lang]/[category]/[chapter]/[doc]/page.js",
-  "/document/[lang]/[category]/page": "app/document/[lang]/[category]/page.js",
-  "/document/[lang]/page": "app/document/[lang]/page.js",
-  "/page": "app/page.js"
-}
+{}
