@@ -16,7 +16,7 @@ export interface ShiftProps {
 export default function Shift(props:ShiftProps) {
     const i18n = new I18n(props.lang);
     const [run, setRun] = useState(false);
-    const shiftUrl = `https://xplanc.org/shift/?lang=${props.language}&input=${btoa(encodeURIComponent(props.input??''))}&code=${btoa(encodeURIComponent(props.code.trim()))}`
+    const shiftUrl = `https://xplanc.org/shift/#lang=${props.language}&input=${btoa(encodeURIComponent(props.input??''))}&code=${btoa(encodeURIComponent(props.code.trim()))}`
 
     return (
         <Box className="shift" sx={{transition:'all 300ms ease'}}>
