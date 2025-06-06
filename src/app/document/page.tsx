@@ -17,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
         title: `Primers 编程伙伴`,
         description: markdown.replace(/\n+/g, '').substring(0, 150),
         icons: {
-            icon: `${SITE_CONFIG.basePath}/icon.svg`,
+            icon: `${SITE_CONFIG.basePath}/favicon.svg`,
         },
         alternates: {
             canonical: canonical,

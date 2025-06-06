@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: "Primers 编程伙伴",
   description: "Primers is committed to providing comprehensive and systematic programming tutorials and practical resources for all types of programming learners.",
   icons: {
-    icon: `${SITE_CONFIG.basePath}/icon.svg`,
+    icon: `${SITE_CONFIG.basePath}/favicon.svg`,
   }
 };
 
