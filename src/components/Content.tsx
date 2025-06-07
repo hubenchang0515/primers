@@ -16,7 +16,7 @@ export interface ContentProps {
 export function Content(props:ContentProps) {
     const i18n = new I18n(props.lang);
     return (
-        <Box>
+        <Box component={'main'}>
             <Stack direction="row" spacing={1} sx={{color:'#bbb'}}>
                 <NotesIcon/> 
                 <Typography>{i18n.t("content.about")} {props.content.length} {i18n.t("content.letters")}</Typography> 

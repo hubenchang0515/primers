@@ -320,12 +320,14 @@ const MakeComponents = (lang?:string):Components => {
 export default function Markdown(props: MarkdownProps) {
     
     return (
-        <ReactMarkdown
-            remarkPlugins={[remarkGfm, customClass, remarkMath]}
-            rehypePlugins={[rehypeMathjax]}
-            components={MakeComponents(props.lang)}
-        >
-            {props.content}
-        </ReactMarkdown>
+        <article>
+            <ReactMarkdown
+                remarkPlugins={[remarkGfm, customClass, remarkMath]}
+                rehypePlugins={[rehypeMathjax]}
+                components={MakeComponents(props.lang)}
+            >
+                {props.content}
+            </ReactMarkdown>
+        </article>
     )
 }

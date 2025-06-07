@@ -24,7 +24,7 @@ export interface TitleBarProps {
 
 export default function TitleBar(props:TitleBarProps) {
     return (
-        <Box>
+        <Box component={'header'}>
             <AppBar component="nav" color="primary" elevation={24} position="static">
                 <Toolbar variant="dense">
                     <IconButton

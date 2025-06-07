@@ -10,6 +10,7 @@ export interface ChapNavItem {
 export interface ChipNavProps {
     lang?: string;
     items?: ChapNavItem[];
+    vetical?: boolean;
 }
 
 export default function Navigation(props:ChipNavProps) {
@@ -19,7 +20,7 @@ export default function Navigation(props:ChipNavProps) {
             <Box sx={{display:'flex', justifyContent:'center'}}>
                 <Typography variant="h6" textAlign='center' sx={{margin:'2px', borderBottom:'3px solid var(--mui-palette-primary-main)'}}> {i18n.t('navigation.title')} </Typography>
             </Box>
-            <Grid container columns={{xs:1, sm:2, md: 4, lg:8}}>
+            <Grid container columns={props.vetical ? 1 : {xs:1, sm:2, md: 4, lg:8}}>
             {
                 props.items?.map((item, index) => {
                     return (
