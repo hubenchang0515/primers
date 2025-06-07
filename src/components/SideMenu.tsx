@@ -1,7 +1,7 @@
 "use client"
 
 import { Box, Collapse, Divider, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Paper, Slide, Tooltip } from "@mui/material";
-import { JSX, useEffect, useState } from "react";
+import { JSX, useCallback, useEffect, useState } from "react";
 import Link from "./Link";
 
 import TuneIcon from '@mui/icons-material/Tune';
@@ -48,6 +48,11 @@ export interface SideMenuProps {
 
 export default function SideMenu(props:SideMenuProps) {
     const {initialized, setInitialized} = useGlobalState();
+    const init = useCallback(() => {
+        if (!initialized) {
+            setInitialized?.(true);
+        }
+    }, [])
 
     // 设置列表展开状态
     const [settingsExpanded, setSettingsExpanded] = useState<boolean>(false);
@@ -83,7 +88,8 @@ export default function SideMenu(props:SideMenuProps) {
                 in={props.groups && props.expanded}
                 onEntered={()=>setChildrenVisible(true)}
                 onExit={()=>setChildrenVisible(false)}
-                onExited={()=>setInitialized?.(true)}
+                onExited={init}
+                onEnter={init}
             >
                 <Box 
                     sx={{
