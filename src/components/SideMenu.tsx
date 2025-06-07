@@ -52,7 +52,7 @@ export default function SideMenu(props:SideMenuProps) {
         if (!initialized) {
             setInitialized?.(true);
         }
-    }, [])
+    }, [initialized, setInitialized]);
 
     // 设置列表展开状态
     const [settingsExpanded, setSettingsExpanded] = useState<boolean>(false);
