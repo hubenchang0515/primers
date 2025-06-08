@@ -9,9 +9,9 @@ export interface EmbedPageProps {
     unsafe?: boolean;
 }
 
-const ADD_TAGS = ['base', 'script', 'link', 'embed', 'frameset', 'frame'];
+const ADD_TAGS = ['base', 'script', 'noscript', 'object', 'link', 'embed', 'frameset', 'frame', 'param', 'plaintext'];
 
-const ADD_ATTR = ['id', 'class', 'target', 'onclick'];
+const ADD_ATTR = ['id', 'class', 'target', 'behavior', 'scrollamount', 'onclick', 'onmouseover', 'onmouseout', 'oninput'];
 
 // const DATA_URI_TAGS = ['a'];
 
