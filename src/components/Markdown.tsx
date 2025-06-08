@@ -188,7 +188,7 @@ const MakeComponents = (lang?:string):Components => {
         },
 
         async li(props) {
-            return <li style={{marginBlock:'4px'}}><Typography variant='body1'sx={{fontSize:'1rem', fontWeight:'normal'}}>{props.children}</Typography></li>
+            return <Typography component={'li'} variant='body1'sx={{fontSize:'1rem', fontWeight:'normal', marginBlock:'8px'}}>{props.children}</Typography>
         },
 
         async code(props) {
