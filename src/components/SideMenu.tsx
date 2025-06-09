@@ -60,12 +60,22 @@ export default function SideMenu(props:SideMenuProps) {
     // 底部包含的子元素
     const [childrenVisible, setChildrenVisible] = useState(false);
 
+    const scroll = useCallback(() => {
+        if (props.expanded && props.expandedGroup === props.selectedGroup) {
+            const item = document.querySelector('.active-side-item');
+            item?.scrollIntoView({behavior:'smooth'});
+        }
+    }, [props]);
+
     useEffect(() => {
         if (!props.expanded) {
             setSettingsExpanded(false);
             setChildrenVisible(false);
         }
-    }, [props.expanded]);
+        scroll();
+    }, [props.expanded, scroll]);
+
+
 
     return (
         <Paper
@@ -116,6 +126,7 @@ export default function SideMenu(props:SideMenuProps) {
                                         }}
                                     >
                                         <ListItemButton 
+                                            className={gIndex === props.selectedGroup ? 'active-side-group' : ''}
                                             sx={{boxShadow: gIndex === props.selectedGroup ? '-2px 0 0 0 var(--mui-palette-secondary-main) inset' : ''}}
                                             onClick={() => {
                                                 props.onExpandedGroupChanged?.(gIndex);
@@ -128,11 +139,12 @@ export default function SideMenu(props:SideMenuProps) {
                                             <ListItemText primary={group.label}/>
                                             {gIndex == props.expandedGroup ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                                         </ListItemButton>
-                                        <Collapse in={props.expanded && gIndex == props.expandedGroup } timeout="auto">
+                                        <Collapse in={props.expanded && gIndex == props.expandedGroup } timeout={300} onEntered={scroll}>
                                             <List disablePadding >
                                                 {
                                                     group.items?.map((item, dIndex) => (
                                                         <ListItem disablePadding key={dIndex}
+                                                            className={gIndex === props.selectedGroup && dIndex === props.selectedItem ? 'active-side-item' : ''}
                                                             sx={gIndex === props.selectedGroup && dIndex === props.selectedItem ? {boxShadow:  '-2px 0 0 0 var(--mui-palette-secondary-main) inset'} : {}}
                                                         >
                                                             <ListItemButton 

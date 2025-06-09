@@ -63,14 +63,15 @@ export default function MainPage(props:MainPageProps) {
         }, 200);
     }, [props, router, setLoading, setCurrentTitle]);
 
-    // 初始展开选中的分组
+    // 初始展开当前页面所在的分组
     useEffect(() => {
+        // undefined 是初始状态，自动展开选中的分组，-1 是关闭状态
         if (expandedSideGroup === undefined) {
             setExpandedSideGroup?.(props.selectedSideGroup);
         }
     }, [expandedSideGroup, props.selectedSideGroup, setExpandedSideGroup]);
 
-    // 展开侧边栏分组
+    // 展开和关闭侧边栏分组
     const toggleSideGroup = (index:number) => {
         if (index === expandedSideGroup) {
             setExpandedSideGroup?.(-1); // undefined 是初始状态，自动展开选中的分组，-1 是关闭状态
@@ -82,6 +83,7 @@ export default function MainPage(props:MainPageProps) {
     // 清除加载状态
     useEffect(() => {
         setLoading?.(false);
+        setExpandedSideGroup?.(props.selectedSideGroup);
     }, [setLoading]);
 
     return (
@@ -106,7 +108,7 @@ export default function MainPage(props:MainPageProps) {
                     mode={mode} 
                     onSetMode={(mode)=>setMode(mode)}
                     groups={props.sideGroups}
-                    expandedGroup={expandedSideGroup}
+                    expandedGroup={expandedSideGroup??props.selectedSideGroup}
                     selectedGroup={props.selectedSideGroup}
                     selectedItem={props.selectedDoc}
                     onExpandedGroupChanged={toggleSideGroup}
