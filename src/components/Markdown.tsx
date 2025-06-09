@@ -8,9 +8,6 @@ import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math';
 import rehypeMathjax from 'rehype-mathjax';
 import hljs from 'highlight.js';
-import '@/assets/font.css';
-import '@/assets/highlight.css';
-import 'katex/dist/katex.min.css';
 import { ComponentProps, ElementType } from 'react';
 import Image from './Image';
 import DOMPurify from "isomorphic-dompurify";

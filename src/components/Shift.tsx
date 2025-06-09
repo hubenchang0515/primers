@@ -1,6 +1,6 @@
 "use client";
 import { Box, Button, Collapse, Typography } from "@mui/material";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import TerminalIcon from '@mui/icons-material/Terminal';
 import I18n from "@/utils/i18n";
 import Link from "./Link";
@@ -18,9 +18,15 @@ export default function Shift(props:ShiftProps) {
     const [showShift, setShowShift] = useState(false);
     const shiftUrl = `https://xplanc.org/shift/#lang=${props.language}&input=${btoa(encodeURIComponent(props.input??''))}&code=${btoa(encodeURIComponent(props.code.trim()))}`;
 
+    const run = useCallback(() => {
+        setShowShift(true);
+    }, [setShowShift])
+
     return (
         <Box className="shift" sx={{transition:'all 300ms ease'}}>
-                <Box sx={{display:showShift?'block':'none', marginBlock:'8px', position:'relative'}}>
+            {
+                showShift ?
+                <Box sx={{marginBlock:'8px', position:'relative'}}>
                     <code className={`language-${props.language} hljs`} style={{minHeight:300, margin: 0, overflow:'auto'}} dangerouslySetInnerHTML={{__html: props.highlight}}></code>
                     <Box sx={{height:290, background:'black', color:'white'}}>
                         <Collapse in>
@@ -30,7 +36,7 @@ export default function Shift(props:ShiftProps) {
                             <Typography>Executing ...</Typography>
                         </Collapse>
                     </Box>
-                    <iframe 
+                    <iframe
                         title={`Shift WASM runtime environment for ${props.language}`} 
                         style={{
                             width:'100%', 
@@ -38,16 +44,17 @@ export default function Shift(props:ShiftProps) {
                             position:'absolute', 
                             top:0, 
                             border:0, 
-                            background:'transparent'
+                            background:'transparent',
+                            scrollSnapAlign:'end'
                         }} 
                         src={shiftUrl}
                     ></iframe>
                 </Box>
-                
-                <Box sx={{display:showShift?'none':'block', marginBlock:'8px'}}>
+                :
+                <Box sx={{marginBlock:'8px'}}>
                     <code className={`language-${props.language} hljs`} style={{minHeight:300, margin: 0, overflow:'auto'}} dangerouslySetInnerHTML={{__html: props.highlight}}></code>
                     <Box sx={{height:290, background:'black', color:'white', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
-                        <Button variant="contained" size="large" color="secondary" sx={{margin:1}} startIcon={<TerminalIcon/>} onClick={()=>{setShowShift(true)}}>{i18n.t("shift.run")}</Button>
+                        <Button variant="contained" size="large" color="secondary" sx={{margin:1}} startIcon={<TerminalIcon/>} onClick={run}>{i18n.t("shift.run")}</Button>
                         <Box>
                             <Typography>&gt;&gt;&gt; Establishing WebAssembly Runtime. </Typography>
                             <Typography>&gt;&gt;&gt; Standby. </Typography>
@@ -55,6 +62,7 @@ export default function Shift(props:ShiftProps) {
                         </Box>
                     </Box>
                 </Box>
+            }
         </Box>
     )
 }
