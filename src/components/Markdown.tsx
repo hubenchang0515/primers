@@ -291,6 +291,11 @@ const MakeComponents = (lang?:string):Components => {
                 )
             } else {
                 // 不存在换行，为行内代码
+                const match = code.match(/^!id:\s*([a-zA-Z0-9-_]+)\s*([\s\S]*)/)
+                if (match) {
+                    return <span id={match[1]}/>
+                }
+
                 const quota = ((props.node?.position?.end.offset??0) - (props.node?.position?.start.offset??0)) - (props.children as string).length;
                 const color = quota === 4 ? 'var(--mui-palette-primary-contrastText)' : quota === 6 ? 'var(--mui-palette-secondary-contrastText)' : 'var(--mui-palette-text-primary)';
                 const background = quota === 4 ? 'var(--mui-palette-primary-main)' : quota === 6 ? 'var(--mui-palette-secondary-main)' : 'var(--mui-palette-action-selected)';
