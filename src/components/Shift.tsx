@@ -1,6 +1,6 @@
 "use client";
 import { Box, Button, Collapse, Typography } from "@mui/material";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import TerminalIcon from '@mui/icons-material/Terminal';
 import I18n from "@/utils/i18n";
 import Link from "./Link";
