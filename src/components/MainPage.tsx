@@ -84,7 +84,7 @@ export default function MainPage(props:MainPageProps) {
     useEffect(() => {
         setLoading?.(false);
         setExpandedSideGroup?.(props.selectedSideGroup);
-    }, [setLoading]);
+    }, [setLoading, setExpandedSideGroup, props.selectedSideGroup]);
 
     return (
         <Box sx={{width: '100%', height: '100%', display: 'flex', flexDirection:'column'}}>
