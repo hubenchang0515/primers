@@ -111,7 +111,7 @@ export default function MainPage(props:MainPageProps) {
                     selectedItem={props.selectedDoc}
                     onExpandedGroupChanged={toggleSideGroup}
                 />
-                <Box sx={{flex:1, overflow:'auto'}}>
+                <Box sx={{flex:1, overflow:'auto', scrollBehavior:'smooth'}}>
                     <Container maxWidth='lg' sx={{padding:1, height:'100%'}}>
                         <Fade in={true} appear={false}>
                             <Box sx={{height:'100%', display:'flex', flexDirection:'column', gap:1}}>
