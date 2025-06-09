@@ -63,7 +63,15 @@ export default function SideMenu(props:SideMenuProps) {
     const scroll = useCallback(() => {
         if (props.expanded && props.expandedGroup === props.selectedGroup) {
             const item = document.querySelector('.active-side-item');
-            item?.scrollIntoView({behavior:'smooth'});
+            const rect = item?.getBoundingClientRect();
+            
+            if (!rect) {
+                return;
+            }
+
+            if (rect.top < 0 || rect.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
+                item?.scrollIntoView({behavior:'smooth'});
+            }
         }
     }, [props]);
 
