@@ -60,7 +60,7 @@ export default function SideMenu(props:SideMenuProps) {
     // 底部包含的子元素
     const [childrenVisible, setChildrenVisible] = useState(false);
 
-    const scroll = useCallback(() => {
+    const scroll = useCallback((behavior:'instant'|'smooth') => {
         if (props.expanded && props.expandedGroup === props.selectedGroup) {
             const item = document.querySelector('.active-side-item');
             const rect = item?.getBoundingClientRect();
@@ -70,7 +70,7 @@ export default function SideMenu(props:SideMenuProps) {
             }
 
             if (rect.top < 0 || rect.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
-                item?.scrollIntoView({behavior:'smooth'});
+                item?.scrollIntoView({behavior:behavior});
             }
         }
     }, [props]);
@@ -80,7 +80,7 @@ export default function SideMenu(props:SideMenuProps) {
             setSettingsExpanded(false);
             setChildrenVisible(false);
         }
-        scroll();
+        scroll('instant');
     }, [props.expanded, scroll]);
 
 
@@ -147,7 +147,7 @@ export default function SideMenu(props:SideMenuProps) {
                                             <ListItemText primary={group.label}/>
                                             {gIndex == props.expandedGroup ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                                         </ListItemButton>
-                                        <Collapse in={props.expanded && gIndex == props.expandedGroup } timeout={300} onEntered={scroll}>
+                                        <Collapse in={props.expanded && gIndex == props.expandedGroup } timeout={300} onEntered={()=>scroll('smooth')}>
                                             <List disablePadding >
                                                 {
                                                     group.items?.map((item, dIndex) => (
