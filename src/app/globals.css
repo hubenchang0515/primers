@@ -9,3 +9,25 @@ html, body {
 svg {
   max-width: 100%;
 }
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--mui-palette-info-main);
+  cursor: default;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--mui-palette-info-light);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--mui-palette-action-disabledBackground);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--mui-palette-action-disabledBackground);
+}
