@@ -55,7 +55,7 @@ export default function Shift(props:ShiftProps) {
                     <code className={`language-${props.language} hljs`} style={{minHeight:300, margin: 0, overflow:'auto'}} dangerouslySetInnerHTML={{__html: props.highlight}}></code>
                     <Box sx={{height:290, background:'black', color:'white', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
                         <Button variant="contained" size="large" color="secondary" sx={{margin:1}} startIcon={<TerminalIcon/>} onClick={run}>{i18n.t("shift.run")}</Button>
-                        <Box>
+                        <Box sx={{whiteSpace:'wrap', wordBreak:'break-all'}}>
                             <Typography>&gt;&gt;&gt; Establishing WebAssembly Runtime. </Typography>
                             <Typography>&gt;&gt;&gt; Standby. </Typography>
                             <Typography>Powered by <Link href={shiftUrl} color="info" rel="nofollow">Shift</Link>.</Typography>
