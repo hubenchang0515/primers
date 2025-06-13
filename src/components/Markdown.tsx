@@ -14,7 +14,7 @@ import DOMPurify from "isomorphic-dompurify";
 import Link from './Link';
 import Mermaid from './Mermaid';
 import Graphviz from './Graphviz';
-import EmbedPage from './EmbedPage';
+import IframePage from './IframePage';
 import { include } from '@/utils/include';
 import Shift from './Shift';
 
@@ -237,17 +237,7 @@ const MakeComponents = (lang?:string):Components => {
                     const args = props.node?.data?.meta?.trim().split(/\s+/); // 获取标题
                     return (
                         <Box sx={{marginBlock:'8px', whiteSpace:'normal'}} className={language}>
-                            <Box 
-                                sx={{
-                                    width:'fit-content', 
-                                    padding:1, 
-                                    color:'var(--mui-palette-primary-contrastText)', 
-                                    background:'var(--mui-palette-primary-main)'
-                                }}
-                            >
-                                {args?.slice(1).join(' ')||'HTML'}
-                            </Box>
-                            <EmbedPage code={code}/>
+                            <IframePage title={args?.slice(1).join(' ')||'HTML'} code={code}/>
                         </Box>
                     )
                 } else if (props.node?.data?.meta?.trim().startsWith('unsafe')) {
@@ -255,17 +245,7 @@ const MakeComponents = (lang?:string):Components => {
                     const args = props.node?.data?.meta?.trim().split(/\s+/); // 获取标题
                     return (
                         <Box sx={{marginBlock:'8px', whiteSpace:'normal'}} className={language}>
-                            <Box 
-                                sx={{
-                                    width:'fit-content', 
-                                    padding:1, 
-                                    color:'var(--mui-palette-primary-contrastText)', 
-                                    background:'var(--mui-palette-primary-main)'
-                                }}
-                            >
-                                {args?.slice(1).join(' ')||'HTML'}
-                            </Box>
-                            <EmbedPage unsafe code={code}/>
+                            <IframePage title={args?.slice(1).join(' ')||'HTML'} code={code} unsafe/>
                         </Box>
                     )
                 } else {
