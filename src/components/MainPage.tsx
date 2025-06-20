@@ -2,7 +2,7 @@
 
 import SideMenu, { SideMenuGroup } from "@/components/SideMenu";
 import TitleBar, { TitleBarItem } from "@/components/TitleBar";
-import { Box, Container, Fade, LinearProgress } from "@mui/material";
+import { Box, Container, LinearProgress } from "@mui/material";
 import React, { useCallback, useEffect } from "react";
 import { useColorScheme } from '@mui/material/styles';
 import { useGlobalState } from "./GlobalState";
@@ -115,13 +115,11 @@ export default function MainPage(props:MainPageProps) {
                 />
                 <Box sx={{flex:1, overflow:'auto', scrollBehavior:'smooth'}}>
                     <Container maxWidth='lg' sx={{padding:1, height:'100%'}}>
-                        <Fade in={true} appear={false}>
-                            <Box sx={{height:'100%', display:'flex', flexDirection:'column', gap:1}}>
-                                { props.children }
-                                <Discussion lang={props.lang}/>
-                                <Footer sx={{marginTop:'auto'}} owner={OWNER_CONFIG.name} owner_url={OWNER_CONFIG.url} email={OWNER_CONFIG.email} lang={props.lang}/>
-                            </Box>
-                        </Fade>
+                        <Box sx={{height:'100%', display:'flex', flexDirection:'column', gap:1}}>
+                            { props.children }
+                            <Discussion lang={props.lang}/>
+                            <Footer sx={{marginTop:'auto'}} owner={OWNER_CONFIG.name} owner_url={OWNER_CONFIG.url} email={OWNER_CONFIG.email} lang={props.lang}/>
+                        </Box>
                     </Container>
                 </Box>
             </Box>
