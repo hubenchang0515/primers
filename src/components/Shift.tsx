@@ -6,8 +6,8 @@ import I18n from "@/utils/i18n";
 import Link from "./Link";
 
 export interface ShiftProps {
-    lang?: string;
-    language: string;
+    lang?: string;      // i18n language
+    language: string;   // code language
     code: string;
     highlight: string;
     input?: string;
