@@ -268,9 +268,17 @@ const MakeComponents = (lang?:string):Components => {
                 )
             } else {
                 // 不存在换行，为行内代码
-                const match = code.match(/^!id:\s*([a-zA-Z0-9-_]+)\s*([\s\S]*)/)
+
+                // id 元素，用于自定义锚点
+                let match = code.match(/^!id:\s*([a-zA-Z0-9-_]+)\s*([\s\S]*)/)
                 if (match) {
                     return <span id={match[1]}/>
+                }
+
+                // embed元素，用于自定义样式
+                match = code.match(/^!embed:\s*(.*)\s*([\s\S]*)/)
+                if (match) {
+                    return <span dangerouslySetInnerHTML={{__html: match[1]}}/>
                 }
 
                 const quota = ((props.node?.position?.end.offset??0) - (props.node?.position?.start.offset??0)) - (props.children as string).length;
@@ -284,7 +292,9 @@ const MakeComponents = (lang?:string):Components => {
                             fontSize: '0.8em', 
                             padding: '0.2em 4px 1px 4px', 
                             verticalAlign: '0.1em', 
-                            border: '1px solid var(--mui-palette-background-paper)'
+                            border: '1px solid var(--mui-palette-background-paper)',
+                            wordBreak: 'keep-all',
+                            whiteSpace: 'nowrap',
                         }}
                     >
                         {code}
