@@ -173,7 +173,11 @@ const MakeComponents = (lang?:string):Components => {
 
         async td(props) {
             const align = props.node?.properties.align as "center" | "right" | "left" | "inherit" | "justify" | undefined
-            return <TableCell align={align}>{ props.children }</TableCell>
+            if (!props.children) {
+                return <TableCell align={align} sx={{color:'var(--mui-palette-text-disabled)', backgroundColor:'var(--mui-palette-action-disabledBackground)'}}><small>N/A</small></TableCell>
+            } else {
+                return <TableCell align={align}>{ props.children }</TableCell>
+            }
         },
 
         async ol(props) {
