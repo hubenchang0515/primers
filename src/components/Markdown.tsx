@@ -252,6 +252,15 @@ const MakeComponents = (lang?:string):Components => {
                             <IframePage title={args?.slice(1).join(' ')||'HTML'} code={code} unsafe/>
                         </Box>
                     )
+                } else if (props.node?.data?.meta?.trim().startsWith('style')) {
+                    // 额外标记 style，自定义样式
+                    const args = props.node?.data?.meta?.trim().split(/\s+/);
+                    const style = args.slice(1).join(" ");
+                    return (
+                        <Box sx={{marginBlock:'8px'}} dangerouslySetInnerHTML={{
+                            __html: `<code class='language-${result.language} hljs' style='${style}'>${DOMPurify.sanitize(result.value)}</code>`
+                        }}/>
+                    )
                 } else {
                     // 没有额外标记，正常渲染语法高亮
                     return (
