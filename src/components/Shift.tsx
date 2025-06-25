@@ -13,10 +13,30 @@ export interface ShiftProps {
     input?: string;
 }
 
+export function ShiftUrl(code?:string, lang?:string, input?:string) {
+    const params = new URLSearchParams();
+
+    if (lang) {
+        params.set("lang", lang);
+    }
+
+    if (input) {
+        params.set("input", btoa(encodeURIComponent(input)));
+    }
+
+    if (code) {
+        params.set("code", btoa(encodeURIComponent(code)));
+    }
+
+    const url = new URL('https://xplanc.org/shift/');
+    url.hash = params.toString();
+    return url.toString();
+}
+
 export default function Shift(props:ShiftProps) {
     const i18n = new I18n(props.lang);
     const [showShift, setShowShift] = useState(false);
-    const shiftUrl = `https://xplanc.org/shift/#lang=${props.language}&input=${btoa(encodeURIComponent(props.input??''))}&code=${btoa(encodeURIComponent(props.code.trim()))}`;
+    const shiftUrl = ShiftUrl(props.code.trim(), props.language??'', props.input);
 
     const run = useCallback(() => {
         setShowShift(true);
