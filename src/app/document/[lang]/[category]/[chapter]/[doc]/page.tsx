@@ -1,4 +1,5 @@
 import { Content } from "@/components/Content";
+import JsonLd from "@/components/JsonLd";
 import MainPage from "@/components/MainPage";
 import Pagination from "@/components/Pagination";
 import { SideMenuGroup } from "@/components/SideMenu";
@@ -49,7 +50,8 @@ export async function generateMetadata({params}:{params:Promise<PageParams>}): P
         },
         alternates: {
             canonical: canonical,
-        }
+        },
+        
     };
 }
 
@@ -83,8 +85,36 @@ export default async function DocPage({params}:{params:Promise<PageParams>}) {
     const selectedSideGroup = sideGroups.findIndex(chapter=>chapter.label === title(decodeURIComponent(path.chapter)));
     const selectedDoc = selectedSideGroup >= 0 && selectedSideGroup < sideGroups.length ? sideGroups[selectedSideGroup].items?.findIndex(item=>item.label === title(decodeURIComponent(path.doc))) : undefined;
 
+    const breadcrumb = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": `${SITE_CONFIG.origin}${SITE_CONFIG.basePath}`
+            },
+
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": title(decodeURIComponent(path.category)),
+                "item": `${SITE_CONFIG.origin}${SITE_CONFIG.basePath}/document/${path.lang}/${path.category}`
+            },
+
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": title(decodeURIComponent(path.chapter)) + '/' + title(decodeURIComponent(path.doc)),
+                "item": `${SITE_CONFIG.origin}${SITE_CONFIG.basePath}/document/${path.lang}/${path.category}/${path.chapter}/${path.doc}`
+            }
+        ]
+    }
+
     return (
         <MainPage lang={path.lang} depth={3} titleItems={titleItems} currentTitle={currentTitle} sideGroups={sideGroups} selectedSideGroup={selectedSideGroup} selectedDoc={selectedDoc}>
+            <JsonLd json={breadcrumb}/>
             <Pagination lang={path.lang} prev={prev} next={next} sx={{display:{xs:'none', md:'block'}}}/>
             <Paper sx={{padding:'1rem'}}>
                 <Content content={markdown} state={state} lang={path.lang}/>
