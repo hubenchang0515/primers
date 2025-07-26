@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
     const canonical = SITE_CONFIG.origin + SITE_CONFIG.basePath + `/document/en`;
     
     return {
-        title: `Primers 编程伙伴`,
+        title: SITE_CONFIG.title,
         description: markdown.replace(/\n+/g, '').substring(0, 150),
         icons: {
             icon: `${SITE_CONFIG.basePath}/favicon.svg`,

@@ -92,7 +92,7 @@ export default function MainPage(props:MainPageProps) {
             <LinearProgress aria-label='loading' sx={{position:'fixed', top:0, width:'100%', height:2, zIndex:loading?9999:-9999}} color="secondary" variant={loading?'indeterminate':'determinate'} value={100}/>
             <TitleBar 
                 lang={props.lang}
-                title={SITE_CONFIG.title}
+                title={SITE_CONFIG.brand}
                 github={SITE_CONFIG.repo}
                 items={props.titleItems}
                 current={currentTitle??props.currentTitle}

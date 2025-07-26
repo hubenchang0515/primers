@@ -11,6 +11,7 @@ export interface ContentProps {
     content: string;
     state: DocState;
     lang?: string;
+    url?: string;
 }
 
 export function Content(props:ContentProps) {
@@ -19,15 +20,15 @@ export function Content(props:ContentProps) {
         <Box component={'main'}>
             <Stack direction="row" spacing={1} sx={{color:'#bbb'}}>
                 <NotesIcon/> 
-                <Typography>{i18n.t("content.about")} {props.content.length} {i18n.t("content.letters")}</Typography> 
+                <Typography overflow="hidden" whiteSpace="nowrap" textOverflow="ellipsis">{i18n.t("content.about")} {props.content.length} {i18n.t("content.letters")}</Typography> 
                 <AccessTimeIcon/> 
-                <Typography>{i18n.t("content.about")} {Math.round(props.content.length / 200)} {i18n.t("content.minutes")} </Typography> 
+                <Typography overflow="hidden" whiteSpace="nowrap" textOverflow="ellipsis">{i18n.t("content.about")} {Math.round(props.content.length / 200)} {i18n.t("content.minutes")} </Typography> 
             </Stack>
-            <Markdown lang={props.lang} content={ props.content }/>
+            <Markdown lang={props.lang} url={props.url} content={props.content}/>
             <Stack direction="row" spacing={1} sx={{color:'#bbb', marginTop:'1rem'}}>
                 <EditCalendarIcon/> 
-                <Typography>{i18n.t("content.created_in")} {props.state.createdTime.toLocaleDateString(props.lang)}</Typography> 
-                <Typography>{i18n.t("content.updated_in")} {props.state.updatedTime.toLocaleDateString(props.lang)}</Typography>
+                <Typography overflow="hidden" whiteSpace="nowrap" textOverflow="ellipsis">{i18n.t("content.created_in")} {props.state.createdTime.toLocaleDateString(props.lang)}</Typography> 
+                <Typography overflow="hidden" whiteSpace="nowrap" textOverflow="ellipsis">{i18n.t("content.updated_in")} {props.state.updatedTime.toLocaleDateString(props.lang)}</Typography>
             </Stack>
         </Box>
     )

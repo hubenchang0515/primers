@@ -43,7 +43,7 @@ export async function generateMetadata({params}:{params:Promise<PageParams>}): P
     const canonical = SITE_CONFIG.origin + SITE_CONFIG.basePath + `/document/${decodeURIComponent(path.lang)}/${decodeURIComponent(path.category)}/${decodeURIComponent(path.chapter)}/${decodeURIComponent(path.doc)}`;
     
     return {
-        title: `${title(decodeURIComponent(path.category))} ${title(decodeURIComponent(path.chapter))} ${title(decodeURIComponent(path.doc))} - Primers 编程伙伴`,
+        title: `${title(decodeURIComponent(path.category))} ${title(decodeURIComponent(path.chapter))} ${title(decodeURIComponent(path.doc))} - ${SITE_CONFIG.title}`,
         description: markdown.replace(/\n+/g, '').substring(0, 150),
         icons: {
             icon: `${SITE_CONFIG.basePath}/favicon.svg`,
@@ -117,7 +117,7 @@ export default async function DocPage({params}:{params:Promise<PageParams>}) {
             <JsonLd json={breadcrumb}/>
             <Pagination lang={path.lang} prev={prev} next={next} sx={{display:{xs:'none', md:'block'}}}/>
             <Paper sx={{padding:'1rem'}}>
-                <Content content={markdown} state={state} lang={path.lang}/>
+                <Content content={markdown} state={state} lang={path.lang} url={`${SITE_CONFIG.origin}${SITE_CONFIG.basePath}/document/${path.lang}/${path.category}/${path.chapter}/${path.doc}`}/>
             </Paper>
             <Pagination lang={path.lang} prev={prev} next={next}/>
         </MainPage>

@@ -16,8 +16,8 @@ import { GlobalStateProvider } from "@/components/GlobalState";
 import { GoogleAnalytics } from '@next/third-parties/google'
 
 export const metadata: Metadata = {
-  title: "Primers 编程伙伴",
-  description: "Primers is committed to providing comprehensive and systematic programming tutorials and practical resources for all types of programming learners.",
+  title: SITE_CONFIG.title,
+  description: SITE_CONFIG.description,
   icons: {
     icon: `${SITE_CONFIG.basePath}/favicon.svg`,
   }

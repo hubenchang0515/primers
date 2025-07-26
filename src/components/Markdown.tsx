@@ -20,6 +20,7 @@ import Shift from './Shift';
 
 export interface MarkdownProps {
     lang?: string;
+    url?: string;
     content:string;
 }
 
@@ -54,13 +55,13 @@ const shortHash = async (props:ComponentProps<ElementType>) => {
     return (await hash('SHA-256', new TextEncoder().encode(rawText(props)))).substring(0, 6);
 }
 
-const MakeComponents = (lang?:string):Components => {
+const MakeComponents = (lang?:string, url?:string):Components => {
     return {
         async h1(props) { 
             return (
                 <Typography id={`${await shortHash(props)}`} variant='h1' className={props.className} sx={{fontSize:'2.5rem', fontWeight:'bolder', marginBlock:'1rem'}}>
                     <Link sx={{paddingRight:1}} href={`#${await shortHash(props)}`}>#</Link>
-                    {props.children}
+                    <Link color='inherit' underline='none' href={`${url}#${await shortHash(props)}`}>{props.children}</Link>
                 </Typography>
             )
         },
@@ -69,7 +70,7 @@ const MakeComponents = (lang?:string):Components => {
             return (
                 <Typography id={`${await shortHash(props)}`} variant='h2' className={props.className} sx={{fontSize:'2.25rem', fontWeight:'bolder', marginBlock:'1rem'}}>
                     <Link sx={{paddingRight:1}} href={`#${await shortHash(props)}`}>#</Link>
-                    {props.children}
+                    <Link color='inherit' underline='none' href={`${url}#${await shortHash(props)}`}>{props.children}</Link>
                 </Typography>
             )
         },
@@ -78,7 +79,7 @@ const MakeComponents = (lang?:string):Components => {
             return (
                 <Typography id={`${await shortHash(props)}`} variant='h3' className={props.className} sx={{fontSize:'2rem', fontWeight:'bolder', marginBlock:'1rem'}}>
                     <Link sx={{paddingRight:1}} href={`#${await shortHash(props)}`}>#</Link>
-                    {props.children}
+                    <Link color='inherit' underline='none' href={`${url}#${await shortHash(props)}`}>{props.children}</Link>
                 </Typography>
             )
         },
@@ -87,7 +88,7 @@ const MakeComponents = (lang?:string):Components => {
             return (
                 <Typography id={`${await shortHash(props)}`} variant='h4' className={props.className} sx={{fontSize:'1.75rem', fontWeight:'bolder', marginBlock:'1rem'}}>
                     <Link sx={{paddingRight:1}} href={`#${await shortHash(props)}`}>#</Link>
-                    {props.children}
+                    <Link color='inherit' underline='none' href={`${url}#${await shortHash(props)}`}>{props.children}</Link>
                 </Typography>
             )
         },
@@ -96,7 +97,7 @@ const MakeComponents = (lang?:string):Components => {
             return (
                 <Typography id={`${await shortHash(props)}`} variant='h5' className={props.className} sx={{fontSize:'1.5rem', fontWeight:'bolder', marginBlock:'1rem'}}>
                     <Link sx={{paddingRight:1}} href={`#${await shortHash(props)}`}>#</Link>
-                    {props.children}
+                    <Link color='inherit' underline='none' href={`${url}#${await shortHash(props)}`}>{props.children}</Link>
                 </Typography>
             )
         },
@@ -105,7 +106,7 @@ const MakeComponents = (lang?:string):Components => {
             return (
                 <Typography id={`${await shortHash(props)}`} variant='h6' className={props.className} sx={{fontSize:'1.25rem', fontWeight:'bolder', marginBlock:'1rem'}}>
                     <Link sx={{paddingRight:1}} href={`#${await shortHash(props)}`}>#</Link>
-                    {props.children}
+                    <Link color='inherit' underline='none' href={`${url}#${await shortHash(props)}`}>{props.children}</Link>
                 </Typography>
             )
         },
@@ -329,7 +330,7 @@ export default function Markdown(props: MarkdownProps) {
             <ReactMarkdown
                 remarkPlugins={[remarkGfm, customClass, remarkMath]}
                 rehypePlugins={[rehypeMathjax]}
-                components={MakeComponents(props.lang)}
+                components={MakeComponents(props.lang, props.url)}
             >
                 {props.content}
             </ReactMarkdown>

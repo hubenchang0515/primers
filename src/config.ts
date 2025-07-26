@@ -2,8 +2,10 @@
 export const SITE_CONFIG = {
     origin: 'https://xplanc.org',
     basePath: '/primers',
-    title: 'Primers',
+    title: 'Primers 编程伙伴',
+    brand: 'Primers',
     repo: 'https://github.com/hubenchang0515/primers',
+    description: "Primers is committed to providing comprehensive and systematic programming tutorials and practical resources for all types of programming learners.",
 }
 
 // 站长信息
