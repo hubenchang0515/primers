@@ -308,7 +308,7 @@ const MakeComponents = (lang?:string, url?:string):Components => {
                             verticalAlign: '0.1em', 
                             border: '1px solid var(--mui-palette-background-paper)',
                             wordBreak: 'keep-all',
-                            whiteSpace: 'nowrap',
+                            whiteSpace: 'pre',
                         }}
                     >
                         {code}
