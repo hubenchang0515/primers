@@ -61,7 +61,7 @@ const MakeComponents = (lang?:string, url?:string):Components => {
             return (
                 <Typography id={`${await shortHash(props)}`} variant='h1' className={props.className} sx={{fontSize:'2.5rem', fontWeight:'bolder', marginBlock:'1rem'}}>
                     <Link sx={{paddingRight:1}} href={`#${await shortHash(props)}`}>#</Link>
-                    <Link color='inherit' underline='none' href={`${url}#${await shortHash(props)}`}>{props.children}</Link>
+                    <Link color='inherit' underline='none' href={`${url??''}#${await shortHash(props)}`}>{props.children}</Link>
                 </Typography>
             )
         },
@@ -70,7 +70,7 @@ const MakeComponents = (lang?:string, url?:string):Components => {
             return (
                 <Typography id={`${await shortHash(props)}`} variant='h2' className={props.className} sx={{fontSize:'2.25rem', fontWeight:'bolder', marginBlock:'1rem'}}>
                     <Link sx={{paddingRight:1}} href={`#${await shortHash(props)}`}>#</Link>
-                    <Link color='inherit' underline='none' href={`${url}#${await shortHash(props)}`}>{props.children}</Link>
+                    <Link color='inherit' underline='none' href={`${url??''}#${await shortHash(props)}`}>{props.children}</Link>
                 </Typography>
             )
         },
@@ -79,7 +79,7 @@ const MakeComponents = (lang?:string, url?:string):Components => {
             return (
                 <Typography id={`${await shortHash(props)}`} variant='h3' className={props.className} sx={{fontSize:'2rem', fontWeight:'bolder', marginBlock:'1rem'}}>
                     <Link sx={{paddingRight:1}} href={`#${await shortHash(props)}`}>#</Link>
-                    <Link color='inherit' underline='none' href={`${url}#${await shortHash(props)}`}>{props.children}</Link>
+                    <Link color='inherit' underline='none' href={`${url??''}#${await shortHash(props)}`}>{props.children}</Link>
                 </Typography>
             )
         },
@@ -88,7 +88,7 @@ const MakeComponents = (lang?:string, url?:string):Components => {
             return (
                 <Typography id={`${await shortHash(props)}`} variant='h4' className={props.className} sx={{fontSize:'1.75rem', fontWeight:'bolder', marginBlock:'1rem'}}>
                     <Link sx={{paddingRight:1}} href={`#${await shortHash(props)}`}>#</Link>
-                    <Link color='inherit' underline='none' href={`${url}#${await shortHash(props)}`}>{props.children}</Link>
+                    <Link color='inherit' underline='none' href={`${url??''}#${await shortHash(props)}`}>{props.children}</Link>
                 </Typography>
             )
         },
@@ -97,7 +97,7 @@ const MakeComponents = (lang?:string, url?:string):Components => {
             return (
                 <Typography id={`${await shortHash(props)}`} variant='h5' className={props.className} sx={{fontSize:'1.5rem', fontWeight:'bolder', marginBlock:'1rem'}}>
                     <Link sx={{paddingRight:1}} href={`#${await shortHash(props)}`}>#</Link>
-                    <Link color='inherit' underline='none' href={`${url}#${await shortHash(props)}`}>{props.children}</Link>
+                    <Link color='inherit' underline='none' href={`${url??''}#${await shortHash(props)}`}>{props.children}</Link>
                 </Typography>
             )
         },
@@ -106,7 +106,7 @@ const MakeComponents = (lang?:string, url?:string):Components => {
             return (
                 <Typography id={`${await shortHash(props)}`} variant='h6' className={props.className} sx={{fontSize:'1.25rem', fontWeight:'bolder', marginBlock:'1rem'}}>
                     <Link sx={{paddingRight:1}} href={`#${await shortHash(props)}`}>#</Link>
-                    <Link color='inherit' underline='none' href={`${url}#${await shortHash(props)}`}>{props.children}</Link>
+                    <Link color='inherit' underline='none' href={`${url??''}#${await shortHash(props)}`}>{props.children}</Link>
                 </Typography>
             )
         },

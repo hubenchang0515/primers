@@ -39,7 +39,7 @@ export default async function Home() {
     return (
         <MainPage depth={1}>
             <Paper sx={{padding:'1rem'}}>
-                <Content content={markdown} state={state}/>
+                <Content content={markdown} state={state} url={`${SITE_CONFIG.origin}${SITE_CONFIG.basePath}`}/>
             </Paper>
             <Navigation items={titleItems}/>
         </MainPage>

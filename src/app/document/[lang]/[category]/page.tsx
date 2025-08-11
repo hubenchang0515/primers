@@ -74,7 +74,7 @@ export default async function CategoryPage({params}:{params:Promise<PageParams>}
     return (
         <MainPage lang={path.lang} depth={2} titleItems={titleItems} currentTitle={currentTitle} sideGroups={sideGroups}>
             <Paper sx={{padding:'1rem'}}>
-                <Content content={markdown} state={state} lang={path.lang}/>
+                <Content content={markdown} state={state} lang={path.lang} url={`${SITE_CONFIG.origin}${SITE_CONFIG.basePath}/document/${path.lang}/${path.category}`}/>
             </Paper>
             <Catalog groups={sideGroups} lang={path.lang}/>
         </MainPage>
