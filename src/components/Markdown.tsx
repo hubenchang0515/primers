@@ -17,6 +17,7 @@ import Graphviz from './Graphviz';
 import IframePage from './IframePage';
 import { include } from '@/utils/include';
 import Shift from './Shift';
+import LabelCode from './LabelCode';
 
 export interface MarkdownProps {
     lang?: string;
@@ -262,6 +263,11 @@ const MakeComponents = (lang?:string, url?:string):Components => {
                             __html: `<code class='language-${result.language} hljs' style='${style}'>${DOMPurify.sanitize(result.value)}</code>`
                         }}/>
                     )
+                } else if (props.node?.data?.meta?.trim().startsWith('label')) {
+                    // 额外标记 label，添加标签
+                    const args = props.node?.data?.meta?.trim().split(/\s+/);
+                    const name = args.slice(1).join(" ");
+                    return <LabelCode name={name} code={result.value} language={result.language}/>
                 } else {
                     // 没有额外标记，正常渲染语法高亮
                     return (
