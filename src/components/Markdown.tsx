@@ -236,7 +236,7 @@ const MakeComponents = (lang?:string, url?:string):Components => {
                 } else if (props.node?.data?.meta?.trim().startsWith('embed')) {
                     // 额外标记 embed， 直接内嵌 HTML
                     return (
-                        <Box sx={{marginBlock:'8px', whiteSpace:'normal'}} className={language} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(code)}}/>
+                        <Box sx={{marginBlock:'8px', whiteSpace:'normal', overflow:'auto'}} className={language} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(code)}}/>
                     )
                 } else if (props.node?.data?.meta?.trim().startsWith('iframe')) {
                     // 额外标记 iframe，通过 iframe 内嵌 HTML
