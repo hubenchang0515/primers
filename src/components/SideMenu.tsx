@@ -17,6 +17,8 @@ import ArticleIcon from '@mui/icons-material/Article';
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
 import MyLocationIcon from '@mui/icons-material/MyLocation';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
+import InstallDesktopIcon from '@mui/icons-material/InstallDesktop';
+import I18n from "@/utils/i18n";
 
 export interface SideMenuItem {
     label: string;
@@ -50,7 +52,8 @@ export interface SideMenuProps {
 }
 
 export default function SideMenu(props:SideMenuProps) {
-    const {initialized, setInitialized} = useGlobalState();
+    const i18n = new I18n(props.lang);
+    const {initialized, setInitialized, installPrompt} = useGlobalState();
     const init = useCallback(() => {
         if (!initialized) {
             setInitialized?.(true);
@@ -213,7 +216,7 @@ export default function SideMenu(props:SideMenuProps) {
                                     <ListItemIcon>
                                         <TuneIcon/>
                                     </ListItemIcon>
-                                    <ListItemText primary={props.lang === 'zh' ? "设置" : 'Settings'}/>
+                                    <ListItemText primary={i18n.t("sidemenu.settings")}/>
                                     {settingsExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                                 </ListItemButton>
                                 <Collapse in={props.expanded && settingsExpanded} timeout="auto">
@@ -223,25 +226,32 @@ export default function SideMenu(props:SideMenuProps) {
                                                 <ListItemIcon>
                                                     <Brightness4Icon />
                                                 </ListItemIcon>
-                                                <ListItemText primary={props.lang === 'zh' ? "主题" : 'Theme'} />
-                                                    <Tooltip title={props.lang === 'zh' ? "明亮" : 'Light'} placement="top" arrow>
+                                                <ListItemText primary={i18n.t("sidemenu.theme")} />
+                                                    <Tooltip title={i18n.t("sidemenu.light")} placement="top" arrow>
                                                         <IconButton color={props.mode === 'light' ? 'primary' : 'inherit'} onClick={(ev) => {props.onSetMode?.('light'); ev.stopPropagation();}}>
                                                             <LightModeIcon/>
                                                         </IconButton>
                                                     </Tooltip>
 
-                                                    <Tooltip title={props.lang === 'zh' ? "系统" : 'System'} placement="top" arrow>
+                                                    <Tooltip title={i18n.t("sidemenu.system")} placement="top" arrow>
                                                         <IconButton color={props.mode === 'system' ? 'primary' : 'inherit'} onClick={(ev) => {props.onSetMode?.('system'); ev.stopPropagation();}}>
                                                             <BrightnessAutoIcon/>
                                                         </IconButton>
                                                     </Tooltip>
 
-                                                    <Tooltip title={props.lang === 'zh' ? "黑暗" : 'Dark'} placement="top" arrow>
+                                                    <Tooltip title={i18n.t("sidemenu.dark")} placement="top" arrow>
                                                         <IconButton color={props.mode === 'dark' ? 'primary' : 'inherit'} onClick={(ev) => {props.onSetMode?.('dark'); ev.stopPropagation();}}>
                                                             <DarkModeIcon/>
                                                         </IconButton>
                                                     </Tooltip>
-                                                
+                                            </ListItemButton>
+                                        </ListItem>
+                                        <ListItem disablePadding>
+                                            <ListItemButton sx={{ pl: 4 }} disabled={!installPrompt} onClick={()=>{installPrompt?.prompt()}}>
+                                                <ListItemIcon>
+                                                    <InstallDesktopIcon/>
+                                                </ListItemIcon>
+                                                <ListItemText primary={i18n.t("sidemenu.install")}/>
                                             </ListItemButton>
                                         </ListItem>
                                     </List>

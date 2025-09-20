@@ -3,6 +3,9 @@ import theme from '@/utils/theme';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
 export interface GlobalStateProps {
+    installPrompt?: BeforeInstallPromptEvent;
+    setInstallPrompt?: (v?:BeforeInstallPromptEvent)=>void;
+
     loading?: boolean;
     initialized?: boolean;
     setLoading?: (v?:boolean)=>void;
@@ -29,6 +32,7 @@ export interface GlobalStateProviderProps {
 }
 
 export function GlobalStateProvider(props:GlobalStateProviderProps) {
+    const [installPrompt, setInstallPrompt] = useState<BeforeInstallPromptEvent>();
     const [loading, setLoading] = useState<boolean|undefined>(true);
     const [initialized, setInitialized] = useState<boolean|undefined>(false);
 
@@ -36,6 +40,19 @@ export function GlobalStateProvider(props:GlobalStateProviderProps) {
     const [expandedSideGroup, setExpandedSideGroup] = useState<number|undefined>(undefined);
     const [sideExpanded, setSideExpanded] = useState<boolean|undefined>(true);
     const [sideCollapsedSize, setSideCollapsedSize] = useState<number|undefined>(0);   // 16 + 24 + 16 => 56 
+
+    // 获取 PWA 安装提示
+    useEffect(() => {
+        const fn = (event:Event) => {
+            setInstallPrompt?.(event as BeforeInstallPromptEvent);
+        }
+
+        window.addEventListener("beforeinstallprompt", fn);
+
+        return () => {
+            window.removeEventListener("beforeinstallprompt", fn);
+        }
+    }, [setInstallPrompt]);
 
     useEffect(() => {
         if (window.innerWidth < theme.breakpoints.values.md) {
@@ -50,6 +67,9 @@ export function GlobalStateProvider(props:GlobalStateProviderProps) {
     return (
         <GlobalState.Provider 
             value={{
+                installPrompt,
+                setInstallPrompt,
+
                 loading,
                 initialized,
                 setLoading,

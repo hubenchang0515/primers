@@ -7,12 +7,22 @@
         "title": "Navigation"
     },
 
+    "sidemenu": {
+        "settings": "Settings",
+        "theme": "Theme",
+        "light": "Light",
+        "dark": "Dark",
+        "system": "System",
+        "install": "Install(PWA)"
+    },
+
     "footer": {
         "home": "Home",
         "contact": "Contact",
         "sitemap": "Sitemap",
         "about": "About",
-        "privacy": "Privacy"
+        "privacy": "Privacy",
+        "install": "Install"
     },
 
     "content": {
@@ -22,8 +32,6 @@
         "created_in": "Created in",
         "updated_in": "Updated in"
     },
-
-    
 
     "shift": {
         "run": "Run Code"
