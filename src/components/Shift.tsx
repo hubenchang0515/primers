@@ -36,7 +36,7 @@ export function ShiftUrl(code?:string, lang?:string, input?:string) {
 export default function Shift(props:ShiftProps) {
     const i18n = new I18n(props.lang);
     const [showShift, setShowShift] = useState(false);
-    const shiftUrl = ShiftUrl(props.code.trim(), props.language??'', props.input);
+    const shiftUrl = ShiftUrl(props.code.trim(), props.language?.toLocaleLowerCase()??'', props.input);
 
     const run = useCallback(() => {
         setShowShift(true);
