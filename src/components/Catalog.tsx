@@ -11,7 +11,7 @@ export interface CatalogProps {
 export default function Catalog(props:CatalogProps) {
     const i18n = new I18n(props.lang);
     return (
-        <Paper sx={{padding:'1rem', display:"flex", flexDirection:'column', gap:1}}>
+        <Paper id="catalog" sx={{padding:'1rem', display:"flex", flexDirection:'column', gap:1}}>
             <Box sx={{display:'flex', justifyContent:'center'}}>
                 <Typography variant="h6" textAlign='center' sx={{margin:'2px', borderBottom:'3px solid var(--mui-palette-primary-main)'}}>{i18n.t('catalog.title')}</Typography>
             </Box>

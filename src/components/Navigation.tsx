@@ -16,7 +16,7 @@ export interface ChipNavProps {
 export default function Navigation(props:ChipNavProps) {
     const i18n = new I18n(props.lang);
     return (
-        <Paper sx={{padding:'1rem'}}>
+        <Paper id="navigation" sx={{padding:'1rem'}}>
             <Box sx={{display:'flex', justifyContent:'center'}}>
                 <Typography variant="h6" textAlign='center' sx={{margin:'2px', borderBottom:'3px solid var(--mui-palette-primary-main)'}}> {i18n.t('navigation.title')} </Typography>
             </Box>
