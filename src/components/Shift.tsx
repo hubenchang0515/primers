@@ -48,7 +48,7 @@ export default function Shift(props:ShiftProps) {
                 showShift ?
                 <Box sx={{marginBlock:'8px', position:'relative'}}>
                     <code className={`language-${props.language} hljs`} style={{minHeight:300, margin: 0, overflow:'auto'}} dangerouslySetInnerHTML={{__html: props.highlight}}></code>
-                    <Box sx={{height:290, background:'black', color:'white'}}>
+                    <Box sx={{height:300, background:'black', color:'white'}}>
                         <Collapse in>
                             <Typography>Loading <Link href={shiftUrl} color="info">Shift</Link> ...</Typography>
                             <Typography>Loading {props.language}.wasm ...</Typography>
@@ -73,7 +73,7 @@ export default function Shift(props:ShiftProps) {
                 :
                 <Box sx={{marginBlock:'8px'}}>
                     <code className={`language-${props.language} hljs`} style={{minHeight:300, margin: 0, overflow:'auto'}} dangerouslySetInnerHTML={{__html: props.highlight}}></code>
-                    <Box sx={{height:290, background:'black', color:'white', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+                    <Box sx={{height:300, background:'black', color:'white', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
                         <Button variant="contained" size="large" color="secondary" sx={{margin:1}} startIcon={<TerminalIcon/>} onClick={run}>{i18n.t("shift.run")}</Button>
                         <Box sx={{whiteSpace:'wrap', wordBreak:'break-all'}}>
                             <Typography>&gt;&gt;&gt; Establishing WebAssembly Runtime. </Typography>
