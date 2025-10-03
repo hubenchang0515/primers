@@ -13,7 +13,8 @@
         "light": "Light",
         "dark": "Dark",
         "system": "System",
-        "install": "Install(PWA)"
+        "install": "Install(PWA)",
+        "shortcut": "Desktop Shortcut"
     },
 
     "footer": {

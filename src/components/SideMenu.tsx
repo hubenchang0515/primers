@@ -251,7 +251,7 @@ export default function SideMenu(props:SideMenuProps) {
                                                 <ListItemIcon>
                                                     <InstallDesktopIcon/>
                                                 </ListItemIcon>
-                                                <ListItemText primary={i18n.t("sidemenu.install")}/>
+                                                <ListItemText primary={i18n.t("sidemenu.install")} secondary={i18n.t("sidemenu.shortcut")}/>
                                             </ListItemButton>
                                         </ListItem>
                                     </List>

@@ -13,7 +13,8 @@
         "light": "明亮",
         "dark": "黑暗",
         "system": "系统",
-        "install": "安装（PWA）"
+        "install": "安装（PWA）",
+        "shortcut": "桌面快捷方式"
     },
 
     "footer": {
