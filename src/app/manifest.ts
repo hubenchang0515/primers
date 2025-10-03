@@ -13,17 +13,49 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: '#000000',
     icons: [
       {
-        src: '/primers/icon-192x192.svg',
+        src: '/primers/icon-192x192.png',
         sizes: '192x192',
-        type: 'image/svg+xml',
+        type: 'image/png',
         purpose: "any"
       },
       {
-        src: '/primers/icon-512x512.svg',
+        src: '/primers/icon-512x512.png',
         sizes: '512x512',
-        type: 'image/svg+xml',
+        type: 'image/png',
         purpose: "any"
       },
     ],
+    screenshots: [
+      {
+        src: '/primers/preview1.png',
+        sizes: '3840x1970',
+        form_factor: 'wide',
+      },
+      {
+        src: '/primers/preview2.png',
+        sizes: '3840x1970',
+        form_factor: 'wide',
+      },
+      {
+        src: '/primers/preview3.png',
+        sizes: '3840x1970',
+        form_factor: 'wide',
+      },
+      {
+        src: '/primers/preview4.png',
+        sizes: '1290x2796',
+        form_factor: 'narrow',
+      },
+      {
+        src: '/primers/preview5.png',
+        sizes: '1290x2796',
+        form_factor: 'narrow',
+      },
+      {
+        src: '/primers/preview6.png',
+        sizes: '1290x2796',
+        form_factor: 'narrow',
+      }
+    ]
   }
 }
