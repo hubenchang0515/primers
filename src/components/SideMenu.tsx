@@ -219,7 +219,7 @@ export default function SideMenu(props:SideMenuProps) {
                                     <ListItemText primary={i18n.t("sidemenu.settings")}/>
                                     {settingsExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                                 </ListItemButton>
-                                <Collapse in={props.expanded && settingsExpanded} timeout="auto">
+                                <Collapse in={props.expanded && settingsExpanded} timeout="auto" onEntered={()=>scroll('bottom')}>
                                     <List disablePadding>
                                         <ListItem disablePadding>
                                             <ListItemButton sx={{ pl: 4 }} onClick={()=>props.onSetMode?.('system')}>
