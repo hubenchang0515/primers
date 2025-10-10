@@ -7,6 +7,7 @@ import { SITE_CONFIG } from "@/config";
 export interface SearchBoxProps {
     lang?: string,
     defaultValue?: string,
+    elevation?: number,
 }
 
 
@@ -16,17 +17,19 @@ export default function SearchBox(props:SearchBoxProps) {
         <Paper
             component="form"
             action={`${SITE_CONFIG.basePath}/document/${props.lang}/search`}
-            sx={{ display: 'flex', alignItems: 'center', width: '100%' }}
+            sx={{ display: 'flex', alignItems: 'center', width: '100%'}}
+            elevation={props.elevation}
         >
-            <InputBase
-                sx={{ ml: 2, flex: 1 }}
-                placeholder={i18n.t("search.search")}
-                name="text"
-                defaultValue={props.defaultValue}
-            />
-            <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
-                <SearchIcon />
-            </IconButton>
+                <InputBase
+                    autoComplete="off"
+                    sx={{ ml: 2, flex: 1 }}
+                    placeholder={i18n.t("search.search")}
+                    name="text"
+                    defaultValue={props.defaultValue}
+                />
+                <IconButton type="submit" aria-label="search">
+                    <SearchIcon />
+                </IconButton>
         </Paper>
     )
 }

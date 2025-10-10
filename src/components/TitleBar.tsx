@@ -2,8 +2,9 @@
 
 import { AppBar, Box, Button, IconButton, Tab, Tabs, Toolbar, Typography } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
-import GitHubIcon from '@mui/icons-material/GitHub';
+import SearchIcon from '@mui/icons-material/Search';
 import Link from "./Link";
+import SearchBox from "./SearchBox";
 
 export interface TitleBarItem {
     label: string;
@@ -32,26 +33,26 @@ export default function TitleBar(props:TitleBarProps) {
                         edge="start"
                         color="inherit"
                         aria-label="menu"
-                        sx={{ mr: props.title ? 2:0 }}
+                        sx={{ mr: props.title ? 1:0 }}
                         onClick={props.onToggleMenu}
                         disabled={props.current === undefined}
                     >
                         <MenuIcon />
                     </IconButton>
 
-                        <Button
-                            size="large"
-                            color="inherit"
-                            aria-label="menu"
-                            href={props.lang ? `/document/${props.lang}` : '/'}
-                            LinkComponent={Link}
-                            sx={{textTransform:'none'}}
-                            onClick={()=>{props.onCurrentChanged?.(undefined)}}
-                        >
-                            <Typography variant="h6" component="div" sx={{ whiteSpace:"nowrap"}}>
-                                { props.title }
-                            </Typography>
-                        </Button>
+                    <Button
+                        size="large"
+                        color="inherit"
+                        aria-label="menu"
+                        href={props.lang ? `/document/${props.lang}` : '/'}
+                        LinkComponent={Link}
+                        sx={{textTransform:'none', display:{xs:'none', md:'block'}}}
+                        onClick={()=>{props.onCurrentChanged?.(undefined)}}
+                    >
+                        <Typography variant="h6" component="div" sx={{ whiteSpace:"nowrap"}}>
+                            { props.title }
+                        </Typography>
+                    </Button>
 
                     <Tabs 
                         indicatorColor="secondary"
@@ -71,17 +72,21 @@ export default function TitleBar(props:TitleBarProps) {
                         }
                     </Tabs>
                     
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ ml: 2 }}
-                        href={props.github || ""}
-                        target='_blank'
-                    >
-                        <GitHubIcon />
-                    </IconButton>
+                    <Box sx={{ display:{xs:'none', md:'block'}}}>
+                        <SearchBox lang={props.lang} elevation={0}/>
+                    </Box>
+                    <Box sx={{ display:{xs:'block', md:'none'}}}>
+                        <IconButton
+                            size="large"
+                            edge="start"
+                            color="inherit"
+                            aria-label="search"
+                            LinkComponent={Link}
+                            href={`/document/${props.lang}/search`}
+                        >
+                            <SearchIcon />
+                        </IconButton>
+                    </Box>
                 </Toolbar>
             </AppBar>
         </Box>
