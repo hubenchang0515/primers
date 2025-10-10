@@ -9,6 +9,7 @@
 
     "sidemenu": {
         "settings": "Settings",
+        "search": "Search",
         "theme": "Theme",
         "light": "Light",
         "dark": "Dark",
@@ -36,5 +37,11 @@
 
     "shift": {
         "run": "Run Code"
+    },
+
+    "search": {
+        "search": "Search",
+        "result": "Search Result",
+        "empty": "No relevant content was found. It is recommended to reduce or shorten the keywords."
     }
 }

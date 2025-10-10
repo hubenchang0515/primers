@@ -1,12 +1,11 @@
-import Navigation from "@/components/Navigation";
-import { Content } from "@/components/Content";
 import MainPage from "@/components/MainPage";
 import { TitleBarItem } from "@/components/TitleBar";
 import { SITE_CONFIG } from "@/config";
-import { categories, content, languages, docState, title } from "@/utils/document";
-import { Paper } from "@mui/material";
+import { categories, languages, title } from "@/utils/document";
 import { Metadata } from "next";
-import SearchBox from "@/components/SearchBox";
+import Search from "@/components/Search";
+import { searchTree } from "@/utils/search";
+import { Suspense } from "react";
 
 export interface PageParams {
     lang:string;        // 语言： 例如 中文（zh）、英文（en）
@@ -26,12 +25,10 @@ export async function generateStaticParams() {
 // 生成元数据
 export async function generateMetadata({params}:{params:Promise<PageParams>}): Promise<Metadata> {
     const path = (await params);
-    const markdown = await content(decodeURIComponent(path.lang), "00.index.md");
     const canonical = SITE_CONFIG.origin + SITE_CONFIG.basePath + `/document/${decodeURIComponent(path.lang)}`;
     
     return {
         title: SITE_CONFIG.title,
-        description: markdown.replace(/\n+/g, '').substring(0, 150),
         icons: {
             icon: `${SITE_CONFIG.basePath}/favicon.svg`,
         },
@@ -42,10 +39,9 @@ export async function generateMetadata({params}:{params:Promise<PageParams>}): P
 }
 
 // 生成页面
-export default async function LanguagePage({params}:{params:Promise<PageParams>}) {
+export default async function SearchPage({params}:{params:Promise<PageParams>}) {
     const path = (await params);
-    const markdown = await content(path.lang, "00.index.md");
-    const state = await docState(path.lang, "00.index.md");
+    const root = await searchTree(path.lang);
 
     const titleItems:TitleBarItem[] = (await categories(decodeURIComponent(path.lang))).filter(item=>!item.endsWith('.hide')).map((item) => {
         return {
@@ -55,12 +51,10 @@ export default async function LanguagePage({params}:{params:Promise<PageParams>}
     });
 
     return (
-        <MainPage lang={path.lang} depth={2} titleItems={titleItems}>
-            <Paper sx={{padding:'1rem'}}>
-                <Content content={markdown} state={state} lang={path.lang} url={`${SITE_CONFIG.origin}${SITE_CONFIG.basePath}/document/${path.lang}`}/>
-            </Paper>
-            <SearchBox lang={path.lang}/>
-            <Navigation lang={path.lang} items={titleItems}/>
+        <MainPage lang={path.lang} depth={2} titleItems={titleItems} disableDiscussion>
+            <Suspense>
+                <Search lang={path.lang} root={root}/>
+            </Suspense>
         </MainPage>
     )
 }

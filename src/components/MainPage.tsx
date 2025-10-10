@@ -23,6 +23,8 @@ export interface MainPageProps {
     selectedDoc?: number;
 
     children?: React.ReactNode;
+    disableDiscussion?: boolean;
+    disableFooter?: boolean;
 }
 
 export default function MainPage(props:MainPageProps) {
@@ -117,8 +119,8 @@ export default function MainPage(props:MainPageProps) {
                     <Container maxWidth='lg' sx={{padding:1, height:'100%'}}>
                         <Box sx={{height:'100%', display:'flex', flexDirection:'column', gap:1}}>
                             { props.children }
-                            <Discussion lang={props.lang}/>
-                            <Footer sx={{marginTop:'auto'}} owner={OWNER_CONFIG.name} owner_url={OWNER_CONFIG.url} email={OWNER_CONFIG.email} lang={props.lang}/>
+                            { props.disableDiscussion || <Discussion lang={props.lang}/> }
+                            { props.disableFooter || <Footer sx={{marginTop:'auto'}} owner={OWNER_CONFIG.name} owner_url={OWNER_CONFIG.url} email={OWNER_CONFIG.email} lang={props.lang}/> }
                         </Box>
                     </Container>
                 </Box>

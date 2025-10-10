@@ -18,6 +18,7 @@ import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp
 import MyLocationIcon from '@mui/icons-material/MyLocation';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import InstallDesktopIcon from '@mui/icons-material/InstallDesktop';
+import SearchIcon from '@mui/icons-material/Search';
 import I18n from "@/utils/i18n";
 
 export interface SideMenuItem {
@@ -221,6 +222,14 @@ export default function SideMenu(props:SideMenuProps) {
                                 </ListItemButton>
                                 <Collapse in={props.expanded && settingsExpanded} timeout="auto" onEntered={()=>scroll('bottom')}>
                                     <List disablePadding>
+                                        <ListItem disablePadding>
+                                            <ListItemButton sx={{ pl: 4 }} LinkComponent={Link} href={`/document/${props.lang}/search`}>
+                                                <ListItemIcon>
+                                                    <SearchIcon/>
+                                                </ListItemIcon>
+                                                <ListItemText primary={i18n.t("sidemenu.search")}/>
+                                            </ListItemButton>
+                                        </ListItem>
                                         <ListItem disablePadding>
                                             <ListItemButton sx={{ pl: 4 }} onClick={()=>props.onSetMode?.('system')}>
                                                 <ListItemIcon>
