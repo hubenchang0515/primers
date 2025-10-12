@@ -20,3 +20,7 @@ export const DOCUMENT_CONFIG = {
     root: 'primers-document'
 }
 
+// 分析器配置
+export const ANALYTICS_CONFIG = {
+    google: "G-7X0K330YFR"
+}

@@ -11,7 +11,7 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { ThemeProvider } from "@mui/material";
 import theme from "@/utils/theme";
 import InitColorSchemeScript from "@mui/material/InitColorSchemeScript";
-import { SITE_CONFIG } from "@/config";
+import { ANALYTICS_CONFIG, SITE_CONFIG } from "@/config";
 import { GlobalStateProvider } from "@/components/GlobalState";
 import { GoogleAnalytics } from '@next/third-parties/google'
 
@@ -40,7 +40,7 @@ export default function RootLayout({
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
-      <GoogleAnalytics gaId="G-HEWPX7E6EV"/>
+      <GoogleAnalytics gaId={ANALYTICS_CONFIG.google}/>
     </html>
   );
 }
