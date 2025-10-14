@@ -13,11 +13,11 @@ export default function Discussion(props:DiscussionProps) {
         <Box>
             <Giscus
                 id="comments"
-                repo="hubenchang0515/primers"
-                repoId="R_kgDOOW5w2A"
+                repo="hubenchang0515/comments"
+                repoId="R_kgDOQCfF2Q"
                 category="Announcements"
-                categoryId="DIC_kwDOOW5w2M4Cp13Z"
-                mapping="pathname"
+                categoryId="DIC_kwDOQCfF2c4CwpFg"
+                mapping="url"
                 term="Welcome to @giscus/react component!"
                 reactionsEnabled="1"
                 emitMetadata="0"
