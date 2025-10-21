@@ -1,6 +1,6 @@
 import path from "path";
 import { categories, chapters, content, docs, languages } from "./document"
-import { hash } from "crypto";
+import { anchorHash } from "./crypto";
 
 export interface SearchNode {
     url: string,
@@ -22,11 +22,6 @@ function extractMarkdownHeadings(content: string): string[] {
     return headings;
 }
 
-// 标题的哈希锚点，需要和 Markdown 中一致
-async function shortHash(text:string) {
-    return (await hash('SHA-256', new TextEncoder().encode(text))).substring(0, 6);
-}
-
 // 解析并生成 doc 节点
 async function parseDoc(lang:string, category:string, chapter?:string, doc?:string) {
     const markdown = await content(lang, category, chapter, doc);
@@ -41,7 +36,7 @@ async function parseDoc(lang:string, category:string, chapter?:string, doc?:stri
     for (const heading of headings) {
         node.children?.push({
             text: heading,
-            url: path.join('/document', lang, category, chapter??"", doc??"") + "#" + await shortHash(heading),
+            url: path.join('/document', lang, category, chapter??"", doc??"") + "#" + await anchorHash(heading),
         })
     }
 

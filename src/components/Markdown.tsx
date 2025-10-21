@@ -1,6 +1,6 @@
 import { Alert, AlertProps, Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import ReactMarkdown, { Components } from 'react-markdown'
-import { hash } from '@/utils/crypto';
+import { anchorHash } from '@/utils/crypto';
 import { visit } from 'unist-util-visit';
 import { Node } from 'unist';
 import { Paragraph } from 'mdast';
@@ -48,66 +48,63 @@ const customClass = () => {
     };
 }
 
-const rawText = (props:ComponentProps<ElementType>) => {
-    return props.children;
-}
 
-const shortHash = async (props:ComponentProps<ElementType>) => {
-    return (await hash('SHA-256', new TextEncoder().encode(rawText(props)))).substring(0, 6);
+const headingHash = async (props:ComponentProps<ElementType>) => {
+    return await anchorHash(props.children)
 }
 
 const MakeComponents = (lang?:string, url?:string):Components => {
     return {
         async h1(props) { 
             return (
-                <Typography id={`${await shortHash(props)}`} variant='h1' className={props.className} sx={{fontSize:'2.5rem', fontWeight:'bolder', marginBlock:'1rem'}}>
-                    <Link sx={{paddingRight:1}} href={`#${await shortHash(props)}`}>#</Link>
-                    <Link color='inherit' underline='none' href={`${url??''}#${await shortHash(props)}`}>{props.children}</Link>
+                <Typography id={`${await headingHash(props)}`} variant='h1' className={props.className} sx={{fontSize:'2.5rem', fontWeight:'bolder', marginBlock:'1rem'}}>
+                    <Link sx={{paddingRight:1}} href={`#${await headingHash(props)}`}>#</Link>
+                    <Link color='inherit' underline='none' href={`${url??''}#${await headingHash(props)}`}>{props.children}</Link>
                 </Typography>
             )
         },
 
         async h2(props) { 
             return (
-                <Typography id={`${await shortHash(props)}`} variant='h2' className={props.className} sx={{fontSize:'2.25rem', fontWeight:'bolder', marginBlock:'1rem'}}>
-                    <Link sx={{paddingRight:1}} href={`#${await shortHash(props)}`}>#</Link>
-                    <Link color='inherit' underline='none' href={`${url??''}#${await shortHash(props)}`}>{props.children}</Link>
+                <Typography id={`${await headingHash(props)}`} variant='h2' className={props.className} sx={{fontSize:'2.25rem', fontWeight:'bolder', marginBlock:'1rem'}}>
+                    <Link sx={{paddingRight:1}} href={`#${await headingHash(props)}`}>#</Link>
+                    <Link color='inherit' underline='none' href={`${url??''}#${await headingHash(props)}`}>{props.children}</Link>
                 </Typography>
             )
         },
 
         async h3(props) { 
             return (
-                <Typography id={`${await shortHash(props)}`} variant='h3' className={props.className} sx={{fontSize:'2rem', fontWeight:'bolder', marginBlock:'1rem'}}>
-                    <Link sx={{paddingRight:1}} href={`#${await shortHash(props)}`}>#</Link>
-                    <Link color='inherit' underline='none' href={`${url??''}#${await shortHash(props)}`}>{props.children}</Link>
+                <Typography id={`${await headingHash(props)}`} variant='h3' className={props.className} sx={{fontSize:'2rem', fontWeight:'bolder', marginBlock:'1rem'}}>
+                    <Link sx={{paddingRight:1}} href={`#${await headingHash(props)}`}>#</Link>
+                    <Link color='inherit' underline='none' href={`${url??''}#${await headingHash(props)}`}>{props.children}</Link>
                 </Typography>
             )
         },
 
         async h4(props) { 
             return (
-                <Typography id={`${await shortHash(props)}`} variant='h4' className={props.className} sx={{fontSize:'1.75rem', fontWeight:'bolder', marginBlock:'1rem'}}>
-                    <Link sx={{paddingRight:1}} href={`#${await shortHash(props)}`}>#</Link>
-                    <Link color='inherit' underline='none' href={`${url??''}#${await shortHash(props)}`}>{props.children}</Link>
+                <Typography id={`${await headingHash(props)}`} variant='h4' className={props.className} sx={{fontSize:'1.75rem', fontWeight:'bolder', marginBlock:'1rem'}}>
+                    <Link sx={{paddingRight:1}} href={`#${await headingHash(props)}`}>#</Link>
+                    <Link color='inherit' underline='none' href={`${url??''}#${await headingHash(props)}`}>{props.children}</Link>
                 </Typography>
             )
         },
 
         async h5(props) { 
             return (
-                <Typography id={`${await shortHash(props)}`} variant='h5' className={props.className} sx={{fontSize:'1.5rem', fontWeight:'bolder', marginBlock:'1rem'}}>
-                    <Link sx={{paddingRight:1}} href={`#${await shortHash(props)}`}>#</Link>
-                    <Link color='inherit' underline='none' href={`${url??''}#${await shortHash(props)}`}>{props.children}</Link>
+                <Typography id={`${await headingHash(props)}`} variant='h5' className={props.className} sx={{fontSize:'1.5rem', fontWeight:'bolder', marginBlock:'1rem'}}>
+                    <Link sx={{paddingRight:1}} href={`#${await headingHash(props)}`}>#</Link>
+                    <Link color='inherit' underline='none' href={`${url??''}#${await headingHash(props)}`}>{props.children}</Link>
                 </Typography>
             )
         },
 
         async h6(props) { 
             return (
-                <Typography id={`${await shortHash(props)}`} variant='h6' className={props.className} sx={{fontSize:'1.25rem', fontWeight:'bolder', marginBlock:'1rem'}}>
-                    <Link sx={{paddingRight:1}} href={`#${await shortHash(props)}`}>#</Link>
-                    <Link color='inherit' underline='none' href={`${url??''}#${await shortHash(props)}`}>{props.children}</Link>
+                <Typography id={`${await headingHash(props)}`} variant='h6' className={props.className} sx={{fontSize:'1.25rem', fontWeight:'bolder', marginBlock:'1rem'}}>
+                    <Link sx={{paddingRight:1}} href={`#${await headingHash(props)}`}>#</Link>
+                    <Link color='inherit' underline='none' href={`${url??''}#${await headingHash(props)}`}>{props.children}</Link>
                 </Typography>
             )
         },
@@ -122,7 +119,12 @@ const MakeComponents = (lang?:string, url?:string):Components => {
         },
 
         async a(props) {
-            return <Link href={props.href??''}>{ props.children }</Link>
+            let url = props.href??'';
+            const matches = url.match(/#?!hash\(([^)]+)\)$/);
+            if (matches) {
+                url = url.replace(/#?!hash\(([^)]+)\)$/, '#' + await anchorHash(matches[1]));
+            }
+            return <Link href={url}>{ props.children }</Link>
         },
 
         async img(props) {

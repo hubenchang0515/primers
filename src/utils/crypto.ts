@@ -6,3 +6,8 @@ export async function hash(algorithm:string, data:BufferSource) {
         .join(""); // convert bytes to hex string
     return hashHex;
 }
+
+// 哈希锚点
+export async function anchorHash(text:string) {
+    return (await hash('SHA-256', new TextEncoder().encode(text))).substring(0, 6);
+}
