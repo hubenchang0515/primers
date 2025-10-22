@@ -122,7 +122,7 @@ const MakeComponents = (lang?:string, url?:string):Components => {
             let url = props.href??'';
             const matches = url.match(/#?!hash\(([^)]+)\)$/);
             if (matches) {
-                url = url.replace(/#?!hash\(([^)]+)\)$/, '#' + await anchorHash(matches[1]));
+                url = url.replace(/#?!hash\(([^)]+)\)$/, '#' + await anchorHash(decodeURIComponent(matches[1])));
             }
             return <Link href={url}>{ props.children }</Link>
         },
