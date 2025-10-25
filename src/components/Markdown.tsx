@@ -303,6 +303,15 @@ const MakeComponents = (lang?:string, url?:string):Components => {
                     return <span dangerouslySetInnerHTML={{__html: match[1]}}/>
                 }
 
+                // subtitle元素，小标题
+                match = code.match(/^!subtitle([1234]?):\s*(.*)\s*([\s\S]*)/)
+                if (match) {
+                    const color = ['--mui-palette-Alert-infoFilledBg', '--mui-palette-Alert-successFilledBg', '--mui-palette-Alert-warningFilledBg', '--mui-palette-Alert-errorFilledBg'][(Number(match[1]||1)+3)%4]
+                    return <span style={{display:'flex', background:`linear-gradient(90deg, var(${color}), rgba(255,255,255,0))`}} >
+                        <span dangerouslySetInnerHTML={{__html: match[2]}}></span>
+                    </span>
+                }
+
                 const quota = ((props.node?.position?.end.offset??0) - (props.node?.position?.start.offset??0)) - (props.children as string)?.length||0;
                 const color = quota === 4 ? 'var(--mui-palette-primary-contrastText)' : quota === 6 ? 'var(--mui-palette-secondary-contrastText)' : 'var(--mui-palette-text-primary)';
                 const background = quota === 4 ? 'var(--mui-palette-primary-main)' : quota === 6 ? 'var(--mui-palette-secondary-main)' : 'var(--mui-palette-action-selected)';
