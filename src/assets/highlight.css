@@ -5,10 +5,16 @@ code {
 pre code.hljs {
   display: block;
   overflow-x: auto;
-  padding: 1em
+  padding: 1em;
 }
-code.hljs {
-  padding: 3px 5px
+
+
+pre code.hljs.language-shell {
+  background: #000;
+}
+
+.hljs-meta.prompt_ {
+  color: rgb(0, 189, 0);
 }
 
 /*
@@ -139,7 +145,7 @@ code.hljs {
   color: #81A1C1
 }
 .hljs-variable {
-  color: #D8DEE9
+  color: #f729bd
 }
 .hljs-template-variable {
   color: #D8DEE9
