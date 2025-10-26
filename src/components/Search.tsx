@@ -1,12 +1,13 @@
 "use client"
 
 import { SearchNode } from "@/utils/search";
-import { Box, List, ListItem, ListItemButton, ListItemText, Paper, Skeleton, Typography } from "@mui/material"
+import { Box, Button, Divider, List, ListItem, ListItemButton, ListItemText, Paper, Skeleton, Typography } from "@mui/material"
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "./Link";
 import SearchBox from "./SearchBox";
 import I18n from "@/utils/i18n";
+import { SITE_CONFIG } from "@/config";
 
 export interface SearchProps {
     lang?: string,
@@ -57,21 +58,30 @@ export default function Search(props:SearchProps) {
             {
                 waiting ? <Skeleton variant="rectangular" height={600} /> :
                 results.length === 0 ? !text ? <></> : <Paper sx={{padding:2, margin:0}}><Typography>{i18n.t("search.empty")}</Typography></Paper> :
-                <Paper sx={{padding:2, margin:0, minHeight:600}}>
-                    <Typography>{i18n.t("search.result")}</Typography>
-                    <List>
-                        {
-                            results.map((item, index) => {
-                                return (
-                                    <ListItem disablePadding key={index}>
-                                        <ListItemButton LinkComponent={Link} href={item.url}>
-                                            <ListItemText primary={item.text} secondary={item.url}/>
-                                        </ListItemButton>
-                                    </ListItem>
-                                )
-                            })
-                        }
-                    </List>
+                <Paper sx={{minHeight:600}}>
+                    <Typography sx={{display:'flex', flexWrap:'wrap'}}>
+                        <Button sx={{flex:1}} LinkComponent={Link} href={`https://www.google.com/search?q=${encodeURIComponent(text + ' site:' + SITE_CONFIG.origin + SITE_CONFIG.basePath)}`}>Google</Button>
+                        <Button sx={{flex:1}} LinkComponent={Link} href={`https://www.bing.com/search?q=${encodeURIComponent(text + ' site:' + SITE_CONFIG.origin + SITE_CONFIG.basePath)}`}>Bing</Button>
+                        <Button sx={{flex:1}} LinkComponent={Link} href={`https://www.duckduckgo.com/search?q=${encodeURIComponent(text + ' site:' + SITE_CONFIG.origin + SITE_CONFIG.basePath)}`}>DuckDuckGo</Button>
+                        <Button sx={{flex:1}} LinkComponent={Link} href={`https://www.yandex.com/search?text=${encodeURIComponent(text + ' site:' + SITE_CONFIG.origin + SITE_CONFIG.basePath)}`}>Yandex</Button>
+                    </Typography>
+                    <Divider/>
+                    <Box>
+                        <Typography sx={{fontWeight:'bold', padding:1}}>{i18n.t("search.result")}</Typography>
+                        <List sx={{margin:0, padding:0}}>
+                            {
+                                results.map((item, index) => {
+                                    return (
+                                        <ListItem disablePadding key={index}>
+                                            <ListItemButton LinkComponent={Link} href={item.url}>
+                                                <ListItemText primary={item.text} secondary={item.url}/>
+                                            </ListItemButton>
+                                        </ListItem>
+                                    )
+                                })
+                            }
+                        </List>
+                    </Box>
                 </Paper>
             }
         </Box>
