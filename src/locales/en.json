@@ -35,6 +35,10 @@
         "updated_in": "Updated in"
     },
 
+    "code": {
+        "show": "Show"
+    },
+
     "shift": {
         "run": "Run Code"
     },

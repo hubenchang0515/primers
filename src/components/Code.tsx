@@ -1,12 +1,14 @@
 import { include } from "@/utils/include";
 import Graphviz from "./Graphviz";
 import Mermaid from "./Mermaid";
-import { Box } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
 import hljs from "highlight.js";
 import Shift from "./Shift";
 import IframePage from "./IframePage";
 import LabelCode from "./LabelCode";
 import DOMPurify from "isomorphic-dompurify";
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import I18n from "@/utils/i18n";
 
 export interface CodeProps{
     code: string;
@@ -18,6 +20,7 @@ export interface CodeProps{
 }
 
 export default async function Code(props:CodeProps) {
+     const i18n = new I18n(props.lang);
     let code = props.code;
     const includeMatch = /\$include\((.*?)\)/.exec(props.code)
     if (includeMatch) {
@@ -87,6 +90,25 @@ export default async function Code(props:CodeProps) {
         const args = props.meta?.trim().split(/\s+/);
         const name = args.slice(1).join(" ");
         return <LabelCode name={name} code={result.value} language={result.language}/>
+    } else if (props.meta?.trim().startsWith('collapse')) {
+        // 额外标记 collapse，默认折叠
+        return (
+            <Accordion disableGutters elevation={0} square slotProps={{transition:{timeout:200}}}>
+                <AccordionSummary 
+                    expandIcon={<ArrowDropDownIcon/>} 
+                    sx={{
+                        backgroundColor: 'rgba(0, 0, 0, 0.1)',
+                        flexDirection: 'row-reverse',
+                        margin: 0,
+                    }}
+                >
+                    <Typography component="span" sx={{pl:1}}>{i18n.t("code.show")}</Typography>
+                </AccordionSummary>
+                <AccordionDetails sx={{margin:0, padding:0}}>
+                    <code className={`language-${result.language} hljs`}  dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(result.value)}}></code>
+                </AccordionDetails>
+            </Accordion>
+        )
     } else if (props.language) {
         // 没有额外标记，正常渲染语法高亮
         return (
