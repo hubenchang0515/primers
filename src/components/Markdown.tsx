@@ -1,4 +1,4 @@
-import { Alert, AlertProps, Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import { Alert, AlertProps, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import ReactMarkdown, { Components } from 'react-markdown'
 import { anchorHash } from '@/utils/crypto';
 import { visit } from 'unist-util-visit';
@@ -7,17 +7,9 @@ import { Paragraph } from 'mdast';
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math';
 import rehypeMathjax from 'rehype-mathjax';
-import hljs from 'highlight.js';
 import { ComponentProps, ElementType } from 'react';
 import Image from './Image';
-import DOMPurify from "isomorphic-dompurify";
 import Link from './Link';
-import Mermaid from './Mermaid';
-import Graphviz from './Graphviz';
-import IframePage from './IframePage';
-import { include } from '@/utils/include';
-import Shift from './Shift';
-import LabelCode from './LabelCode';
 import Code from './Code';
 
 export interface MarkdownProps {
@@ -198,7 +190,7 @@ const MakeComponents = (lang?:string, url?:string):Components => {
         },
 
         async code(props) {
-            let code = props.children as string ?? '';
+            const code = props.children as string ?? '';
             const languageMatch = /language-(\w+)/.exec(props.className || '');
             if (languageMatch) {
                 return <Code lang={lang} code={code} language={languageMatch[1].trim()} meta={props.node?.data?.meta} start={props.node?.position?.start.offset??0} end={props.node?.position?.end.offset??0}/>
