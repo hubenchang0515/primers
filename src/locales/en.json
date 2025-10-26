@@ -46,6 +46,7 @@
     "search": {
         "search": "Search",
         "result": "Search Result",
-        "empty": "No relevant content was found. It is recommended to reduce or shorten the keywords."
+        "empty": "No relevant content was found. It is recommended to reduce or shorten the keywords.",
+        "try": "Click the search engine button above to conduct external search."
     }
 }

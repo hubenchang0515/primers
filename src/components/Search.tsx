@@ -1,7 +1,7 @@
 "use client"
 
 import { SearchNode } from "@/utils/search";
-import { Box, Button, Divider, List, ListItem, ListItemButton, ListItemText, Paper, Skeleton, Typography } from "@mui/material"
+import { Alert, Box, Button, Divider, List, ListItem, ListItemButton, ListItemText, Paper, Skeleton, Typography } from "@mui/material"
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "./Link";
@@ -56,31 +56,35 @@ export default function Search(props:SearchProps) {
         <Box sx={{display:'flex', flexDirection:'column', gap:1}}>
             <SearchBox lang={props.lang} defaultValue={text??""}/>
             {
-                waiting ? <Skeleton variant="rectangular" height={600} /> :
-                results.length === 0 ? !text ? <></> : <Paper sx={{padding:2, margin:0}}><Typography>{i18n.t("search.empty")}</Typography></Paper> :
-                <Paper sx={{minHeight:600}}>
+                <Paper>
                     <Typography sx={{display:'flex', flexWrap:'wrap'}}>
-                        <Button sx={{flex:1}} LinkComponent={Link} href={`https://www.google.com/search?q=${encodeURIComponent(text + ' site:' + SITE_CONFIG.origin + SITE_CONFIG.basePath)}`}>Google</Button>
-                        <Button sx={{flex:1}} LinkComponent={Link} href={`https://www.bing.com/search?q=${encodeURIComponent(text + ' site:' + SITE_CONFIG.origin + SITE_CONFIG.basePath)}`}>Bing</Button>
-                        <Button sx={{flex:1}} LinkComponent={Link} href={`https://www.duckduckgo.com/search?q=${encodeURIComponent(text + ' site:' + SITE_CONFIG.origin + SITE_CONFIG.basePath)}`}>DuckDuckGo</Button>
-                        <Button sx={{flex:1}} LinkComponent={Link} href={`https://www.yandex.com/search?text=${encodeURIComponent(text + ' site:' + SITE_CONFIG.origin + SITE_CONFIG.basePath)}`}>Yandex</Button>
+                        <Button sx={{flex:1, textTransform:'none'}} LinkComponent={Link} href={`https://www.google.com/search?q=${encodeURIComponent(text + ' site:' + SITE_CONFIG.origin + SITE_CONFIG.basePath)}`}>Google</Button>
+                        <Button sx={{flex:1, textTransform:'none'}} LinkComponent={Link} href={`https://www.bing.com/search?q=${encodeURIComponent(text + ' site:' + SITE_CONFIG.origin + SITE_CONFIG.basePath)}`}>Bing</Button>
+                        <Button sx={{flex:1, textTransform:'none'}} LinkComponent={Link} href={`https://www.duckduckgo.com/search?q=${encodeURIComponent(text + ' site:' + SITE_CONFIG.origin + SITE_CONFIG.basePath)}`}>DuckDuckGo</Button>
+                        <Button sx={{flex:1, textTransform:'none'}} LinkComponent={Link} href={`https://www.yandex.com/search?text=${encodeURIComponent(text + ' site:' + SITE_CONFIG.origin + SITE_CONFIG.basePath)}`}>Yandex</Button>
                     </Typography>
                     <Divider/>
-                    <Box>
-                        <Typography sx={{fontWeight:'bold', padding:1}}>{i18n.t("search.result")}</Typography>
-                        <List sx={{margin:0, padding:0}}>
-                            {
-                                results.map((item, index) => {
-                                    return (
-                                        <ListItem disablePadding key={index}>
-                                            <ListItemButton LinkComponent={Link} href={item.url}>
-                                                <ListItemText primary={item.text} secondary={item.url}/>
-                                            </ListItemButton>
-                                        </ListItem>
-                                    )
-                                })
-                            }
-                        </List>
+                    <Alert severity="info">{i18n.t("search.try")}</Alert>
+                    <Box sx={{minHeight:600}}>
+                        {
+                            waiting ? <Skeleton variant="rectangular" height={600} /> :
+                            results.length === 0 ? !text ? <></> : <Alert severity="warning">{i18n.t("search.empty")}</Alert> :
+                            <Box>
+                                <List sx={{margin:0, padding:0}}>
+                                    {
+                                        results.map((item, index) => {
+                                            return (
+                                                <ListItem disablePadding key={index}>
+                                                    <ListItemButton LinkComponent={Link} href={item.url}>
+                                                        <ListItemText primary={item.text} secondary={item.url}/>
+                                                    </ListItemButton>
+                                                </ListItem>
+                                            )
+                                        })
+                                    }
+                                </List>
+                            </Box>
+                        }
                     </Box>
                 </Paper>
             }
