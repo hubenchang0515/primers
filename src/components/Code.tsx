@@ -144,8 +144,9 @@ export default async function Code(props:CodeProps) {
         // subtitle元素，小标题
         match = code.match(/^!subtitle([1234]?):\s*(.*)\s*([\s\S]*)/)
         if (match) {
-            const color = ['--mui-palette-Alert-infoFilledBg', '--mui-palette-Alert-successFilledBg', '--mui-palette-Alert-warningFilledBg', '--mui-palette-Alert-errorFilledBg'][(Number(match[1]||1)+3)%4]
-            return <span style={{display:'flex', background:`linear-gradient(90deg, var(${color}), rgba(255,255,255,0))`}} >
+            const color = ['--mui-palette-Alert-infoFilledColor', '--mui-palette-Alert-successFilledColor', '--mui-palette-Alert-warningFilledColor', '--mui-palette-Alert-errorFilledColor'][(Number(match[1]||1)+3)%4]
+            const bg = ['--mui-palette-Alert-infoFilledBg', '--mui-palette-Alert-successFilledBg', '--mui-palette-Alert-warningFilledBg', '--mui-palette-Alert-errorFilledBg'][(Number(match[1]||1)+3)%4]
+            return <span style={{display:'flex', color:`var(${color})`, background:`linear-gradient(90deg, var(${bg}), rgba(255,255,255,0))`}} >
                 <span dangerouslySetInnerHTML={{__html: match[2]}}></span>
             </span>
         }
