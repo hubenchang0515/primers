@@ -26,8 +26,8 @@ export interface TitleBarProps {
 export default function TitleBar(props:TitleBarProps) {
     return (
         <Box component={'header'}>
-            <AppBar component="nav" color="primary" elevation={24} position="static">
-                <Toolbar variant="dense">
+            <AppBar component="nav" color="primary" elevation={24} position="static" >
+                <Toolbar variant="dense" sx={{paddingRight:{xs:0, md:'4px'}}}>
                     <IconButton
                         size="large"
                         edge="start"
@@ -77,14 +77,13 @@ export default function TitleBar(props:TitleBarProps) {
                     </Box>
                     <Box sx={{ display:{xs:'block', md:'none'}}}>
                         <IconButton
-                            size="large"
                             edge="start"
                             color="inherit"
                             aria-label="search"
                             LinkComponent={Link}
                             href={`/document/${props.lang}/search`}
                         >
-                            <SearchIcon />
+                            <SearchIcon/>
                         </IconButton>
                     </Box>
                 </Toolbar>

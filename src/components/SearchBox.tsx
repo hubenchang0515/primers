@@ -17,8 +17,9 @@ export default function SearchBox(props:SearchBoxProps) {
         <Paper
             component="form"
             action={`${SITE_CONFIG.basePath}/document/${props.lang}/search`}
-            sx={{ display: 'flex', alignItems: 'center', width: '100%'}}
+            sx={{ display: 'flex', alignItems: 'center'}}
             elevation={props.elevation}
+            square
         >
                 <InputBase
                     autoComplete="off"
