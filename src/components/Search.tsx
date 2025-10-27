@@ -58,10 +58,10 @@ export default function Search(props:SearchProps) {
             {
                 <Paper sx={{flex:1, display:'flex', flexDirection:'column'}}>
                     <Typography sx={{display:'flex', flexWrap:'wrap'}}>
-                        <Button sx={{flex:1, textTransform:'none'}} LinkComponent={Link} href={`https://www.google.com/search?q=${encodeURIComponent(text + ' site:' + SITE_CONFIG.origin + SITE_CONFIG.basePath)}`}>Google</Button>
-                        <Button sx={{flex:1, textTransform:'none'}} LinkComponent={Link} href={`https://www.bing.com/search?q=${encodeURIComponent(text + ' site:' + SITE_CONFIG.origin + SITE_CONFIG.basePath)}`}>Bing</Button>
-                        <Button sx={{flex:1, textTransform:'none'}} LinkComponent={Link} href={`https://www.duckduckgo.com/search?q=${encodeURIComponent(text + ' site:' + SITE_CONFIG.origin + SITE_CONFIG.basePath)}`}>DuckDuckGo</Button>
-                        <Button sx={{flex:1, textTransform:'none'}} LinkComponent={Link} href={`https://www.yandex.com/search?text=${encodeURIComponent(text + ' site:' + SITE_CONFIG.origin + SITE_CONFIG.basePath)}`}>Yandex</Button>
+                        <Button sx={{flex:1, textTransform:'none'}} LinkComponent={Link} disabled={!text} href={`https://www.google.com/search?q=${encodeURIComponent(text + ' site:' + SITE_CONFIG.origin + SITE_CONFIG.basePath)}`}>Google</Button>
+                        <Button sx={{flex:1, textTransform:'none'}} LinkComponent={Link} disabled={!text} href={`https://www.bing.com/search?q=${encodeURIComponent(text + ' site:' + SITE_CONFIG.origin + SITE_CONFIG.basePath)}`}>Bing</Button>
+                        <Button sx={{flex:1, textTransform:'none'}} LinkComponent={Link} disabled={!text} href={`https://www.duckduckgo.com/search?q=${encodeURIComponent(text + ' site:' + SITE_CONFIG.origin + SITE_CONFIG.basePath)}`}>DuckDuckGo</Button>
+                        <Button sx={{flex:1, textTransform:'none'}} LinkComponent={Link} disabled={!text} href={`https://www.yandex.com/search?text=${encodeURIComponent(text + ' site:' + SITE_CONFIG.origin + SITE_CONFIG.basePath)}`}>Yandex</Button>
                     </Typography>
                     <Divider/>
                     <Alert severity="info">{i18n.t("search.try")}</Alert>
