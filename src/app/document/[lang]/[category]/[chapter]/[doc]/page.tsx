@@ -63,27 +63,30 @@ export default async function DocPage({params}:{params:Promise<PageParams>}) {
     const prev = await prevDoc(decodeURIComponent(path.lang), decodeURIComponent(path.category), decodeURIComponent(path.chapter), decodeURIComponent(path.doc));
     const next = await nextDoc(decodeURIComponent(path.lang), decodeURIComponent(path.category), decodeURIComponent(path.chapter), decodeURIComponent(path.doc));
 
-    const titleItems:TitleBarItem[] = (await categories(decodeURIComponent(path.lang))).filter(item=>!item.endsWith('.hide')).map((item) => {
+    const titleItems = (await categories(decodeURIComponent(path.lang))).filter(item=>!item.endsWith('.hide')).map((item) => {
         return {
+            name: item,
             label: title(item),
             url: `/document/${path.lang}/${item}`,
         }
     })
-    const currentTitle = titleItems.findIndex(item=>item.label === title(decodeURIComponent(path.category)));
+    const currentTitle = titleItems.findIndex(item=>item.name === decodeURIComponent(path.category));
 
-    const sideGroups:SideMenuGroup[] = await Promise.all(((await chapters(decodeURIComponent(path.lang), decodeURIComponent(path.category))).filter(item=>!item.endsWith('.hide')).map(async (chapter) => {
+    const sideGroups = await Promise.all(((await chapters(decodeURIComponent(path.lang), decodeURIComponent(path.category))).filter(item=>!item.endsWith('.hide')).map(async (chapter) => {
         return {
+            name: chapter,
             label: title(chapter),
             items: (await docs(decodeURIComponent(path.lang), decodeURIComponent(path.category), decodeURIComponent(chapter))).filter(item=>!item.endsWith('.hide')).map((doc) => {
                 return {
+                    name: doc,
                     label: title(doc),
                     url: `/document/${path.lang}/${path.category}/${chapter}/${doc}`,
                 };
             }),
         };
     })));
-    const selectedSideGroup = sideGroups.findIndex(chapter=>chapter.label === title(decodeURIComponent(path.chapter)));
-    const selectedDoc = selectedSideGroup >= 0 && selectedSideGroup < sideGroups.length ? sideGroups[selectedSideGroup].items?.findIndex(item=>item.label === title(decodeURIComponent(path.doc))) : undefined;
+    const selectedSideGroup = sideGroups.findIndex(chapter=>chapter.name === decodeURIComponent(path.chapter));
+    const selectedDoc = selectedSideGroup >= 0 && selectedSideGroup < sideGroups.length ? sideGroups[selectedSideGroup].items?.findIndex(item=>item.name === decodeURIComponent(path.doc)) : undefined;
 
     const breadcrumb = {
         "@context": "https://schema.org",
