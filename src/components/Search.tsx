@@ -53,10 +53,10 @@ export default function Search(props:SearchProps) {
     }, [props.root, text]);
 
     return (
-        <Box sx={{display:'flex', flexDirection:'column', gap:1}}>
+        <Box sx={{flex:1, display:'flex', flexDirection:'column', gap:1}}>
             <SearchBox lang={props.lang} defaultValue={text??""}/>
             {
-                <Paper>
+                <Paper sx={{flex:1, display:'flex', flexDirection:'column'}}>
                     <Typography sx={{display:'flex', flexWrap:'wrap'}}>
                         <Button sx={{flex:1, textTransform:'none'}} LinkComponent={Link} href={`https://www.google.com/search?q=${encodeURIComponent(text + ' site:' + SITE_CONFIG.origin + SITE_CONFIG.basePath)}`}>Google</Button>
                         <Button sx={{flex:1, textTransform:'none'}} LinkComponent={Link} href={`https://www.bing.com/search?q=${encodeURIComponent(text + ' site:' + SITE_CONFIG.origin + SITE_CONFIG.basePath)}`}>Bing</Button>
@@ -65,9 +65,9 @@ export default function Search(props:SearchProps) {
                     </Typography>
                     <Divider/>
                     <Alert severity="info">{i18n.t("search.try")}</Alert>
-                    <Box sx={{minHeight:600}}>
+                    <Box sx={{flex:1}}>
                         {
-                            waiting ? <Skeleton variant="rectangular" height={600} /> :
+                            waiting ? <Skeleton variant="rectangular" height='100%' /> :
                             results.length === 0 ? !text ? <></> : <Alert severity="warning">{i18n.t("search.empty")}</Alert> :
                             <Box>
                                 <List sx={{margin:0, padding:0}}>
