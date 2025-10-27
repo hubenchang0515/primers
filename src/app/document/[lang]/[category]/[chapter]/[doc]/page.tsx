@@ -2,8 +2,6 @@ import { Content } from "@/components/Content";
 import JsonLd from "@/components/JsonLd";
 import MainPage from "@/components/MainPage";
 import Pagination from "@/components/Pagination";
-import { SideMenuGroup } from "@/components/SideMenu";
-import { TitleBarItem } from "@/components/TitleBar";
 import { SITE_CONFIG } from "@/config";
 import { categories, chapters, content, docs, languages, docState, title, prevDoc, nextDoc } from "@/utils/document";
 import { Paper } from "@mui/material";
