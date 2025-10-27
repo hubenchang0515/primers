@@ -25,6 +25,24 @@ export function title(filename:string) {
     }
 }
 
+export function sort(x:string, y:string) {
+    const xPrefix = x.split('.')[0];
+    const yPrefix = y.split('.')[0];
+
+    const xNum = Number(xPrefix);
+    const yNum = Number(yPrefix)
+
+    if (!isNaN(xNum) && !isNaN(yNum)) {
+        return xNum - yNum;
+    } else if (!isNaN(xNum) && isNaN(yNum)) {
+        return -1;
+    } else if (isNaN(xNum) && !isNaN(yNum)) {
+        return 1;
+    } else {
+        return x.localeCompare(y);
+    }
+}
+
 // 获取语言列表
 export async function languages() {
     const dir = path.join(process.cwd(), DOCUMENT_CONFIG.root, 'document');
@@ -35,21 +53,21 @@ export async function languages() {
 // 获取分类列表（一级菜单项，顶部标题栏选项）
 export async function categories(lang:string) {
     const dir = path.join(process.cwd(), DOCUMENT_CONFIG.root, 'document', lang);
-    const files = await fs.readdir(dir, { withFileTypes: true });
+    const files = (await fs.readdir(dir, { withFileTypes: true })).sort((x, y) => sort(x.name, y.name));
     return files.filter(file=>file.isDirectory()).map(file=>file.name);
 }
 
 // 获取章节列表（二级菜单项，侧边栏分组）
 export async function chapters(lang:string, category:string) {
     const dir = path.join(process.cwd(), DOCUMENT_CONFIG.root, 'document', lang, category);
-    const files = await fs.readdir(dir, { withFileTypes: true });
+    const files = (await fs.readdir(dir, { withFileTypes: true })).sort((x, y) => sort(x.name, y.name));;
     return files.filter(file=>file.isDirectory()).map(file=>file.name);
 }
 
 // 获取文档列表（三级菜单项）
 export async function docs(lang:string, category:string, chapter:string) {
     const dir = path.join(process.cwd(), DOCUMENT_CONFIG.root, 'document', lang, category, chapter);
-    const files = await fs.readdir(dir, { withFileTypes: true });
+    const files = (await fs.readdir(dir, { withFileTypes: true })).sort((x, y) => sort(x.name, y.name));;
     return files.filter(file=>file.isFile()).map(file=>file.name)
 }
 
