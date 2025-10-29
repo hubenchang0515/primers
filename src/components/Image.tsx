@@ -13,7 +13,7 @@ export default async function Image(props:ImageProps) {
     try {
         const info = await imageInfo(props.src??"", props.absolute);
         return (
-            <NextImage src={info.src} alt={props.alt??'image'} width={info.width} height={info.height} style={props.style}/>
+            <NextImage src={info.src} alt={props.alt??'image'} width={info.width} height={info.height} style={props.style} rel="nofollow"/>
         )
     } catch {
         return <NextImage src='/404' width={160} height={90} alt={props.alt??'image'} style={props.style}/>
