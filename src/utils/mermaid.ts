@@ -1,29 +1,22 @@
 import { execFile } from "child_process";
-import path from "path";
-import os from "os";
-import fs from 'fs/promises';
 
 export async function render(code:string) {
-    return new Promise<string|undefined>((resolve) => {
-        const tempDir = os.tmpdir();
-        const svgFile = path.join(tempDir, `mermaid-${Date.now()}.svg`);
+    return new Promise<string>((resolve, reject) => {
         const process = execFile('mmdc', 
             [
                 '-p', 'puppeteer-config.json', 
                 '-c', 'mermaid-config.json', 
                 '-b', 'transparent',
-                '--output', svgFile, 
-                '--input', '-'
+                '-e', 'svg',
+                '--output', '-',    // 输出到 stdout
+                '--input', '-'      // 从 stdin 读取输入
             ], 
-            async (err, stdout) => {
-                if (err || stdout.trim().length === 0) {
-                    if (err) {
-                        console.error(err);
-                    }
-
-                    resolve(undefined);
+            async (err, stdout, stderr) => {
+                if (err) {
+                    console.error(err, stderr);
+                    reject(stderr.trim());
                 } else {
-                    resolve(await fs.readFile(svgFile, 'utf-8'));
+                    resolve(stdout.trim());
                 }
             }
         );
