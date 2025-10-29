@@ -4,7 +4,7 @@ import MainPage from "@/components/MainPage";
 import { SideMenuGroup } from "@/components/SideMenu";
 import { TitleBarItem } from "@/components/TitleBar";
 import { SITE_CONFIG } from "@/config";
-import { categories, chapters, content, docs, languages, docState, title } from "@/utils/document";
+import { categories, chapters, content, docs, languages, docState, title, text } from "@/utils/document";
 import { Paper } from "@mui/material";
 import { Metadata } from "next";
 
@@ -35,7 +35,8 @@ export async function generateMetadata({params}:{params:Promise<PageParams>}): P
     
     return {
         title: `${title(decodeURIComponent(path.category))}  - ${SITE_CONFIG.title}`,
-        description: markdown.replace(/\n+/g, '').substring(0, 150),
+        description: text(markdown).substring(0, 150),
+        robots: "index, follow",
         icons: {
             icon: `${SITE_CONFIG.basePath}/favicon.svg`,
         },

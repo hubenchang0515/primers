@@ -3,7 +3,7 @@ import { Content } from "@/components/Content";
 import MainPage from "@/components/MainPage";
 import { TitleBarItem } from "@/components/TitleBar";
 import { SITE_CONFIG } from "@/config";
-import { categories, content, languages, docState, title } from "@/utils/document";
+import { categories, content, languages, docState, title, text } from "@/utils/document";
 import { Paper } from "@mui/material";
 import { Metadata } from "next";
 import SearchBox from "@/components/SearchBox";
@@ -31,7 +31,8 @@ export async function generateMetadata({params}:{params:Promise<PageParams>}): P
     
     return {
         title: SITE_CONFIG.title,
-        description: markdown.replace(/\n+/g, '').substring(0, 150),
+        description: text(markdown).substring(0, 150),
+        robots: "index, follow",
         icons: {
             icon: `${SITE_CONFIG.basePath}/favicon.svg`,
         },

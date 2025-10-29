@@ -3,7 +3,7 @@ import JsonLd from "@/components/JsonLd";
 import MainPage from "@/components/MainPage";
 import Pagination from "@/components/Pagination";
 import { SITE_CONFIG } from "@/config";
-import { categories, chapters, content, docs, languages, docState, title, prevDoc, nextDoc } from "@/utils/document";
+import { categories, chapters, content, docs, languages, docState, title, prevDoc, nextDoc, text } from "@/utils/document";
 import { Paper } from "@mui/material";
 import { Metadata } from "next";
 
@@ -42,7 +42,8 @@ export async function generateMetadata({params}:{params:Promise<PageParams>}): P
     
     return {
         title: `${title(decodeURIComponent(path.category))} ${title(decodeURIComponent(path.chapter))} ${title(decodeURIComponent(path.doc))} - ${SITE_CONFIG.title}`,
-        description: markdown.replace(/\n+/g, '').substring(0, 150),
+        description: text(markdown).substring(0, 150),
+        robots: "index, follow",
         icons: {
             icon: `${SITE_CONFIG.basePath}/favicon.svg`,
         },
