@@ -151,6 +151,7 @@ export default async function Code(props:CodeProps) {
             </span>
         }
 
+        // 普通行内代码
         const quota = ((props.end) - (props.start)) - props.code.length;
         const color = quota === 4 ? 'var(--mui-palette-primary-contrastText)' : quota === 6 ? 'var(--mui-palette-secondary-contrastText)' : 'var(--mui-palette-text-primary)';
         const background = quota === 4 ? 'var(--mui-palette-primary-main)' : quota === 6 ? 'var(--mui-palette-secondary-main)' : 'var(--mui-palette-action-selected)';
@@ -163,8 +164,8 @@ export default async function Code(props:CodeProps) {
                     padding: '0.2em 4px 1px 4px', 
                     verticalAlign: '0.1em', 
                     border: '1px solid var(--mui-palette-background-paper)',
-                    wordBreak: 'keep-all',
-                    whiteSpace: 'pre',
+                    wordBreak: 'break-all',
+                    whiteSpace: 'pre-wrap',
                 }}
             >
                 {code}

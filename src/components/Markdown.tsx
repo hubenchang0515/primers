@@ -50,7 +50,7 @@ const MakeComponents = (lang?:string, url?:string):Components => {
     return {
         async h1(props) { 
             return (
-                <Typography id={`${await headingHash(props)}`} variant='h1' className={props.className} sx={{fontSize:'2.5rem', fontWeight:'bolder', marginBlock:'1rem'}}>
+                <Typography id={`${await headingHash(props)}`} variant='h1' className={props.className} sx={{fontSize:'clamp(1.25rem, 6vw, 2.5rem)', fontWeight:'bolder', marginBlock:'1rem'}}>
                     <Link sx={{paddingRight:1}} href={`#${await headingHash(props)}`}>#</Link>
                     <Link color='inherit' underline='none' href={`${url??''}#${await headingHash(props)}`}>{props.children}</Link>
                 </Typography>
@@ -59,7 +59,7 @@ const MakeComponents = (lang?:string, url?:string):Components => {
 
         async h2(props) { 
             return (
-                <Typography id={`${await headingHash(props)}`} variant='h2' className={props.className} sx={{fontSize:'2.25rem', fontWeight:'bolder', marginBlock:'1rem'}}>
+                <Typography id={`${await headingHash(props)}`} variant='h2' className={props.className} sx={{fontSize:'clamp(1rem, 5vw, 2.25rem)', fontWeight:'bolder', marginBlock:'1rem', wordBreak:'break-all'}}>
                     <Link sx={{paddingRight:1}} href={`#${await headingHash(props)}`}>#</Link>
                     <Link color='inherit' underline='none' href={`${url??''}#${await headingHash(props)}`}>{props.children}</Link>
                 </Typography>
@@ -68,7 +68,7 @@ const MakeComponents = (lang?:string, url?:string):Components => {
 
         async h3(props) { 
             return (
-                <Typography id={`${await headingHash(props)}`} variant='h3' className={props.className} sx={{fontSize:'2rem', fontWeight:'bolder', marginBlock:'1rem'}}>
+                <Typography id={`${await headingHash(props)}`} variant='h3' className={props.className} sx={{fontSize:'clamp(1rem, 4vw, 2rem)', fontWeight:'bolder', marginBlock:'1rem', wordBreak:'break-all'}}>
                     <Link sx={{paddingRight:1}} href={`#${await headingHash(props)}`}>#</Link>
                     <Link color='inherit' underline='none' href={`${url??''}#${await headingHash(props)}`}>{props.children}</Link>
                 </Typography>
@@ -77,7 +77,7 @@ const MakeComponents = (lang?:string, url?:string):Components => {
 
         async h4(props) { 
             return (
-                <Typography id={`${await headingHash(props)}`} variant='h4' className={props.className} sx={{fontSize:'1.75rem', fontWeight:'bolder', marginBlock:'1rem'}}>
+                <Typography id={`${await headingHash(props)}`} variant='h4' className={props.className} sx={{fontSize:'clamp(1rem, 3vw, 1.75rem)', fontWeight:'bolder', marginBlock:'1rem', wordBreak:'break-all'}}>
                     <Link sx={{paddingRight:1}} href={`#${await headingHash(props)}`}>#</Link>
                     <Link color='inherit' underline='none' href={`${url??''}#${await headingHash(props)}`}>{props.children}</Link>
                 </Typography>
@@ -86,7 +86,7 @@ const MakeComponents = (lang?:string, url?:string):Components => {
 
         async h5(props) { 
             return (
-                <Typography id={`${await headingHash(props)}`} variant='h5' className={props.className} sx={{fontSize:'1.5rem', fontWeight:'bolder', marginBlock:'1rem'}}>
+                <Typography id={`${await headingHash(props)}`} variant='h5' className={props.className} sx={{fontSize:'clamp(1rem, 2vw, 1.5rem)', fontWeight:'bolder', marginBlock:'1rem', wordBreak:'break-all'}}>
                     <Link sx={{paddingRight:1}} href={`#${await headingHash(props)}`}>#</Link>
                     <Link color='inherit' underline='none' href={`${url??''}#${await headingHash(props)}`}>{props.children}</Link>
                 </Typography>
@@ -95,7 +95,7 @@ const MakeComponents = (lang?:string, url?:string):Components => {
 
         async h6(props) { 
             return (
-                <Typography id={`${await headingHash(props)}`} variant='h6' className={props.className} sx={{fontSize:'1.25rem', fontWeight:'bolder', marginBlock:'1rem'}}>
+                <Typography id={`${await headingHash(props)}`} variant='h6' className={props.className} sx={{fontSize:'clamp(1rem, 1vw, 1.25rem)', fontWeight:'bolder', marginBlock:'1rem', wordBreak:'break-all'}}>
                     <Link sx={{paddingRight:1}} href={`#${await headingHash(props)}`}>#</Link>
                     <Link color='inherit' underline='none' href={`${url??''}#${await headingHash(props)}`}>{props.children}</Link>
                 </Typography>
