@@ -6,6 +6,7 @@ import { SITE_CONFIG } from "@/config";
 import { categories, chapters, content, docs, languages, docState, title, prevDoc, nextDoc, text } from "@/utils/document";
 import { Paper } from "@mui/material";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 export interface PageParams {
     lang:string;        // 语言： 例如 中文（zh）、英文（en）
@@ -21,12 +22,21 @@ export async function generateStaticParams() {
         for (const category of await categories(lang)) {
             for (const chapter of await chapters(lang, category)) {
                 for (const doc of await docs(lang, category, chapter)) {
-                    paramsList.push({
-                        lang: lang,
-                        category: category,
-                        chapter: chapter,
-                        doc: doc,
-                    });
+                    if (process.env.NODE_ENV === 'development') {
+                        paramsList.push({
+                            lang: encodeURIComponent(lang),
+                            category: encodeURIComponent(category),
+                            chapter: encodeURIComponent(chapter),
+                            doc: encodeURIComponent(doc),
+                        });
+                    } else {
+                        paramsList.push({
+                            lang: lang,
+                            category: category,
+                            chapter: chapter,
+                            doc: doc,
+                        });
+                    }
                 }
             }
         }
@@ -56,8 +66,8 @@ export async function generateMetadata({params}:{params:Promise<PageParams>}): P
 
 // 生成页面
 export default async function DocPage({params}:{params:Promise<PageParams>}) {
-    const path = (await params);
-    const markdown = await content(decodeURIComponent(path.lang), decodeURIComponent(path.category), decodeURIComponent(path.chapter), decodeURIComponent(path.doc));
+    const path = (await params.catch(notFound));
+    const markdown = await content(decodeURIComponent(path.lang), decodeURIComponent(path.category), decodeURIComponent(path.chapter), decodeURIComponent(path.doc)).catch(notFound);
     const state = await docState(decodeURIComponent(path.lang), decodeURIComponent(path.category), decodeURIComponent(path.chapter), decodeURIComponent(path.doc));
     const prev = await prevDoc(decodeURIComponent(path.lang), decodeURIComponent(path.category), decodeURIComponent(path.chapter), decodeURIComponent(path.doc));
     const next = await nextDoc(decodeURIComponent(path.lang), decodeURIComponent(path.category), decodeURIComponent(path.chapter), decodeURIComponent(path.doc));

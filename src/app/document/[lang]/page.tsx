@@ -7,6 +7,7 @@ import { categories, content, languages, docState, title, text } from "@/utils/d
 import { Paper } from "@mui/material";
 import { Metadata } from "next";
 import SearchBox from "@/components/SearchBox";
+import { notFound } from "next/navigation";
 
 export interface PageParams {
     lang:string;        // 语言： 例如 中文（zh）、英文（en）
@@ -16,9 +17,15 @@ export interface PageParams {
 export async function generateStaticParams() {
     const paramsList:PageParams[] = []
     for (const lang of await languages()) {
-        paramsList.push({
-            lang: lang,
-        });
+        if (process.env.NODE_ENV === 'development') {
+            paramsList.push({
+                lang: encodeURIComponent(lang),
+            });
+        } else {
+            paramsList.push({
+                lang: lang,
+            });
+        }
     }
     return paramsList;
 }
@@ -44,8 +51,8 @@ export async function generateMetadata({params}:{params:Promise<PageParams>}): P
 
 // 生成页面
 export default async function LanguagePage({params}:{params:Promise<PageParams>}) {
-    const path = (await params);
-    const markdown = await content(path.lang, "00.index.md");
+    const path = (await params.catch(notFound));
+    const markdown = await content(path.lang, "00.index.md").catch(notFound);
     const state = await docState(path.lang, "00.index.md");
 
     const titleItems:TitleBarItem[] = (await categories(decodeURIComponent(path.lang))).filter(item=>!item.endsWith('.hide')).map((item) => {

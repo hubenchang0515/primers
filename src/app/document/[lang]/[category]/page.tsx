@@ -7,6 +7,7 @@ import { SITE_CONFIG } from "@/config";
 import { categories, chapters, content, docs, languages, docState, title, text } from "@/utils/document";
 import { Paper } from "@mui/material";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 export interface PageParams {
     lang:string;        // 语言： 例如 中文（zh）、英文（en）
@@ -18,10 +19,17 @@ export async function generateStaticParams() {
     const paramsList:PageParams[] = []
     for (const lang of await languages()) {
         for (const category of await categories(lang)) {
-            paramsList.push({
-                lang: lang,
-                category: category,
-            });
+            if (process.env.NODE_ENV === 'development') {
+                paramsList.push({
+                    lang: encodeURIComponent(lang),
+                    category: encodeURIComponent(category),
+                });
+            } else {
+                paramsList.push({
+                    lang: lang,
+                    category: category,
+                });
+            }
         }
     }
     return paramsList;
@@ -48,8 +56,8 @@ export async function generateMetadata({params}:{params:Promise<PageParams>}): P
 
 // 生成页面
 export default async function CategoryPage({params}:{params:Promise<PageParams>}) {
-    const path = (await params);
-    const markdown = await content(path.lang, decodeURIComponent(path.category), "00.index.md");
+    const path = (await params.catch(notFound));
+    const markdown = await content(path.lang, decodeURIComponent(path.category), "00.index.md").catch(notFound);
     const state = await docState(path.lang, decodeURIComponent(path.category), "00.index.md");
 
     const titleItems:TitleBarItem[] = (await categories(decodeURIComponent(path.lang))).filter(item=>!item.endsWith('.hide')).map((item) => {

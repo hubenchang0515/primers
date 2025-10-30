@@ -114,9 +114,13 @@ export async function docs(lang:string, category:string, chapter:string) {
 
 // 获取文档内容
 export async function content(lang:string, category:string, chapter?:string, doc?:string) {
-    const file = path.join(process.cwd(), DOCUMENT_CONFIG.root, 'document', lang, category, chapter??"", doc??"");
-    const text = await fs.readFile(file, 'utf-8');
-    return text;
+    try {
+        const file = path.join(process.cwd(), DOCUMENT_CONFIG.root, 'document', lang, category, chapter??"", doc??"");
+        const text = await fs.readFile(file, 'utf-8');
+        return text;
+    } catch (err) {
+        throw err;
+    }
 }
 
 // 获取文档状态（创建与更新时间）
