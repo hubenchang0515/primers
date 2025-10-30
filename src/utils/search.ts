@@ -1,10 +1,11 @@
 import path from "path";
-import { categories, chapters, content, docs, languages } from "./document"
+import { categories, chapters, content, docs, languages, title } from "./document"
 import { anchorHash } from "./crypto";
 
 export interface SearchNode {
     url: string,
     text?: string,
+    title?: string,
     children?: SearchNode[]
 }
 
@@ -29,6 +30,7 @@ async function parseDoc(lang:string, category:string, chapter?:string, doc?:stri
 
     const node:SearchNode = {
         text: '',
+        title: title(doc??''),
         url: path.join('/document', lang, category, chapter??"", doc??""),
         children: [],
     }
@@ -48,6 +50,7 @@ async function paerseChapter(lang:string, category:string, chapter:string) {
     const childrens = await docs(lang, category, chapter);
     const node:SearchNode = {
         text: '',
+        title: title(chapter??''),
         url: path.join('/document', lang, category, chapter??""),
         children: [],
     }
@@ -64,6 +67,7 @@ async function paerseCategory(lang:string, category:string) {
     const childrens = await chapters(lang, category);
     const node:SearchNode = {
         text: '',
+        title: title(category??''),
         url: path.join('/document', lang, category),
         children: [],
     }
@@ -80,6 +84,7 @@ async function parseLanguage(lang:string) {
     const childrens = await categories(lang);
     const node:SearchNode = {
         text: '',
+        title: title(lang??''),
         url: path.join('/document', lang),
         children: [],
     }

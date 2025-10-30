@@ -48,5 +48,10 @@
         "result": "Search Result",
         "empty": "No relevant content was found. It is recommended to reduce or shorten the keywords.",
         "try": "Click the search engine button above to conduct external search."
+    },
+
+    "notfound": {
+        "alert": "Page path does not exist: ",
+        "similar": "The path may have changed, the following are suspected paths:"
     }
 }
