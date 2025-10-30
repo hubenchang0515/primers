@@ -2,7 +2,7 @@
 
 import I18n from "@/utils/i18n";
 import { Alert, List, ListItem, ListItemButton, ListItemText, Paper, Typography } from "@mui/material";
-import { usePathname } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import MainPage from "./MainPage";
 import { SearchNode } from "@/utils/search";
 import Link from "./Link";
@@ -60,12 +60,11 @@ export interface NotFoundProps {
 }
 
 export default function NotFound(props:NotFoundProps) {
-    const pathname = usePathname();
-    const items = pathname.split('/');
-    const lang = decodeURIComponent(items[2]??'');
-    const category = decodeURIComponent(items[3]??'');
-    const chapter = decodeURIComponent(items[4]??'');
-    const doc = decodeURIComponent(items[5]??'');
+    const searchParams = useSearchParams();
+    const lang = searchParams.get('lang')??''.trim();
+    const category = searchParams.get('category')??''.trim();
+    const chapter = searchParams.get('chapter')??''.trim();
+    const doc = searchParams.get('doc')??''.trim();
     const i18n = new I18n(lang); 
     const similar = findSimilar(props.root, lang, category, chapter, doc);
     
@@ -73,7 +72,10 @@ export default function NotFound(props:NotFoundProps) {
         <MainPage lang={lang} depth={1} disableDiscussion>
             <Paper sx={{flex:1}}>
                 <Typography variant="h1" align="center" sx={{fontSize:'clamp(1.25rem, 6vw, 2.5rem)', fontWeight:'bolder', marginBlock:'1rem'}}>404 Not Found</Typography>
-                <Alert severity="warning">{i18n.t('notfound.alert')}<span style={{color:'red', textDecoration:'underline'}}>{decodeURIComponent(pathname)}</span></Alert>
+                <Alert severity="warning">
+                    <span style={{wordBreak:'break-all'}}>{i18n.t('notfound.alert')}</span>
+                    <span style={{color:'red', textDecoration:'underline', wordBreak:'break-all'}}>/{[lang,category,chapter,doc].filter(Boolean).join('/')}</span>
+                </Alert>
                 {similar.length > 0 && <Alert severity="info">{i18n.t('notfound.similar')}</Alert>}
                 <List sx={{margin:0, padding:0}}>
                     {
@@ -81,7 +83,7 @@ export default function NotFound(props:NotFoundProps) {
                             return (
                                 <ListItem disablePadding key={index}>
                                     <ListItemButton LinkComponent={Link} href={item.url}>
-                                        <ListItemText primary={item.title} secondary={item.url}/>
+                                        <ListItemText primary={[category,chapter,doc].filter(Boolean).map(title).join(' ')} secondary={item.url}/>
                                     </ListItemButton>
                                 </ListItem>
                             )
