@@ -46,7 +46,7 @@ export default function TitleBar(props:TitleBarProps) {
                         aria-label="menu"
                         href={props.lang ? `/document/${props.lang}` : '/'}
                         LinkComponent={Link}
-                        sx={{textTransform:'none', display:{xs:'none', md:'block'}}}
+                        sx={{textTransform:'none', display:{xs:props.items??[].length > 0 ? 'none' : 'block', md:'block'}}}
                         onClick={()=>{props.onCurrentChanged?.(undefined)}}
                     >
                         <Typography variant="h6" component="div" sx={{ whiteSpace:"nowrap"}}>
@@ -77,6 +77,7 @@ export default function TitleBar(props:TitleBarProps) {
                     </Box>
                     <Box sx={{ display:{xs:'block', md:'none'}}}>
                         <IconButton
+                            size="large"
                             edge="start"
                             color="inherit"
                             aria-label="search"
