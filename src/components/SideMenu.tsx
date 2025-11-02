@@ -278,11 +278,13 @@ export default function SideMenu(props:SideMenuProps) {
                             </Slide>
                         }
                     </Box>
-                    <ButtonGroup fullWidth>
-                        <Button variant="text" color="inherit" aria-label="scroll to top" onClick={()=>{scroll('top');}}><KeyboardDoubleArrowUpIcon /></Button>
-                        <Button variant="text" color="inherit" aria-label="scroll to selected" onClick={()=>{scroll('current');}}><MyLocationIcon /></Button>
-                        <Button variant="text" color="inherit" aria-label="scroll to bottom" onClick={()=>{scroll('bottom');}}><KeyboardDoubleArrowDownIcon /></Button>
-                    </ButtonGroup>
+                    <Slide in={props.expanded } direction="up" mountOnEnter unmountOnExit>
+                        <ButtonGroup fullWidth>
+                            <Button variant="text" color="inherit" aria-label="scroll to top" onClick={()=>{scroll('top');}}><KeyboardDoubleArrowUpIcon /></Button>
+                            <Button variant="text" color="inherit" aria-label="scroll to selected" onClick={()=>{scroll('current');}}><MyLocationIcon /></Button>
+                            <Button variant="text" color="inherit" aria-label="scroll to bottom" onClick={()=>{scroll('bottom');}}><KeyboardDoubleArrowDownIcon /></Button>
+                        </ButtonGroup>
+                    </Slide>
                 </Box>
             </Collapse>
         </Paper>
