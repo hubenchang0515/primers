@@ -1,6 +1,6 @@
 "use client"
 
-import { Box, Button, ButtonGroup, Collapse, Divider, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Paper, Slide, Tooltip } from "@mui/material";
+import { Box, Button, ButtonGroup, Collapse, Divider, Fade, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Paper, Tooltip } from "@mui/material";
 import { JSX, useCallback, useEffect, useRef, useState } from "react";
 import Link from "./Link";
 import { useGlobalState } from "./GlobalState";
@@ -271,20 +271,20 @@ export default function SideMenu(props:SideMenuProps) {
 
                         {
                             props.children && 
-                            <Slide in={props.expanded && childrenVisible} direction="up" mountOnEnter unmountOnExit>
+                            <Fade in={props.expanded && childrenVisible} mountOnEnter unmountOnExit>
                                 <Box>
                                     {props.children}
                                 </Box>
-                            </Slide>
+                            </Fade>
                         }
                     </Box>
-                    <Slide in={props.expanded } direction="up" mountOnEnter unmountOnExit>
+                    <Fade in={props.expanded } mountOnEnter unmountOnExit>
                         <ButtonGroup fullWidth>
                             <Button variant="text" color="inherit" aria-label="scroll to top" onClick={()=>{scroll('top');}}><KeyboardDoubleArrowUpIcon /></Button>
                             <Button variant="text" color="inherit" aria-label="scroll to selected" onClick={()=>{scroll('current');}}><MyLocationIcon /></Button>
                             <Button variant="text" color="inherit" aria-label="scroll to bottom" onClick={()=>{scroll('bottom');}}><KeyboardDoubleArrowDownIcon /></Button>
                         </ButtonGroup>
-                    </Slide>
+                    </Fade>
                 </Box>
             </Collapse>
         </Paper>
