@@ -4,6 +4,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArticleIcon from '@mui/icons-material/Article';
 import { title } from "@/utils/document";
 import Link from "./Link";
+import I18n from "@/utils/i18n";
 
 export interface PaginationProps {
     lang: string;
@@ -13,6 +14,7 @@ export interface PaginationProps {
 }
 
 export default function Pagination(props:PaginationProps) {
+    const i18n = new I18n(props.lang);
     return (
         <Box sx={props.sx}>
             <Box sx={{display:'flex', gap:1, flexDirection:{xs:'column', md:'row'}}}>
@@ -42,7 +44,7 @@ export default function Pagination(props:PaginationProps) {
                         startIcon={<ArrowBackIcon/>}
                         endIcon={<ArticleIcon/>}
                     >
-                        
+                        {i18n.t("pagination.none")}
                     </Button>
                 }
                 {
@@ -71,7 +73,7 @@ export default function Pagination(props:PaginationProps) {
                         startIcon={<ArticleIcon/>}
                         endIcon={<ArrowForwardIcon/>}
                     >
-                        没有了
+                        {i18n.t("pagination.none")}
                     </Button>
                 }
             </Box>

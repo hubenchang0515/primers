@@ -53,5 +53,9 @@
     "notfound": {
         "alert": "页面路径不存在：",
         "similar": "路径可能发生了变化，以下是疑似路径："
+    },
+
+    "pagination": {
+        "none": "没有了"
     }
 }

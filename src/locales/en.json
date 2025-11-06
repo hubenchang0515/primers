@@ -53,5 +53,9 @@
     "notfound": {
         "alert": "Page path does not exist: ",
         "similar": "The path may have changed, the following are suspected paths:"
+    },
+
+    "pagination": {
+        "none": "FIN"
     }
 }
