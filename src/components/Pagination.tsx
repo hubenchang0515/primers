@@ -28,7 +28,7 @@ export default function Pagination(props:PaginationProps) {
                         startIcon={<ArrowBackIcon/>}
                         endIcon={<ArticleIcon/>}
                     >
-                        <Box sx={{flexShrink:1, whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis'}}>
+                        <Box sx={{flexShrink:1, whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis',textTransform:'none'}}>
                             {title(props.prev[0])} / {title(props.prev[1])} / {title(props.prev[2])}
                         </Box>
                     </Button>
@@ -57,7 +57,7 @@ export default function Pagination(props:PaginationProps) {
                         startIcon={<ArticleIcon/>}
                         endIcon={<ArrowForwardIcon/>}
                     >
-                        <Box sx={{flexShrink:1, whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis'}}>
+                        <Box sx={{flexShrink:1, whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis',textTransform:'none'}}>
                             {title(props.next[0])} / {title(props.next[1])} / {title(props.next[2])}
                         </Box>
                     </Button>

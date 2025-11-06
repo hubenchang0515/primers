@@ -26,7 +26,15 @@ export default function Catalog(props:CatalogProps) {
                                     <ol>
                                     {
                                         group.items?.map((item, index) => {
-                                            return <li key={index}><Button disableElevation LinkComponent={Link} href={item.url}>{item.label}</Button></li>
+                                            return (
+                                                <li key={index}>
+                                                    <Button disableElevation LinkComponent={Link} href={item.url} 
+                                                        sx={{justifyContent:'left', textTransform:'none'}}
+                                                    >
+                                                        {item.label}
+                                                    </Button>
+                                                </li>
+                                            )
                                         })
                                     }
                                     </ol>
