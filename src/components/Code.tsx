@@ -89,7 +89,16 @@ export default async function Code(props:CodeProps) {
         // 额外标记 label，添加标签
         const args = props.meta?.trim().split(/\s+/);
         const name = args.slice(1).join(" ");
-        return <LabelCode name={name} code={result.value} language={result.language}/>
+
+        
+        if (props.meta?.trim().startsWith('label-success'))
+            return <LabelCode label={name} code={result.value} language={result.language} level={1}/>
+        else if (props.meta?.trim().startsWith('label-warning'))
+            return <LabelCode label={name} code={result.value} language={result.language} level={2}/>
+        else if (props.meta?.trim().startsWith('label-error'))
+            return <LabelCode label={name} code={result.value} language={result.language} level={3}/>
+        else
+            return <LabelCode label={name} code={result.value} language={result.language} level={0}/>
     } else if (props.meta?.trim().startsWith('collapse')) {
         // 额外标记 collapse，默认折叠
         return (
