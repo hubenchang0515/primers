@@ -9,6 +9,7 @@ import LabelCode from "./LabelCode";
 import DOMPurify from "isomorphic-dompurify";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import I18n from "@/utils/i18n";
+import Terminal from "./Terminal";
 
 export interface CodeProps{
     code: string;
@@ -37,6 +38,11 @@ export default async function Code(props:CodeProps) {
     // 标注为 mermaid 表示使用 mermaid 绘图
     if (props.language === 'mermaid') {
         return <Mermaid sx={{marginBlock:'8px', textAlign:'center', whiteSpace:'normal'}} code={code}/>
+    }
+
+    // 标注为 xterm 表示使用 xterm 显示（支持转义字符）
+    if (props.language === 'xterm') {
+        return <Terminal sx={{marginBlock:'8px'}} code={code} rows={parseInt(props.meta??'')}/>
     }
 
     // 标注为 auto 表示自动检测语言类型
