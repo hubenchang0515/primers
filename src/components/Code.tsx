@@ -107,7 +107,6 @@ export default async function Code(props:CodeProps) {
                     expandIcon={<ArrowDropDownIcon/>} 
                     sx={{
                         backgroundColor: 'rgba(0, 0, 0, 0.1)',
-                        flexDirection: 'row-reverse',
                         margin: 0,
                     }}
                 >
