@@ -8,13 +8,17 @@ pre code.hljs {
   padding: 1em;
 }
 
-
 pre code.hljs.language-shell {
   background: #000;
 }
 
 .hljs-meta.prompt_ {
   color: rgb(0, 189, 0);
+}
+
+pre code.hljs.language-shell .hljs-variable,
+pre code.hljs.language-bash .hljs-variable {
+  color: #f729bd;
 }
 
 /*
@@ -145,7 +149,7 @@ pre code.hljs.language-shell {
   color: #81A1C1
 }
 .hljs-variable {
-  color: #f729bd
+  color: #D8DEE9
 }
 .hljs-template-variable {
   color: #D8DEE9
