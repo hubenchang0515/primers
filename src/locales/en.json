@@ -43,6 +43,11 @@
         "run": "Run Code"
     },
 
+    "install": {
+        "install": "Install(PWA)",
+        "back": "Back to home"
+    },
+
     "search": {
         "search": "Search",
         "result": "Search Result",

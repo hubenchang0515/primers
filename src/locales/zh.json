@@ -43,6 +43,11 @@
         "run": "运行代码"
     },
 
+    "install": {
+        "install": "安装（PWA）",
+        "back": "返回首页"
+    },
+
     "search": {
         "search": "搜索",
         "result": "搜索结果",
