@@ -25,7 +25,7 @@ export default function IframePage(props:IframePageProps) {
 
     const initHeight = useCallback(() => {
         if (ref.current?.contentWindow) {
-            ref.current.style.height = (ref.current.contentWindow.document?.documentElement?.scrollHeight??150)+ 'px';
+            ref.current.style.height = (ref.current.contentWindow.document?.documentElement?.offsetHeight??150)+ 'px';
         }
     }, [ref]);
 
