@@ -30,7 +30,7 @@ export default function IframePage(props:IframePageProps) {
     }, [ref]);
 
     useEffect(() => {
-        setTimeout(initHeight, 50);
+        setInterval(initHeight, 50);
     }, [loading, initHeight]);
 
     return (
@@ -47,10 +47,6 @@ export default function IframePage(props:IframePageProps) {
                 {props.title}
             </Typography>
             <Box sx={{width:'100%', boxSizing:'border-box', lineHeight:0, border: '4px solid var(--mui-palette-primary-main)', position:'relative'}}>
-                <Box 
-                    sx={{position:'absolute', boxSizing:'border-box', top:0, bottom:0, width:'100%', overflow:'auto'}} 
-                    dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(props.code, {FORBID_ATTR: ['style']})}}
-                />
                 <iframe 
                     ref={ref}
                     title={`${props.title}`}
