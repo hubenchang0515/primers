@@ -1,8 +1,10 @@
 "use client";
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import DOMPurify from "isomorphic-dompurify";
 import { useCallback, useEffect, useRef } from "react";
 import { useGlobalState } from "./GlobalState";
+import RefreshIcon from '@mui/icons-material/Refresh';
+import FullscreenIcon from '@mui/icons-material/Fullscreen';
 
 export interface IframePageProps {
     title: string;
@@ -27,7 +29,19 @@ export default function IframePage(props:IframePageProps) {
         if (ref.current?.contentWindow) {
             ref.current.style.height = (ref.current.contentWindow.document?.documentElement?.offsetHeight??150)+ 'px';
         }
-    }, [ref]);
+    }, []);
+
+    const refresh = useCallback(() => {
+        if (ref.current) {
+            ref.current.srcdoc = props.unsafe ? props.code : DOMPurify.sanitize(props.code, {WHOLE_DOCUMENT:true, ADD_TAGS:ADD_TAGS, ADD_ATTR:ADD_ATTR})
+        }
+    }, [props.unsafe, props.code])
+
+    const fullscreen = useCallback(() => {
+        if (ref.current) {
+            ref.current.requestFullscreen();
+        }
+    }, []);
 
     useEffect(() => {
         setInterval(initHeight, 50);
@@ -35,18 +49,29 @@ export default function IframePage(props:IframePageProps) {
 
     return (
         <Box sx={{width:'100%', boxSizing:'border-box', }}>
-            <Typography
-                variant="body1" 
-                sx={{
-                    width:'fit-content', 
-                    padding:1, 
-                    color:'var(--mui-palette-primary-contrastText)', 
-                    background:'var(--mui-palette-primary-main)'
-                }}
-            >
-                {props.title}
-            </Typography>
-            <Box sx={{width:'100%', boxSizing:'border-box', lineHeight:0, border: '4px solid var(--mui-palette-primary-main)', position:'relative'}}>
+            <Box sx={{display:'flex'}}>
+                <Typography
+                    variant="body1" 
+                    sx={{
+                        width:'fit-content', 
+                        padding:1, 
+                        color:'var(--mui-palette-info-contrastText)', 
+                        background:'var(--mui-palette-info-main)'
+                    }}
+                >
+                    {props.title}
+                </Typography>
+                <Box flex={1}/>
+                <Box sx={{display:'flex', alignItems:'end'}}>
+                    <Button variant="contained" size="small" color="info" sx={{borderRadius:0, padding:0, minWidth:0,boxShadow:'none'}} onClick={refresh} >
+                        <RefreshIcon/>
+                    </Button>
+                    <Button variant="contained" size="small" color="info" sx={{borderRadius:0, padding:0, minWidth:0,boxShadow:'none'}} onClick={fullscreen} >
+                        <FullscreenIcon/>
+                    </Button>
+                </Box>
+            </Box>
+            <Box sx={{width:'100%', boxSizing:'border-box', lineHeight:0, border: '4px solid var(--mui-palette-info-main)', position:'relative'}}>
                 <iframe 
                     ref={ref}
                     title={`${props.title}`}
