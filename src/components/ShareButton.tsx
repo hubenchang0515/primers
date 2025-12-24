@@ -21,7 +21,6 @@ export default function ShareButton(props:ShareButtonProps) {
         const lines = text(props.content).split('\n');
         const title = lines[0];
         const brief = lines.slice(1, 6);
-        console.log(props.content, text(props.content))
 
         if (navigator.canShare()) {
             navigator.share({
