@@ -31,8 +31,13 @@
         "about": "About",
         "letters": "letters",
         "minutes": "minutes",
-        "created_in": "Created in",
-        "updated_in": "Updated in"
+        "author": "Author",
+        "created": "Created",
+        "updated": "Updated"
+    },
+
+    "share": {
+        "copy": "Copied to clipboard"
     },
 
     "code": {

@@ -1,5 +1,6 @@
 import { SITE_CONFIG } from '@/config';
-import { categories, chapters, docs, docState, languages } from '@/utils/document';
+import { categories, chapters, docs, languages } from '@/utils/document';
+import { docState } from '@/utils/git';
 import type { MetadataRoute } from 'next'
 
 export const dynamic = 'force-static'

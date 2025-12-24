@@ -1,6 +1,7 @@
 import MainPage from "@/components/MainPage";
 import { TitleBarItem } from "@/components/TitleBar";
-import { content, docState, languages } from "@/utils/document";
+import { content, languages } from "@/utils/document";
+import { docState } from "@/utils/git";
 import { Paper } from "@mui/material";
 import { Content } from "@/components/Content";
 import Navigation from "@/components/Navigation";

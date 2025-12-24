@@ -47,6 +47,6 @@
     "eslint-config-next": "15.3.0",
     "gh-pages": "^6.3.0",
     "typescript": "^5",
-    "vercel": "^48.3.0"
+    "vercel": "^50.1.3"
   }
 }

@@ -1,14 +1,9 @@
 import path from "path";
 import fs from 'fs/promises';
 import { DOCUMENT_CONFIG } from "@/config";
-import { execFile } from "child_process";
 import { sort } from "./text";
 export * from "./text";
 
-export interface DocState {
-    createdTime: Date;
-    updatedTime: Date;
-}
 
 // 获取语言列表
 export async function languages() {
@@ -47,33 +42,6 @@ export async function content(lang:string, category:string, chapter?:string, doc
     } catch (err) {
         throw err;
     }
-}
-
-// 获取文档状态（创建与更新时间）
-export async function docState(lang:string, category:string, chapter?:string, doc?:string): Promise<DocState> {
-    const dir = path.join(process.cwd(), DOCUMENT_CONFIG.root);
-    const file = path.join(process.cwd(), DOCUMENT_CONFIG.root, 'document', lang, category, chapter??"", doc??"");
-
-    return new Promise((resolve) => {
-        execFile('git', ['-C', dir, 'log', '--format="%ai"', file], (err, stdout) => {
-            if (err || stdout.trim().length === 0) {
-                if (err) {
-                    console.error(err);
-                }
-
-                resolve({
-                    createdTime: new Date(),
-                    updatedTime: new Date(),
-                });
-            } else {
-                const lines = stdout.split("\n").filter(Boolean);
-                resolve({
-                    createdTime: new Date(lines[lines.length - 1]),
-                    updatedTime: new Date(lines[0]),
-                });
-            }
-        })
-    })
 }
 
 // 获取上一个分类
