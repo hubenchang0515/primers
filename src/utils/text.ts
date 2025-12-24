@@ -70,6 +70,8 @@ export function text(content:string) {
         // 16) 移除多余的方括号或反斜线转义符
         .replace(/\\([\\`*_{}\[\]()#+\-.!])/g, '$1')
         // 18) 多空格压缩为一个空格
-        .replace(/\s{2,}/g, ' ')
+        .replace(/[ \t]{2,}/g, ' ')
+        // 18) 移除空行
+        .replace(/\n{2,}/g, '\n')
         .trim();
 }
