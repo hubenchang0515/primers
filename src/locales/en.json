@@ -37,7 +37,8 @@
     },
 
     "share": {
-        "copy": "Copied to clipboard"
+        "copy": "Copied to clipboard",
+        "failed": "Failed"
     },
 
     "code": {
