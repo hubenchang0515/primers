@@ -1,11 +1,12 @@
 "use client";
 
-import ShareIcon from '@mui/icons-material/Share';
 import { useCallback, useState } from "react";
 import { SITE_CONFIG } from "@/config";
 import { text } from "@/utils/text";
 import { Alert, AlertProps, IconButton, Snackbar } from '@mui/material';
 import I18n from '@/utils/i18n';
+
+import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 
 export interface ShareButtonProps{
     lang?: string;
@@ -50,7 +51,7 @@ export default function ShareButton(props:ShareButtonProps) {
 
     return (
         <IconButton size="small" color="primary" onClick={share}>
-            <ShareIcon fontSize="inherit"/>
+            <ShareOutlinedIcon fontSize="inherit"/>
             <Snackbar
                 open={alert.open}
                 autoHideDuration={2000}
