@@ -22,14 +22,14 @@ export async function categories(lang:string) {
 // 获取章节列表（二级菜单项，侧边栏分组）
 export async function chapters(lang:string, category:string) {
     const dir = path.join(process.cwd(), DOCUMENT_CONFIG.root, 'document', lang, category);
-    const files = (await fs.readdir(dir, { withFileTypes: true })).sort((x, y) => sort(x.name, y.name));;
+    const files = (await fs.readdir(dir, { withFileTypes: true })).sort((x, y) => sort(x.name, y.name));
     return files.filter(file=>file.isDirectory()).map(file=>file.name);
 }
 
 // 获取文档列表（三级菜单项）
 export async function docs(lang:string, category:string, chapter:string) {
     const dir = path.join(process.cwd(), DOCUMENT_CONFIG.root, 'document', lang, category, chapter);
-    const files = (await fs.readdir(dir, { withFileTypes: true })).sort((x, y) => sort(x.name, y.name));;
+    const files = (await fs.readdir(dir, { withFileTypes: true })).sort((x, y) => sort(x.name, y.name));
     return files.filter(file=>file.isFile()).map(file=>file.name)
 }
 
