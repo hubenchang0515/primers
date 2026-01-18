@@ -108,7 +108,7 @@ export default async function Code(props:CodeProps) {
     } else if (props.meta?.trim().startsWith('collapse')) {
         // 额外标记 collapse，默认折叠
         return (
-            <Accordion disableGutters elevation={0} square slotProps={{transition:{timeout:200}}}>
+            <Accordion className="no-print" disableGutters elevation={0} square slotProps={{transition:{timeout:200}}}>
                 <AccordionSummary 
                     expandIcon={<ArrowDropDownIcon/>} 
                     sx={{
