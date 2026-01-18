@@ -128,7 +128,7 @@ const MakeComponents = (lang?:string, url?:string):Components => {
             const severity = props.node?.children.find(item => 'properties' in item)?.properties.className as AlertProps['severity'];
             if (severity) {
                 return (
-                    <Alert severity={severity} sx={{marginBlock:'8px'}}>
+                    <Alert className='no-print' severity={severity} sx={{marginBlock:'8px'}}>
                         {props.children}
                     </Alert>
                 )
