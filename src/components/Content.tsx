@@ -5,6 +5,7 @@ import I18n from "@/utils/i18n";
 
 import NotesIcon from '@mui/icons-material/Notes';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import PrintButton from "./PrintButton";
 import ShareButton from "./ShareButton";
 
 export interface ContentProps {
@@ -26,6 +27,7 @@ export function Content(props:ContentProps) {
                     <Typography overflow="hidden" whiteSpace="nowrap" textOverflow="ellipsis">{i18n.t("content.about")} {Math.round(props.content.length / 200)} {i18n.t("content.minutes")} </Typography> 
                 </Stack>
                 <Box>
+                    <PrintButton lang={props.lang} url={props.url} content={props.content}/>
                     <ShareButton lang={props.lang} url={props.url} content={props.content}/>
                 </Box>
             </Box>
