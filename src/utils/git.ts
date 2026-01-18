@@ -1,3 +1,4 @@
+import 'server-only';
 import path from "path";
 import { DOCUMENT_CONFIG, OWNER_CONFIG } from "@/config";
 import { execFile } from "child_process";

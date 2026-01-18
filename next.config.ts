@@ -1,5 +1,8 @@
 import { SITE_CONFIG } from "@/config";
+import { IgnoreWarnings } from "@/utils/ignoreWarnings";
 import type { NextConfig } from "next";
+
+IgnoreWarnings();
 
 const nextConfig: NextConfig = {
   /* config options here */

@@ -121,7 +121,7 @@ const MakeComponents = (lang?:string, url?:string):Components => {
         },
 
         async img(props) {
-            return <Image src={props.src} alt={props.alt} style={{display:'block', margin:'auto', maxWidth:'100%', height:'auto',}}/>
+            return <Image src={props.src as string} alt={props.alt} style={{display:'block', margin:'auto', maxWidth:'100%', height:'auto',}}/>
         },
 
         async blockquote(props) {

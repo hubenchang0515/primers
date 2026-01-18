@@ -1,9 +1,9 @@
+import 'server-only';
 import path from "path";
 import fs from 'fs/promises';
 import { DOCUMENT_CONFIG } from "@/config";
 import { sort } from "./text";
 export * from "./text";
-
 
 // 获取语言列表
 export async function languages() {
