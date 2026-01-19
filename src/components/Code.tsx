@@ -21,7 +21,7 @@ export interface CodeProps{
 }
 
 export default async function Code(props:CodeProps) {
-     const i18n = new I18n(props.lang);
+    const i18n = new I18n(props.lang);
     let code = props.code;
     const includeMatch = /\$include\((.*?)\)/.exec(props.code)
     if (includeMatch) {
@@ -49,7 +49,7 @@ export default async function Code(props:CodeProps) {
     if (props.language === 'auto') {
         const result = hljs.highlightAuto(code);
         return (
-            <Box sx={{marginBlock:'8px'}}>
+            <Box component='pre' sx={{marginBlock:'8px'}}>
                 <code className={`language-${result.language} hljs`} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(result.value)}}></code>
             </Box>
         )
@@ -87,7 +87,7 @@ export default async function Code(props:CodeProps) {
         const args = props.meta?.trim().split(/\s+/);
         const style = args.slice(1).join(" ");
         return (
-            <Box sx={{marginBlock:'8px'}} dangerouslySetInnerHTML={{
+            <Box component='pre' sx={{marginBlock:'8px'}} dangerouslySetInnerHTML={{
                 __html: `<code class='language-${result.language} hljs' style='${style}'>${DOMPurify.sanitize(result.value)}</code>`
             }}/>
         )
@@ -119,14 +119,16 @@ export default async function Code(props:CodeProps) {
                     <Typography component="span" sx={{pl:1}}>{i18n.t("code.show")}</Typography>
                 </AccordionSummary>
                 <AccordionDetails sx={{margin:0, padding:0}}>
-                    <code className={`language-${result.language} hljs`}  dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(result.value)}}></code>
+                    <pre>
+                        <code className={`language-${result.language} hljs`}  dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(result.value)}}></code>
+                    </pre>
                 </AccordionDetails>
             </Accordion>
         )
     } else if (props.language) {
         // 没有额外标记，正常渲染语法高亮
         return (
-            <Box sx={{marginBlock:'8px'}}>
+            <Box component='pre' sx={{marginBlock:'8px'}}>
                 <code className={`language-${result.language} hljs`}  dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(result.value)}}></code>
             </Box>
         )
@@ -136,7 +138,7 @@ export default async function Code(props:CodeProps) {
         // 存在换行，正常渲染语法高亮
         const result = hljs.highlight(code, {language: 'text'});
         return (
-            <Box sx={{marginBlock:'8px'}}>
+            <Box component='pre' sx={{marginBlock:'8px'}}>
                 <code className={`language-${result.language} hljs`}  dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(result.value)}}></code>
             </Box>
         )

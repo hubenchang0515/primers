@@ -26,7 +26,7 @@ export default function LabelCode(props:LabelCodeProps) {
                 {props.label}
             </Typography>
             <Box sx={{width:'100%', boxSizing:'border-box', border: `4px solid var(${bg})`}}>
-                <Box >
+                <Box component='pre'>
                     <code className={`language-${props.language} hljs`}  dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(props.code)}}></code>
                 </Box>
             </Box>

@@ -63,10 +63,10 @@ export default function IframePage(props:IframePageProps) {
                 </Typography>
                 <Box flex={1}/>
                 <Box sx={{display:'flex', alignItems:'end'}}>
-                    <Button variant="contained" size="small" color="info" sx={{borderRadius:0, padding:0, minWidth:0,boxShadow:'none'}} onClick={refresh} >
+                    <Button variant="contained" size="small" color="info" className="no-print" sx={{borderRadius:0, padding:0, minWidth:0,boxShadow:'none'}} onClick={refresh} >
                         <RefreshIcon/>
                     </Button>
-                    <Button variant="contained" size="small" color="info" sx={{borderRadius:0, padding:0, minWidth:0,boxShadow:'none'}} onClick={fullscreen} >
+                    <Button variant="contained" size="small" color="info" className="no-print" sx={{borderRadius:0, padding:0, minWidth:0,boxShadow:'none'}} onClick={fullscreen} >
                         <FullscreenIcon/>
                     </Button>
                 </Box>

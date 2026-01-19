@@ -32,7 +32,7 @@ export function Content(props:ContentProps) {
                 </Box>
             </Box>
             <Markdown lang={props.lang} url={props.url} content={props.content}/>
-            <Box sx={{color:'#bbb', display: 'flex', flexDirection:{xs:'column', md:'row'}, justifyContent:{xs:'start', md:'space-between'}}}>
+            <Box sx={{color:'#bbb', display: 'flex', mt:2, flexDirection:{xs:'column', md:'row'}, justifyContent:{xs:'start', md:'space-between'}}}>
                 <Typography overflow="hidden" whiteSpace="nowrap" textOverflow="ellipsis" sx={{order:{xs:2,md:1}}}>{i18n.t("content.updated")}: {props.state.updatedTime.toLocaleDateString(props.lang)}</Typography>
                 <Typography overflow="hidden" whiteSpace="nowrap" textOverflow="ellipsis" sx={{order:{xs:1,md:2}}}> {i18n.t("content.author")}: {props.state.author}</Typography>
                 <Typography overflow="hidden" whiteSpace="nowrap" textOverflow="ellipsis" sx={{order:{xs:3,md:3}}}>{i18n.t("content.created")}: {props.state.createdTime.toLocaleDateString(props.lang)}</Typography> 

@@ -200,7 +200,7 @@ const MakeComponents = (lang?:string, url?:string):Components => {
         },
 
         async pre(props) {
-            return <pre className={props.className}>{ props.children }</pre>
+            return <span className={props.className}>{ props.children }</span>
         },
     }
 }

@@ -13,18 +13,23 @@ export interface PrintButtonProps{
 }
 
 export default function PrintButton(props:PrintButtonProps) {
-    const iframe = useRef<HTMLIFrameElement>(null);
     const printPdf = useCallback(async () => {
-        const url = props.url ?? window.location.href;
-        const content = document.querySelector("article")?.innerHTML??"";
-        if (!iframe.current) {
-            iframe.current = document.createElement('iframe');
-            iframe.current.style.display = 'none';
+        let iframe = document.getElementById("print-iframe") as HTMLIFrameElement ;
+        if (!iframe) {
+            iframe = document.createElement('iframe');
+            iframe.id = "print-iframe";
+            iframe.style.display = 'none';
+            document.body.appendChild(iframe);
         }
-            
-        iframe.current.srcdoc = await makePdfContent(url, content);
-        document.body.appendChild(iframe.current);
-        iframe.current.contentWindow?.print();
+
+        const url = props.url ?? window.location.href;
+        const content = document.querySelector("article");
+        const node = content?.cloneNode(true) as HTMLElement;
+        node?.querySelectorAll<HTMLElement>('code').forEach((el) => {
+            el.style = ''; // 清除 code 的样式
+        });
+        iframe.srcdoc = await makePdfContent(url, node?.innerHTML);
+        iframe.onload = () => iframe.contentWindow?.print();  
     }, [props.lang, props.url, props.content]);
 
     return (
