@@ -47,6 +47,11 @@ export default function MainPage(props:MainPageProps) {
         setSideExpanded,
     } = useGlobalState();
 
+    useEffect(() => {
+        setCurrentTitle?.(props.currentTitle);
+    }, [setCurrentTitle, props.currentTitle]);
+    
+
     // 窄屏自动收起侧边栏
     useEffect(() => {
         if (props.depth === 3 && window.innerWidth < 900) {
@@ -56,6 +61,9 @@ export default function MainPage(props:MainPageProps) {
 
     // 标题切换
     const setTitle = useCallback((index?:number) => {
+        if (index === currentTitle) {
+            return;
+        }
         setCurrentTitle?.(index);
         setLoading?.(true);
         setTimeout(() => {
@@ -63,7 +71,7 @@ export default function MainPage(props:MainPageProps) {
                 router.push(props.titleItems[index].url);
             }
         }, 200);
-    }, [props, router, setLoading, setCurrentTitle]);
+    }, [props, router, setLoading, currentTitle, setCurrentTitle]);
 
     // 初始展开当前页面所在的分组
     useEffect(() => {
