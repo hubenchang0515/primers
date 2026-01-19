@@ -13,7 +13,7 @@ export default function LabelCode(props:LabelCodeProps) {
     const color = ['--mui-palette-Alert-infoFilledColor', '--mui-palette-Alert-successFilledColor', '--mui-palette-Alert-warningFilledColor', '--mui-palette-Alert-errorFilledColor'][props.level??0]
     const bg = ['--mui-palette-Alert-infoFilledBg', '--mui-palette-Alert-successFilledBg', '--mui-palette-Alert-warningFilledBg', '--mui-palette-Alert-errorFilledBg'][props.level??0]
     return (
-        <Box sx={{width:'100%', boxSizing:'border-box', }}>
+        <Box sx={{width:'100%', boxSizing:'border-box', marginBlock:1}}>
             <Typography
                 variant="body1" 
                 sx={{
@@ -26,7 +26,7 @@ export default function LabelCode(props:LabelCodeProps) {
                 {props.label}
             </Typography>
             <Box sx={{width:'100%', boxSizing:'border-box', border: `4px solid var(${bg})`}}>
-                <Box component='pre'>
+                <Box component='pre' style={{margin:0, padding:0}}>
                     <code className={`language-${props.language} hljs`}  dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(props.code)}}></code>
                 </Box>
             </Box>
