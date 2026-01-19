@@ -66,7 +66,7 @@ export default function TitleBar(props:TitleBarProps) {
                         {
                             props.items?.map((item, index) => {
                                 return (
-                                    <Tab key={index} label={item.label} sx={{ textTransform:'none' }} LinkComponent={Link} href={item.url} onClick={(ev)=>ev.preventDefault()}/>
+                                    <Tab key={index} label={item.label} sx={{ textTransform:'none' }} LinkComponent={Link} href={item.url} onClick={(ev)=>{if(index !== props.current)ev.preventDefault()}}/>
                                 )
                             })
                         }
