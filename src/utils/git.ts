@@ -30,11 +30,11 @@ export async function docState(lang:string, category:string, chapter?:string, do
                 });
             } else {
                 const lines = stdout.split("\n").filter(Boolean);
-                const first = lines[lines.length - 1].split(';');
+                const first = lines[0].split(';');
                 const last = lines[lines.length - 1].split(';');
                 resolve({
-                    createdTime: new Date(first[0]),
-                    updatedTime: new Date(last[0]),
+                    createdTime: new Date(last[0]),
+                    updatedTime: new Date(first[0]),
                     author: first[1],
                     email: first[2],
                 });
