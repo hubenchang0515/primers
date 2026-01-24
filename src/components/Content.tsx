@@ -20,13 +20,13 @@ export function Content(props:ContentProps) {
     return (
         <Box component={'main'}>
             <Box sx={{color:'#bbb', display: 'flex', justifyContent:'space-between', alignItems:'center'}}>
-                <Stack direction="row" spacing={1}>
+                <Stack direction="row" spacing={1} flexShrink={1} minWidth={0}>
                     <NotesIcon/> 
                     <Typography overflow="hidden" whiteSpace="nowrap" textOverflow="ellipsis">{i18n.t("content.about")} {props.content.length} {i18n.t("content.letters")}</Typography> 
                     <AccessTimeIcon/> 
                     <Typography overflow="hidden" whiteSpace="nowrap" textOverflow="ellipsis">{i18n.t("content.about")} {Math.round(props.content.length / 200)} {i18n.t("content.minutes")} </Typography> 
                 </Stack>
-                <Box>
+                <Box flexShrink={0}>
                     <PrintButton lang={props.lang} url={props.url} content={props.content}/>
                     <ShareButton lang={props.lang} url={props.url} content={props.content}/>
                 </Box>
