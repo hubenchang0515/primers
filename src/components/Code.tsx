@@ -119,7 +119,7 @@ export default async function Code(props:CodeProps) {
                     <Typography component="span" sx={{pl:1}}>{i18n.t("code.show")}</Typography>
                 </AccordionSummary>
                 <AccordionDetails sx={{margin:0, padding:0}}>
-                    <pre>
+                    <pre style={{margin:0, padding:0}}>
                         <code className={`language-${result.language} hljs`}  dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(result.value)}}></code>
                     </pre>
                 </AccordionDetails>
