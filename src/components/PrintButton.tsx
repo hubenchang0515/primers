@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef } from "react";
+import { useCallback } from "react";
 import { IconButton } from '@mui/material';
 import { makePdfContent } from "@/utils/pdf";
 
@@ -25,7 +25,7 @@ export default function PrintButton(props:PrintButtonProps) {
         const url = props.url ?? window.location.href;
         const content = document.querySelector("article");
         const node = content?.cloneNode(true) as HTMLElement;
-        node?.querySelectorAll<HTMLElement>('code').forEach((el) => {
+        node?.querySelectorAll<HTMLElement>('.print-no-style').forEach((el) => {
             el.style = ''; // 清除 code 的样式
         });
         iframe.srcdoc = await makePdfContent(url, node?.innerHTML);

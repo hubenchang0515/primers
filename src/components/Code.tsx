@@ -88,7 +88,7 @@ export default async function Code(props:CodeProps) {
         const style = args.slice(1).join(" ");
         return (
             <Box component='pre' sx={{marginBlock:'8px'}} dangerouslySetInnerHTML={{
-                __html: `<code class='language-${result.language} hljs' style='${style}'>${DOMPurify.sanitize(result.value)}</code>`
+                __html: `<code class='language-${result.language} hljs print-no-style' style='${style}'>${DOMPurify.sanitize(result.value)}</code>`
             }}/>
         )
     } else if (props.meta?.trim().startsWith('label')) {
@@ -162,7 +162,7 @@ export default async function Code(props:CodeProps) {
         if (match) {
             const color = ['--mui-palette-Alert-infoFilledColor', '--mui-palette-Alert-successFilledColor', '--mui-palette-Alert-warningFilledColor', '--mui-palette-Alert-errorFilledColor'][(Number(match[1]||1)+3)%4]
             const bg = ['--mui-palette-Alert-infoFilledBg', '--mui-palette-Alert-successFilledBg', '--mui-palette-Alert-warningFilledBg', '--mui-palette-Alert-errorFilledBg'][(Number(match[1]||1)+3)%4]
-            return <span style={{display:'flex', color:`var(${color})`, background:`linear-gradient(90deg, var(${bg}), rgba(255,255,255,0))`}} >
+            return <span className="print-no-style" style={{display:'flex', color:`var(${color})`, background:`linear-gradient(90deg, var(${bg}), rgba(255,255,255,0))`}} >
                 <strong dangerouslySetInnerHTML={{__html: match[2]}}></strong>
             </span>
         }
@@ -173,6 +173,7 @@ export default async function Code(props:CodeProps) {
         const background = quota === 4 ? 'var(--mui-palette-primary-main)' : quota === 6 ? 'var(--mui-palette-secondary-main)' : 'var(--mui-palette-action-selected)';
         return (
             <code 
+                className="print-no-style"
                 style={{
                     color: color,
                     background: background, 
