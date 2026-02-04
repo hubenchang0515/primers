@@ -201,7 +201,7 @@ export function makePdfContent(url:string, content:string) {
                     </head>
                     <body>
                         <div class="markdown-body">
-                            <img style="float:right;" src="${src}"/>
+                            <a href="${url}"><img style="float:right;" src="${src}"/></a>
                             <p><a href="${url}">${SITE_CONFIG.title} : ${SITE_CONFIG.origin}${SITE_CONFIG.basePath}</a></p>
                             <div>${content}</div>
                         </div>
