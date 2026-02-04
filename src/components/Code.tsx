@@ -108,8 +108,9 @@ export default async function Code(props:CodeProps) {
     } else if (props.meta?.trim().startsWith('collapse')) {
         // 额外标记 collapse，默认折叠
         return (
-            <Accordion className="no-print" disableGutters elevation={0} square slotProps={{transition:{timeout:200}}}>
+            <Accordion disableGutters elevation={0} square slotProps={{transition:{timeout:200}}}>
                 <AccordionSummary 
+                    className="no-print" 
                     expandIcon={<ArrowDropDownIcon/>} 
                     sx={{
                         backgroundColor: 'rgba(0, 0, 0, 0.1)',
@@ -119,7 +120,7 @@ export default async function Code(props:CodeProps) {
                     <Typography component="span" sx={{pl:1}}>{i18n.t("code.show")}</Typography>
                 </AccordionSummary>
                 <AccordionDetails sx={{margin:0, padding:0}}>
-                    <pre style={{margin:0, padding:0}}>
+                    <pre className="print-no-style" style={{margin:0, padding:0}}>
                         <code className={`language-${result.language} hljs`}  dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(result.value)}}></code>
                     </pre>
                 </AccordionDetails>
