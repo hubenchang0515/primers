@@ -190,7 +190,7 @@ export function makePdfContent(url:string, content:string) {
                                 word-break: break-word !important;      /* 兜底，防止超长 token */
                             }
 
-                            pre > code {
+                            pre {
                                 padding: 0 !important;
                             }
 
