@@ -168,10 +168,30 @@ export default async function Code(props:CodeProps) {
             </span>
         }
 
-        // 普通行内代码
+        // 获取颜色
         const quota = ((props.end) - (props.start)) - props.code.length;
         const color = quota === 4 ? 'var(--mui-palette-primary-contrastText)' : quota === 6 ? 'var(--mui-palette-secondary-contrastText)' : 'var(--mui-palette-text-primary)';
         const background = quota === 4 ? 'var(--mui-palette-primary-main)' : quota === 6 ? 'var(--mui-palette-secondary-main)' : 'var(--mui-palette-action-selected)';
+
+        // code元素，类似 embed 但在 code 内
+        match = code.match(/^!code:\s*(.*)\s*([\s\S]*)/)
+        if (match) {
+            return <code 
+                className="print-no-style"
+                style={{
+                    color: color,
+                    background: background, 
+                    fontSize: '0.8em', 
+                    padding: '0.2em 4px 1px 4px', 
+                    verticalAlign: '0.1em', 
+                    border: '1px solid var(--mui-palette-background-paper)',
+                    wordBreak: 'break-all',
+                    whiteSpace: 'pre-wrap',
+                }} dangerouslySetInnerHTML={{__html: match[1]}}
+            />
+        }
+
+        // 普通行内代码
         return (
             <code 
                 className="print-no-style"
