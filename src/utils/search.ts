@@ -10,14 +10,17 @@ export interface SearchNode {
 }
 
 // 提取 markdown 标题
-function extractMarkdownHeadings(content: string): string[] {
+function extractMarkdownHeadings(content: string) {
     const headingRegex = /^(#{1,6})\s+(.+)$/gm;
-    const headings: string[] = [];
+    const headings: {title:string; level:number}[] = [];
     
     let match;
     while ((match = headingRegex.exec(content)) !== null) {
         const title = match[2].trim();
-        headings.push(title);
+        headings.push({
+            title: title,
+            level: match[1].length,
+        });
     }
     
     return headings;
@@ -36,10 +39,17 @@ async function parseDoc(lang:string, category:string, chapter?:string, doc?:stri
     }
 
     for (const heading of headings) {
-        node.children?.push({
-            text: heading,
-            url: path.join('/document', lang, category, chapter??"", doc??"") + "#" + await anchorHash(heading),
-        })
+        if (heading.level === 1) {
+            node.children?.push({
+                text: heading.title,
+                url: path.join('/document', lang, category, chapter??"", doc??""),
+            })
+        } else {
+            node.children?.push({
+                text: heading.title,
+                url: path.join('/document', lang, category, chapter??"", doc??"") + "#" + await anchorHash(heading.title),
+            })
+        }
     }
 
     return node;
