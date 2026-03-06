@@ -7,37 +7,42 @@ import MainPage from "./MainPage";
 import { SearchNode } from "@/utils/search";
 import Link from "./Link";
 import { like, title } from "@/utils/text";
+import { useRouter } from "next/navigation";
+
+interface SimilarNode {
+    url: string,
+    rank: number,
+    text?: string,
+    title?: string,
+}
 
 function findSimilar(root:SearchNode, lang:string, category:string, chapter: string, doc:string) {
-    const similar:SearchNode[] = [];
+    const similar:SimilarNode[] = [];
     for (const langNode of root.children??[]) {
-        if (!like(langNode.title, title(lang))) {
-            continue;
+        let rank = 0;
+        
+        if (like(langNode.title, title(lang))) {
+            rank += 1;
         }
 
-        if (!category) {
-            similar.push(langNode);
+        if (like(langNode.title, title(lang)) && !category) {
+            similar.push({...langNode, rank: rank + 1});
             break;
         }
 
         for (const categoryNode of langNode.children??[]) {
-            if (!like(categoryNode.title, title(category))) {
-                continue;
+            if (like(categoryNode.title, title(category))) {
+                rank += 2;
             }
 
-            if (!chapter) {
-                similar.push(categoryNode);
+            if (like(categoryNode.title, title(category)) && !chapter) {
+                similar.push({...categoryNode, rank: rank + 2});
                 break;
             }
 
             for (const chapterNode of categoryNode.children??[]) {
-                if (!like(chapterNode.title, title(chapter))) {
-                    continue;
-                }
-
-                if (!doc) {
-                    // similar.push(chapterNode); chapterNode 无页面
-                    break;
+                if (like(chapterNode.title, title(chapter))) {
+                    rank += 3;
                 }
 
                 for (const docNode of chapterNode.children??[]) {
@@ -45,12 +50,13 @@ function findSimilar(root:SearchNode, lang:string, category:string, chapter: str
                         continue;
                     }
 
-                    similar.push(docNode);
+                    similar.push({...docNode, text: `${categoryNode.title} -> ${chapterNode.title} -> ${docNode.title}`, rank: rank + 4});
                 }
             }
         }
     }
 
+    similar.sort((x, y) => y.rank - x.rank);
     return similar;
 }
 
@@ -67,6 +73,12 @@ export default function NotFound(props:NotFoundProps) {
     const doc = searchParams.get('doc')??''.trim();
     const i18n = new I18n(lang); 
     const similar = findSimilar(props.root, lang, category, chapter, doc);
+
+    // 如果 rank 是 10 分，说明路径标题完全一致，直接跳转
+    const router = useRouter();
+    if (similar[0]?.rank === 10) {
+        router.replace(similar[0].url);
+    }
     
     return (
         <MainPage lang={lang} depth={1} disableDiscussion>
@@ -83,7 +95,7 @@ export default function NotFound(props:NotFoundProps) {
                             return (
                                 <ListItem disablePadding key={index}>
                                     <ListItemButton LinkComponent={Link} href={item.url}>
-                                        <ListItemText primary={[category,chapter,doc].filter(Boolean).map(title).join(' -> ')} secondary={item.url}/>
+                                            <ListItemText primary={item.text} secondary={item.url}/>
                                     </ListItemButton>
                                 </ListItem>
                             )
