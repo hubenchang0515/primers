@@ -1,3 +1,8 @@
+// 判断字符串相似
+export function like(x?:string, y?:string) {
+    return x?.trim().toLowerCase() === y?.trim().toLocaleLowerCase()
+}
+
 // 分割序号和扩展名，提取标题
 export function title(filename:string) {
     if (filename.includes(".")) {

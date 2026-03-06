@@ -6,12 +6,12 @@ import { useSearchParams } from "next/navigation";
 import MainPage from "./MainPage";
 import { SearchNode } from "@/utils/search";
 import Link from "./Link";
-import { title } from "@/utils/text";
+import { like, title } from "@/utils/text";
 
 function findSimilar(root:SearchNode, lang:string, category:string, chapter: string, doc:string) {
     const similar:SearchNode[] = [];
     for (const langNode of root.children??[]) {
-        if (langNode.title !== title(lang)) {
+        if (!like(langNode.title, title(lang))) {
             continue;
         }
 
@@ -21,7 +21,7 @@ function findSimilar(root:SearchNode, lang:string, category:string, chapter: str
         }
 
         for (const categoryNode of langNode.children??[]) {
-            if (categoryNode.title !== title(category)) {
+            if (!like(categoryNode.title, title(category))) {
                 continue;
             }
 
@@ -31,7 +31,7 @@ function findSimilar(root:SearchNode, lang:string, category:string, chapter: str
             }
 
             for (const chapterNode of categoryNode.children??[]) {
-                if (chapterNode.title !== title(chapter)) {
+                if (!like(chapterNode.title, title(chapter))) {
                     continue;
                 }
 
@@ -41,7 +41,7 @@ function findSimilar(root:SearchNode, lang:string, category:string, chapter: str
                 }
 
                 for (const docNode of chapterNode.children??[]) {
-                    if (docNode.title !== title(doc)) {
+                    if (!like(docNode.title, title(doc))) {
                         continue;
                     }
 
@@ -83,7 +83,7 @@ export default function NotFound(props:NotFoundProps) {
                             return (
                                 <ListItem disablePadding key={index}>
                                     <ListItemButton LinkComponent={Link} href={item.url}>
-                                        <ListItemText primary={[category,chapter,doc].filter(Boolean).map(title).join(' ')} secondary={item.url}/>
+                                        <ListItemText primary={[category,chapter,doc].filter(Boolean).map(title).join(' -> ')} secondary={item.url}/>
                                     </ListItemButton>
                                 </ListItem>
                             )
