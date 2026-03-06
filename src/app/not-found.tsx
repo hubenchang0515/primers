@@ -19,6 +19,6 @@ export default function NotFoundPage() {
         params.set('category', category);
         params.set('chapter', chapter);
         params.set('doc', doc);
-        router.push('/empty?' + params.toString());
+        router.replace('/empty?' + params.toString());
     }, [pathname, router]);
 }
