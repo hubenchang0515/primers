@@ -11,7 +11,7 @@ export const SITE_CONFIG = {
 // 站长信息
 export const OWNER_CONFIG = {
     name: 'Plan C',
-    url: 'https://xplanc.org/',
+    url: 'https://github.com/hubenchang0515',
     email: 'hubenchang0515@gmail.com'
 }
 
