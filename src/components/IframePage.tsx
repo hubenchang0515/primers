@@ -27,7 +27,7 @@ export default function IframePage(props:IframePageProps) {
 
     const initHeight = useCallback(() => {
         if (ref.current?.contentWindow) {
-            ref.current.style.height = Math.ceil(ref.current.contentWindow.document?.documentElement?.offsetHeight??150) + 'px'; // 额外 1 像素避免滚动
+            ref.current.style.height = Math.ceil(ref.current.contentWindow.document?.documentElement?.getBoundingClientRect().height??150) + 'px';
         }
     }, []);
 
