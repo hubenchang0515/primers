@@ -25,6 +25,7 @@ export default function Discussion(props:DiscussionProps) {
                 theme={mode === 'system' ? 'preferred_color_scheme' : mode}
                 lang={wrapLang(props.lang)}
                 loading="lazy"
+                strict="1"
             />
         </Box>
     );
