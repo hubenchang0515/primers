@@ -9,6 +9,9 @@ import SearchBox from "./SearchBox";
 import I18n from "@/utils/i18n";
 import { SITE_CONFIG } from "@/config";
 
+import GoogleIcon from '@mui/icons-material/Google';
+import Image from "./Image";
+
 export interface SearchProps {
     lang?: string,
     root: SearchNode,
@@ -58,10 +61,22 @@ export default function Search(props:SearchProps) {
             {
                 <Paper sx={{flex:1, display:'flex', flexDirection:'column'}}>
                     <Typography sx={{display:'flex', flexWrap:'wrap'}}>
-                        <Button sx={{flex:1, textTransform:'none'}} LinkComponent={Link} disabled={!text} href={`https://www.google.com/search?q=${encodeURIComponent(text + ' site:' + SITE_CONFIG.origin + SITE_CONFIG.basePath)}`}>Google</Button>
-                        <Button sx={{flex:1, textTransform:'none'}} LinkComponent={Link} disabled={!text} href={`https://www.bing.com/search?q=${encodeURIComponent(text + ' site:' + SITE_CONFIG.origin + SITE_CONFIG.basePath)}`}>Bing</Button>
-                        <Button sx={{flex:1, textTransform:'none'}} LinkComponent={Link} disabled={!text} href={`https://www.duckduckgo.com/search?q=${encodeURIComponent(text + ' site:' + SITE_CONFIG.origin + SITE_CONFIG.basePath)}`}>DuckDuckGo</Button>
-                        <Button sx={{flex:1, textTransform:'none'}} LinkComponent={Link} disabled={!text} href={`https://www.yandex.com/search?text=${encodeURIComponent(text + ' site:' + SITE_CONFIG.origin + SITE_CONFIG.basePath)}`}>Yandex</Button>
+                        <Button sx={{flex:1, textTransform:'none', fontWeight:'bold'}} LinkComponent={Link} disabled={!text} href={`https://www.google.com/search?q=${encodeURIComponent(text + ' site:' + SITE_CONFIG.origin + SITE_CONFIG.basePath)}`}>
+                            <img src={`${SITE_CONFIG.basePath}/icons/google.png`} width={24} height={24}/>    
+                            <span style={{marginLeft:4}}>Google</span>
+                        </Button>
+                        <Button sx={{flex:1, textTransform:'none', fontWeight:'bold'}} LinkComponent={Link} disabled={!text} href={`https://www.bing.com/search?q=${encodeURIComponent(text + ' site:' + SITE_CONFIG.origin + SITE_CONFIG.basePath)}`}>
+                            <img src={`${SITE_CONFIG.basePath}/icons/bing.png`} width={24} height={24}/>    
+                            <span style={{marginLeft:4}}>Bing</span>
+                        </Button>
+                        <Button sx={{flex:1, textTransform:'none', fontWeight:'bold'}} LinkComponent={Link} disabled={!text} href={`https://www.duckduckgo.com/search?q=${encodeURIComponent(text + ' site:' + SITE_CONFIG.origin + SITE_CONFIG.basePath)}`}>
+                            <img src={`${SITE_CONFIG.basePath}/icons/duckduckgo.png`} width={24} height={24}/>    
+                            <span style={{marginLeft:4}}>DuckDuckGo</span>
+                        </Button>
+                        <Button sx={{flex:1, textTransform:'none', fontWeight:'bold'}} LinkComponent={Link} disabled={!text} href={`https://www.yandex.com/search?text=${encodeURIComponent(text + ' site:' + SITE_CONFIG.origin + SITE_CONFIG.basePath)}`}>
+                            <img src={`${SITE_CONFIG.basePath}/icons/yandex.png`} width={24} height={24}/>    
+                            <span style={{marginLeft:4}}>Yandex</span>
+                        </Button>
                     </Typography>
                     <Divider/>
                     <Alert severity="info">{i18n.t("search.try")}</Alert>

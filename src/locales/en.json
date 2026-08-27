@@ -57,8 +57,8 @@
     "search": {
         "search": "Search",
         "result": "Search Result",
-        "empty": "No relevant content was found. It is recommended to reduce or shorten the keywords.",
-        "try": "Click the search engine button above to conduct external search."
+        "empty": "No relevant content found. We suggest shortening your keywords or clicking the button above to perform a full-text fuzzy search.",
+        "try": "The on-site search function only supports title matching; click the button above to perform a full-text fuzzy search using a search engine."
     },
 
     "notfound": {
