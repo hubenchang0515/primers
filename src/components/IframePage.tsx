@@ -14,7 +14,7 @@ export interface IframePageProps {
 
 const ADD_TAGS = ['base', 'script', 'noscript', 'object', 'link', 'embed', 'frameset', 'frame', 'param', 'plaintext'];
 
-const ADD_ATTR = ['id', 'class', 'target', 'behavior', 'scrollamount', 'onclick', 'onmouseover', 'onmouseout', 'oninput'];
+const ADD_ATTR = ['id', 'class', 'target', 'behavior', 'scrollamount', 'onclick', 'onmouseover', 'onmouseout', 'oninput', 'data'];
 
 // const DATA_URI_TAGS = ['a'];
 
