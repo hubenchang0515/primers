@@ -1,4 +1,4 @@
-import { Alert, AlertProps, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import { Alert, AlertProps, Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import ReactMarkdown, { Components } from 'react-markdown'
 import { anchorHash } from '@/utils/crypto';
 import { visit } from 'unist-util-visit';
@@ -116,6 +116,24 @@ const MakeComponents = (lang?:string, url?:string):Components => {
             const matches = url.match(/#?!hash\(([^)]+)\)$/);
             if (matches) {
                 url = url.replace(/#?!hash\(([^)]+)\)$/, '#' + await anchorHash(decodeURIComponent(matches[1])));
+            }
+
+            console.log(props.children)
+            const iconMatch = (props.children as String).match(/!icon:(\S+)/);
+            if (iconMatch) {
+                const text = (props.children as String).replaceAll(/!icon:(\S+)/g, "");
+                return (
+                    <Button
+                        LinkComponent={Link}
+                        href={url}
+                        color='info'
+                        // variant='contained'
+                        disableElevation
+                        startIcon={<Image src={iconMatch[1]}/>}
+                    >
+                        <span style={{textTransform:'none'}}>{text}</span>
+                    </Button>
+                )
             }
             return <Link href={url}>{ props.children }</Link>
         },
