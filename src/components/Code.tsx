@@ -55,7 +55,8 @@ export default async function Code(props:CodeProps) {
         )
     }
     
-    const result = hljs.highlight(code, {language: props.language||"text"});
+    const lang = hljs.getLanguage(props.language) ? props.language : "text";
+    const result = hljs.highlight(code, {language: lang, ignoreIllegals: true});
     
     if (props.meta?.trim().startsWith('shift')) {
         // 额外标记 shift 表示用 shift 运行
