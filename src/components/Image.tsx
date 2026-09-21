@@ -7,18 +7,29 @@ export interface ImageProps {
     absolute?: boolean;
     alt?: string;
     title?: string;
-    style?: CSSProperties;
 }
 
 export default async function Image(props:ImageProps) {
     const size = {width:0, height: 0};
-    const match = props.alt?.match(/.+!size:(\d+)x(\d+)/);
-    if (match) {
-        size.width = Number(match[1]);
-        size.height = Number(match[2]);
+    const matchSize = props.alt?.match(/!size:(\d+)x(\d+)/);
+    if (matchSize) {
+        size.width = Number(matchSize[1]);
+        size.height = Number(matchSize[2]);
     }
+
+    let center = true;
+    const matchCenter = props.alt?.match(/!center:(true|false)/);
+    if (matchCenter) {
+        center = matchCenter[1] === "true" ? true : false;
+    }
+
     if (props.src?.startsWith("http")) {
-        <img src={props.src} width={size.width > 0 ? size.width : undefined} height={size.height > 0 ? size.height : undefined}/>
+        return <img 
+            src={props.src} 
+            width={size.width > 0 ? size.width : undefined} 
+            height={size.height > 0 ? size.height : undefined}
+            style={center ? {display:'block', margin:'auto', maxWidth:'100%', height:'auto'} : {}}
+        />
     }
 
     try {
@@ -30,11 +41,11 @@ export default async function Image(props:ImageProps) {
                 title={props.title} 
                 width={size.width > 0 ? size.width : info.width} 
                 height={size.height > 0 ? size.height : info.height} 
-                style={props.style}
+                style={center ? {display:'block', margin:'auto', maxWidth:'100%', height:'auto'} : {}}
                 rel="nofollow"
             />
         )
     } catch {
-        return <NextImage src='/404' width={160} height={90} alt={props.alt??'image'} style={props.style}/>
+        return <NextImage src='/404' width={160} height={90} alt={props.alt??'image'}/>
     }
 }
