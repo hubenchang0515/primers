@@ -16,6 +16,7 @@ import { GlobalStateProvider } from "@/components/GlobalState";
 import { GoogleAnalytics } from '@next/third-parties/google'
 
 export const metadata: Metadata = {
+  metadataBase: new URL(`${SITE_CONFIG.origin}${SITE_CONFIG.basePath}/`),
   title: SITE_CONFIG.title,
   description: SITE_CONFIG.description,
   icons: {
