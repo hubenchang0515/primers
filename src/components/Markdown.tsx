@@ -118,22 +118,23 @@ const MakeComponents = (lang?:string, url?:string):Components => {
                 url = url.replace(/#?!hash\(([^)]+)\)$/, '#' + await anchorHash(decodeURIComponent(matches[1])));
             }
 
-            console.log(props.children)
-            const iconMatch = (props.children as String).match(/!icon:(\S+)/);
-            if (iconMatch) {
-                const text = (props.children as String).replaceAll(/!icon:(\S+)/g, "");
-                return (
-                    <Button
-                        LinkComponent={Link}
-                        href={url}
-                        color='info'
-                        // variant='contained'
-                        disableElevation
-                        startIcon={<Image src={iconMatch[1]}/>}
-                    >
-                        <span style={{textTransform:'none'}}>{text}</span>
-                    </Button>
-                )
+            if (typeof props.children === 'string') {
+                const iconMatch = (props.children as string).match(/!icon:(\S+)/);
+                if (iconMatch) {
+                    const text = (props.children as string).replaceAll(/!icon:(\S+)/g, "");
+                    return (
+                        <Button
+                            LinkComponent={Link}
+                            href={url}
+                            color='info'
+                            // variant='contained'
+                            disableElevation
+                            startIcon={<Image src={iconMatch[1]}/>}
+                        >
+                            <span style={{textTransform:'none'}}>{text}</span>
+                        </Button>
+                    )
+                }
             }
             return <Link href={url}>{ props.children }</Link>
         },
