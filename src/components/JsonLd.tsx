@@ -1,7 +1,4 @@
-"use client";
-import { useEffect } from "react";
-
-type JsonValue =
+export type JsonValue =
   | string
   | number
   | boolean
@@ -16,17 +13,12 @@ export interface JsonLdProps {
 }
 
 export default function JsonLd(props:JsonLdProps) {
-    useEffect(() => {
-        const script = document.createElement('script');
-        script.type = "application/ld+json";
-        script.innerHTML = JSON.stringify(props.json);
-
-        const head = document.querySelector('head');
-        head?.appendChild(script);
-
-        return () => {
-            script.remove();
-        }
-    }, [props.json]);
-    return <></>
+    return (
+        <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+                __html: JSON.stringify(props.json).replace(/</g, '\\u003c'),
+            }}
+        />
+    );
 }
