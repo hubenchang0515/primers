@@ -29,6 +29,7 @@ export async function generateMetadata({params}:{params:Promise<PageParams>}): P
     
     return {
         title: SITE_CONFIG.title,
+        robots: "noindex, follow",
         icons: {
             icon: `${SITE_CONFIG.basePath}/favicon.svg`,
         },
