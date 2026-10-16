@@ -28,7 +28,7 @@ export function ShiftUrl(code?:string, lang?:string, input?:string) {
         params.set("code", btoa(encodeURIComponent(code)));
     }
 
-    const url = new URL('https://xplanc.org/shift/');
+    const url = new URL('https://shift.js.org');
     url.hash = params.toString();
     return url.toString();
 }

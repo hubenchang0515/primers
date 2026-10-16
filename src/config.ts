@@ -1,7 +1,7 @@
 // 站点信息
 export const SITE_CONFIG = {
-    origin: 'https://xplanc.org',
-    basePath: '/primers',
+    origin: 'https://primers.xplanc.org',
+    basePath: '',
     title: 'Primers 编程伙伴',
     brand: 'Primers',
     repo: 'https://github.com/hubenchang0515/primers',
