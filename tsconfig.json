@@ -36,7 +36,9 @@
     "out/primers/types/**/*.ts",
     "out//primers/types/**/*.ts",
     "out/primers/dev/types/**/*.ts",
-    ".next/dev/types/**/*.ts"
+    ".next/dev/types/**/*.ts",
+    "out/types/**/*.ts",
+    "out/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
