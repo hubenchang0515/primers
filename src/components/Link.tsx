@@ -20,14 +20,14 @@ export default function Link(props:MuiLinkProps) {
 
     // 外部链接
     if (props.href.startsWith("http") && !props.href.startsWith(SITE_CONFIG.origin + SITE_CONFIG.basePath)) {
-        return <MuiLink component={NextLink} target="_blank" rel="noopener" {...props}>{props.children}</MuiLink>
+        return <MuiLink component={NextLink} prefetch={false} target="_blank" rel="noopener" {...props}>{props.children}</MuiLink>
     }
 
     // 当前页面
     if (props.href.startsWith("#") || 
         location && props.href.startsWith(location.pathname + '#') || 
         location && props.href.startsWith(location.origin + location.pathname + '#')) {
-        return <MuiLink component={NextLink} {...props}>{props.children}</MuiLink>
+        return <MuiLink component={NextLink} prefetch={false} {...props}>{props.children}</MuiLink>
     }
     
     // 内部链接
@@ -35,6 +35,7 @@ export default function Link(props:MuiLinkProps) {
         <MuiLink
             component={NextLink}
             {...props}
+            prefetch={false}
             onClick={(ev:MouseEvent<HTMLAnchorElement>)=>{
                 const target = new URL(SITE_CONFIG.basePath + (props.href??''), SITE_CONFIG.origin);
                 if (target.pathname !== window.location.pathname) {
