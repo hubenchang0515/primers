@@ -11,20 +11,16 @@ import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 export interface ShareButtonProps{
     lang?: string;
     url?: string;
-    content: string;
 }
 
 export default function ShareButton(props:ShareButtonProps) {
     const [alert, setAlert] = useState({open: false, severity:'info' as AlertProps['severity'], message:''});
     const share = useCallback(() => {
         const url = props.url ?? window.location.href;
-        const lines = text(props.content).split('\n');
-        const title = lines[0];
-        const brief = lines.slice(1, 6);
         const i18n = new I18n(props.lang);
 
         if (navigator.clipboard?.writeText) {
-            navigator.clipboard.writeText(`![${title}](<${url}>)\n\n> ` + brief.join('\n> '));
+            navigator.clipboard.writeText(url);
             setAlert({
                 open: true,
                 severity: 'info',
@@ -35,7 +31,6 @@ export default function ShareButton(props:ShareButtonProps) {
         if (navigator.share) {
             navigator.share({
                 title: SITE_CONFIG.title,
-                text: brief.join('\n'),
                 url: url,
             });
         }
@@ -47,7 +42,7 @@ export default function ShareButton(props:ShareButtonProps) {
                 message: i18n.t('share.failed')
             });
         }
-    }, [props.lang, props.url, props.content]);
+    }, [props.lang, props.url]);
 
     return (
         <IconButton size="small" color="primary" onClick={share}>

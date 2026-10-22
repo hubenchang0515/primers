@@ -9,7 +9,6 @@ import PrintOutlinedIcon from '@mui/icons-material/PrintOutlined';
 export interface PrintButtonProps{
     lang?: string;
     url?: string;
-    content: string;
 }
 
 export default function PrintButton(props:PrintButtonProps) {
@@ -30,7 +29,7 @@ export default function PrintButton(props:PrintButtonProps) {
         });
         iframe.srcdoc = await makePdfContent(url, node?.innerHTML);
         iframe.onload = () => iframe.contentWindow?.print();  
-    }, [props.lang, props.url, props.content]);
+    }, [props.lang, props.url]);
 
     return (
         <IconButton size="small" color="primary" onClick={printPdf}>

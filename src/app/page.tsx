@@ -1,6 +1,6 @@
 import MainPage from "@/components/MainPage";
 import { TitleBarItem } from "@/components/TitleBar";
-import { content, languages } from "@/utils/document";
+import { content, languages, text } from "@/utils/document";
 import { docState } from "@/utils/git";
 import { Paper } from "@mui/material";
 import { Content } from "@/components/Content";
@@ -16,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
     
     return {
         title: SITE_CONFIG.title,
-        description: markdown.replace(/\n+/g, '').substring(0, 150),
+        description: text(markdown).substring(0, 150),
         icons: {
             icon: `${SITE_CONFIG.basePath}/favicon.svg`,
         },

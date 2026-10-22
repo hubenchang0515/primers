@@ -27,8 +27,8 @@ export function Content(props:ContentProps) {
                     <Typography overflow="hidden" whiteSpace="nowrap" textOverflow="ellipsis">{i18n.t("content.about")} {Math.round(props.content.length / 200)} {i18n.t("content.minutes")} </Typography> 
                 </Stack>
                 <Box flexShrink={0}>
-                    <PrintButton lang={props.lang} url={props.url} content={props.content}/>
-                    <ShareButton lang={props.lang} url={props.url} content={props.content}/>
+                    <PrintButton lang={props.lang} url={props.url}/>
+                    <ShareButton lang={props.lang} url={props.url}/>
                 </Box>
             </Box>
             <Markdown lang={props.lang} url={props.url} content={props.content}/>
