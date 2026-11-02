@@ -5,6 +5,7 @@ import { visit } from 'unist-util-visit';
 import { Node } from 'unist';
 import { Paragraph } from 'mdast';
 import remarkGfm from 'remark-gfm'
+import remarkCjkFriendly from 'remark-cjk-friendly/parseOnly';
 import remarkMath from 'remark-math';
 import rehypeMathjax from 'rehype-mathjax';
 import { ComponentProps, ElementType } from 'react';
@@ -229,7 +230,7 @@ export default function Markdown(props: MarkdownProps) {
     return (
         <article>
             <ReactMarkdown
-                remarkPlugins={[remarkGfm, customClass, remarkMath]}
+                remarkPlugins={[remarkGfm, remarkCjkFriendly, customClass, remarkMath]}
                 rehypePlugins={[rehypeMathjax]}
                 components={MakeComponents(props.lang, props.url)}
             >
