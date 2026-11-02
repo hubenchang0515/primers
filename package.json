@@ -9,7 +9,7 @@
     "lint": "next lint",
     "deploy": "npm run deploy:vercel",
     "deploy:gh": "gh-pages -d out -t",
-    "deploy:vercel": "npx vercel ./out --prod --archive=tgz"
+    "deploy:vercel": "npx vercel ./out --prod --archive=tgz --project primers"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
